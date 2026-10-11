@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>LAKAN II — Naga Industries</title>
+<meta name="description" content="NAGA LAKAN II gaming laptop. RTX 4070 at a full 140W, 15.3-inch 2.5K 240Hz, assembled in the Philippines with local warranty.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/lenis.css">
+<link rel="stylesheet" href="assets/vendor/splitting.css">
+<link rel="stylesheet" href="assets/css/naga.css">
+</head>
+<body>
+
+<a class="sr-only" href="#main">Skip to content</a>
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Naga Industries home">
+    <span class="lottie-mark" data-lottie="assets/lottie/naga-wave.json" aria-hidden="true"></span>
+    <img class="b" src="assets/img/naga-wordmark-black.png" alt="naga">
+    <img class="w" src="assets/img/naga-wordmark-white.png" alt="" aria-hidden="true">
+  </a>
+  <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
+  </button>
+  <ul>
+    <li><a href="sipag-i.html">SIPAG I</a></li>
+    <li><a href="lakan-ii.html">LAKAN II</a></li>
+    <li><a href="diwa.html">DIWA</a></li>
+    <li><a href="index.html#compare">Compare</a></li>
+    <li><a href="index.html#film">Film</a></li>
+    <li><a href="#support">Support</a></li>
+  </ul>
+</header>
+
+<!-- Product bar: sticks under the global nav. Price and Buy are always one tap away. -->
+<div class="subnav" style="margin-top:var(--nav-h)">
+  <span class="pname">LAKAN II <small>Gaming laptop</small></span>
+  <div class="right">
+    <a href="#overview">Overview</a>
+    <a href="#specs">Specs</a>
+    <a href="#performance">Performance</a>
+    <a class="btn btn-fill btn-small" href="#buy">Buy · ₱63,000</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- HERO: headline, tagline, two links. The product follows in the pinned scene. -->
+<section class="phero" id="overview">
+  <p class="eyebrow">Gaming laptop · Closeout price</p>
+  <h1 class="t-hero" style="margin-top:14px" data-splitting>LAKAN II</h1>
+  <p class="t-tag">Gigil na gigil. Ang gaming laptop na hindi ka bibiguin.</p>
+  <div class="links">
+    <a class="link" href="#buy">Buy</a>
+    <a class="link" href="index.html#film">Watch the film</a>
+  </div>
+  <p class="price">From <b>₱63,000</b> · was ₱73,500 · 0% installment available</p>
+</section>
+
+<!-- PINNED 3D SCENE: scroll opens the lid and orbits the camera. Drag to rotate.
+     To use the real Tripo3D model: drop the file at assets/models/lakan-ii.glb and replace
+     this block with the <model-viewer> snippet in assets/models/README.md. -->
+<section class="scene" data-scene="laptop" data-variant="gaming" data-label="LAKAN II" data-scene-pin aria-label="LAKAN II in 3D">
+  <canvas aria-label="LAKAN II, drag to rotate" role="img"></canvas>
+  <div class="caption">
+    <h2>Buksan mo.<br><em>Gigil na siya.</em></h2>
+    <p>Scroll opens the lid. Drag to rotate.</p>
+  </div>
+  <div class="progress"><span class="pct" data-pct>0%</span>lid open</div>
+</section>
+
+<!-- SPECS: bento. The number is the headline. -->
+<section class="chapter tint" id="specs">
+  <div class="wrap">
+    <p class="eyebrow">Specs</p>
+    <h2 class="t-h2" data-splitting>Specs na walang arte, puro diskarte.</h2>
+    <div class="bento" data-reveal>
+      <div class="tile w3 dark-tile" data-reveal-child><div class="t-big">RTX 4070<small>140W full-power TDP</small></div><p>Hindi 'yung pinigilan. Ray tracing na parang sinag ng umaga sa probinsya.</p></div>
+      <div class="tile w3" data-reveal-child><div class="t-big">240<span class="unit">Hz</span><small>15.3" 2560×1600 IPS</small></div><p>Sobrang smooth, mapapa-"grabe" ka sa unang flick shot.</p></div>
+      <div class="tile w2" data-reveal-child><div class="t-big">i9<small>Intel 14th Gen, or Ryzen 7 8845HS</small></div><p>40 Chrome tabs, Valorant, at 'yung thesis na due bukas.</p></div>
+      <div class="tile w2" data-reveal-child><div class="t-big">32<span class="unit">GB</span><small>DDR5 · upgradeable to 64GB</small></div><p>Two SO-DIMM slots, no soldered memory.</p></div>
+      <div class="tile w2" data-reveal-child><div class="t-big">1<span class="unit">TB</span><small>PCIe 4.0 NVMe · second slot free</small></div><p>Load times na mas mabilis pa sa "sandali lang."</p></div>
+      <div class="tile w3" data-reveal-child><h3>Per-key RGB, Naga cyan by default</h3><p>Full-size layout, 1.8mm travel, anti-ghosting. Keycaps that survive a bootcamp.</p></div>
+      <div class="tile w3 cyan-tile" data-reveal-child><h3>Assembled in the Philippines</h3><p>Quality-checked dito mismo. Local warranty, real people, nationwide service centers.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE: the black chapter. -->
+<section class="chapter dark" id="performance" data-nav-dark>
+  <div class="wrap">
+    <p class="eyebrow">Performance</p>
+    <div class="perf">
+      <div data-reveal>
+        <h2 class="t-h2" data-reveal-child>Full power. <em>Cooled for Manila.</em></h2>
+        <p class="muted measure" style="margin-top:16px" data-reveal-child>Dual fans, three heat pipes and a vapor chamber tuned at 34°C ambient, hindi sa 20°C lab sa ibang bansa. Sustained wattage stays at 140W after an hour, not just in the first benchmark.</p>
+        <div class="row" style="margin-top:24px" data-reveal-child>
+          <a class="btn btn-fill" href="#buy">Buy LAKAN II</a>
+          <a class="btn btn-ghost" href="index.html#compare">Compare models</a>
+        </div>
+      </div>
+      <div class="glow" data-scene="laptop" data-variant="gaming" data-label="LAKAN II" data-mode="idle"><canvas aria-label="LAKAN II with the lid open, drag to rotate" role="img"></canvas></div>
+    </div>
+    <div class="statrow" data-reveal>
+      <div data-reveal-child><div class="t-big">140<span class="accent unit">W</span></div><span class="label">Sustained GPU power</span></div>
+      <div data-reveal-child><div class="t-big">2.5<span class="accent unit">K</span></div><span class="label">Resolution at 240Hz</span></div>
+      <div data-reveal-child><div class="t-big">99<span class="accent unit">Wh</span></div><span class="label">Battery, 100W USB-C charging</span></div>
+    </div>
+    <div class="dgrid" data-reveal>
+      <div class="dcard" data-reveal-child><h4>Thunderbolt 4 · HDMI 2.1</h4><p>Drive a 4K 120Hz TV and two monitors at once.</p></div>
+      <div class="dcard" data-reveal-child><h4>Wi-Fi 6E · 2.5GbE</h4><p>Low-latency ranked, kahit congested ang building.</p></div>
+      <div class="dcard" data-reveal-child><h4>MUX switch</h4><p>Direct GPU-to-display path for competitive frame rates.</p></div>
+      <div class="dcard" data-reveal-child><h4>Local warranty, 1 year</h4><p>Walk-in service centers nationwide. Parts stocked locally.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUY -->
+<section class="chapter" id="buy">
+  <div class="wrap" style="text-align:center">
+    <p class="eyebrow">Closeout sale</p>
+    <h2 class="t-h2" data-splitting>Bilhin na.</h2>
+    <div class="t-big" style="margin-top:28px"><span data-count="63000" data-prefix="₱">₱63,000</span><small><s>₱73,500</s> · 0% installment up to 12 months · Free nationwide shipping</small></div>
+    <div class="row" style="justify-content:center;margin-top:28px">
+      <a class="btn btn-fill" href="#">Buy LAKAN II</a>
+      <a class="btn btn-ghost" href="#">Find a store</a>
+    </div>
+    <p class="muted" style="margin-top:18px;font-size:.85rem">Ships in 2 to 3 days from Manila. Insured. 7-day replacement guarantee.</p>
+  </div>
+</section>
+
+</main>
+
+<footer id="support">
+  <div class="foot-inner">
+    <div>
+      <a class="brand" href="index.html"><img src="assets/img/naga-wordmark-white.png" alt="naga"></a>
+      <p>Philippine-built laptops and AI mini PCs. Sulong — walang atrasan, mula design hanggang after-sales.</p>
+    </div>
+    <div class="cols">
+      <div><h4>Products</h4><ul><li><a href="sipag-i.html">SIPAG I</a></li><li><a href="lakan-ii.html">LAKAN II</a></li><li><a href="diwa.html">DIWA</a></li><li><a href="index.html#compare">Compare</a></li></ul></div>
+      <div><h4>Support</h4><ul><li><a href="#">Warranty</a></li><li><a href="#">Service centers</a></li><li><a href="#">Track order</a></li><li><a href="#">hello@nagatech.ph</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="index.html#film">The film</a></li><li><a href="#">Careers</a></li></ul></div>
+    </div>
+  </div>
+  <div class="fine"><span>© 2026 Naga Industries. All rights reserved.</span><span>Proudly Filipino</span></div>
+</footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/vendor/splitting.min.js"></script>
+<script src="assets/vendor/lottie_light.min.js"></script>
+<script src="assets/js/naga.js"></script>
+<script type="module" src="assets/js/scene.js"></script>
+</body>
+</html>

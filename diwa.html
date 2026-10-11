@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DIWA — Naga Industries</title>
+<meta name="description" content="NAGA DIWA AI mini PC. Ryzen AI with a 50 TOPS NPU, 64GB memory for local models, 1.1 liters, assembled in the Philippines.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/lenis.css">
+<link rel="stylesheet" href="assets/vendor/splitting.css">
+<link rel="stylesheet" href="assets/css/naga.css">
+</head>
+<body>
+
+<a class="sr-only" href="#main">Skip to content</a>
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Naga Industries home">
+    <span class="lottie-mark" data-lottie="assets/lottie/naga-wave.json" aria-hidden="true"></span>
+    <img class="b" src="assets/img/naga-wordmark-black.png" alt="naga">
+    <img class="w" src="assets/img/naga-wordmark-white.png" alt="" aria-hidden="true">
+  </a>
+  <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
+  </button>
+  <ul>
+    <li><a href="sipag-i.html">SIPAG I</a></li>
+    <li><a href="lakan-ii.html">LAKAN II</a></li>
+    <li><a href="diwa.html">DIWA</a></li>
+    <li><a href="index.html#compare">Compare</a></li>
+    <li><a href="index.html#film">Film</a></li>
+    <li><a href="#support">Support</a></li>
+  </ul>
+</header>
+
+<div class="subnav" style="margin-top:var(--nav-h)">
+  <span class="pname">DIWA <small>AI mini PC</small></span>
+  <div class="right">
+    <a href="#overview">Overview</a>
+    <a href="#specs">Specs</a>
+    <a href="#ai">Local AI</a>
+    <a class="btn btn-fill btn-small" href="#buy">Buy · ₱59,990</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- PLACEHOLDER SPECS: every DIWA figure on this page is proposed, not confirmed. See README. -->
+<section class="phero" id="overview">
+  <p class="eyebrow">AI mini PC</p>
+  <h1 class="t-hero" style="margin-top:14px" data-splitting>DIWA</h1>
+  <p class="t-tag">Isip na hindi natutulog. Local AI, 1.1 liters, sa desk mo.</p>
+  <div class="links">
+    <a class="link" href="#buy">Buy</a>
+    <a class="link" href="#ai">What runs on it</a>
+  </div>
+  <p class="price">From <b>₱59,990</b> · 0% installment available</p>
+</section>
+
+<section class="scene" data-scene="minipc" data-label="DIWA" data-scene-pin aria-label="DIWA in 3D">
+  <canvas aria-label="DIWA mini PC, drag to rotate" role="img"></canvas>
+  <div class="caption">
+    <h2>Maliit na kahon.<br><em>Malaking isip.</em></h2>
+    <p>Scroll turns it around. Drag to rotate.</p>
+  </div>
+  <div class="progress"><span class="pct" data-pct>0%</span>turned</div>
+</section>
+
+<section class="chapter tint" id="specs">
+  <div class="wrap">
+    <p class="eyebrow">Specs</p>
+    <h2 class="t-h2" data-splitting>Workstation sa laki ng sandwich.</h2>
+    <div class="bento" data-reveal>
+      <div class="tile w3 dark-tile" data-reveal-child><div class="t-big">50<span class="unit">TOPS</span><small>Ryzen AI 9 HX 370 · XDNA 2 NPU</small></div><p>Runs a 13B model locally at conversation speed, with the GPU free for the rest.</p></div>
+      <div class="tile w3" data-reveal-child><div class="t-big">64<span class="unit">GB</span><small>LPDDR5X 7500 · up to 48GB for the model</small></div><p>Enough context to hold a whole thesis in one prompt.</p></div>
+      <div class="tile w2" data-reveal-child><div class="t-big">1.1<span class="unit">L</span><small>128 × 128 × 68mm</small></div><p>Mounts behind the monitor. Fits in a bag with the SIPAG.</p></div>
+      <div class="tile w2" data-reveal-child><div class="t-big">2<span class="unit">TB</span><small>PCIe 4.0 NVMe · second slot free</small></div><p>Room for the models and the footage.</p></div>
+      <div class="tile w2" data-reveal-child><div class="t-big">3<span class="unit">×4K</span><small>HDMI 2.1 · 2 × USB4</small></div><p>Three displays at 60Hz, one at 120.</p></div>
+      <div class="tile w3" data-reveal-child><h3>Silent under load</h3><p>Single 92mm fan, copper fin stack. 28dB at full tilt, quieter than the aircon.</p></div>
+      <div class="tile w3 cyan-tile" data-reveal-child><h3>Assembled in the Philippines</h3><p>Quality-checked dito mismo. Local warranty, real people, nationwide service centers.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter dark" id="ai" data-nav-dark>
+  <div class="wrap">
+    <p class="eyebrow">Local AI</p>
+    <div class="perf">
+      <div data-reveal>
+        <h2 class="t-h2" data-reveal-child>Sa iyo ang data. <em>Sa iyo ang isip.</em></h2>
+        <p class="muted measure" style="margin-top:16px" data-reveal-child>DIWA ships ready for Ollama, LM Studio and ComfyUI, with Filipino and English models preloaded. Nothing leaves the box unless you send it. Transcribe meetings, draft contracts, generate renders, all on a machine that sits next to your coffee.</p>
+        <div class="row" style="margin-top:24px" data-reveal-child>
+          <a class="btn btn-fill" href="#buy">Buy DIWA</a>
+          <a class="btn btn-ghost" href="index.html#compare">Compare models</a>
+        </div>
+      </div>
+      <div class="glow" data-scene="minipc" data-label="DIWA" data-mode="idle"><canvas aria-label="DIWA mini PC, drag to rotate" role="img"></canvas></div>
+    </div>
+    <div class="statrow" data-reveal>
+      <div data-reveal-child><div class="t-big">50<span class="accent unit">TOPS</span></div><span class="label">NPU</span></div>
+      <div data-reveal-child><div class="t-big">28<span class="accent unit">dB</span></div><span class="label">At full load</span></div>
+      <div data-reveal-child><div class="t-big">65<span class="accent unit">W</span></div><span class="label">Wall power, sustained</span></div>
+    </div>
+    <div class="dgrid" data-reveal>
+      <div class="dcard" data-reveal-child><h4>2 × 2.5GbE · Wi-Fi 7</h4><p>A home server, a NAS head, or the office's quiet workhorse.</p></div>
+      <div class="dcard" data-reveal-child><h4>2 × USB4 · 4 × USB-A</h4><p>External GPU ready when you need more than the NPU.</p></div>
+      <div class="dcard" data-reveal-child><h4>VESA mount included</h4><p>Hide it behind the monitor. Only the cyan bar shows.</p></div>
+      <div class="dcard" data-reveal-child><h4>Local warranty, 1 year</h4><p>Walk-in service centers nationwide. Parts stocked locally.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="buy">
+  <div class="wrap" style="text-align:center">
+    <p class="eyebrow">Order</p>
+    <h2 class="t-h2" data-splitting>Gisingin mo.</h2>
+    <div class="t-big" style="margin-top:28px"><span data-count="59990" data-prefix="₱">₱59,990</span><small>0% installment up to 12 months · Free nationwide shipping</small></div>
+    <div class="row" style="justify-content:center;margin-top:28px">
+      <a class="btn btn-fill" href="#">Buy DIWA</a>
+      <a class="btn btn-ghost" href="#">Find a store</a>
+    </div>
+    <p class="muted" style="margin-top:18px;font-size:.85rem">Ships in 2 to 3 days from Manila. Insured. 7-day replacement guarantee.</p>
+  </div>
+</section>
+
+</main>
+
+<footer id="support">
+  <div class="foot-inner">
+    <div>
+      <a class="brand" href="index.html"><img src="assets/img/naga-wordmark-white.png" alt="naga"></a>
+      <p>Philippine-built laptops and AI mini PCs. Sulong — walang atrasan, mula design hanggang after-sales.</p>
+    </div>
+    <div class="cols">
+      <div><h4>Products</h4><ul><li><a href="sipag-i.html">SIPAG I</a></li><li><a href="lakan-ii.html">LAKAN II</a></li><li><a href="diwa.html">DIWA</a></li><li><a href="index.html#compare">Compare</a></li></ul></div>
+      <div><h4>Support</h4><ul><li><a href="#">Warranty</a></li><li><a href="#">Service centers</a></li><li><a href="#">Track order</a></li><li><a href="#">hello@nagatech.ph</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="index.html#film">The film</a></li><li><a href="#">Careers</a></li></ul></div>
+    </div>
+  </div>
+  <div class="fine"><span>© 2026 Naga Industries. All rights reserved.</span><span>Proudly Filipino</span></div>
+</footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/vendor/splitting.min.js"></script>
+<script src="assets/vendor/lottie_light.min.js"></script>
+<script src="assets/js/naga.js"></script>
+<script type="module" src="assets/js/scene.js"></script>
+</body>
+</html>
