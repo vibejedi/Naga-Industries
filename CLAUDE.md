@@ -24,14 +24,12 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 
 | Library        | Used for                                                   |
 |----------------|------------------------------------------------------------|
-| GSAP + ScrollTrigger | reveals, headline word animation, pinned 3D scene scrub, nav dark detection |
+| GSAP + ScrollTrigger | reveals, headline word animation, product-shot settle, nav dark detection |
 | Lenis          | smooth inertial scrolling, in-page anchor scrolling        |
-| three.js (ESM) | procedural product scenes in `assets/js/scene.js`          |
-| model-viewer   | drop-in for real GLB files, see `assets/models/README.md`   |
 | lottie-web (light) | animated wave mark in the nav, `assets/lottie/naga-wave.json` |
 | Splitting      | splits `[data-splitting]` headlines into words for GSAP    |
 
-Load order at the bottom of each page: gsap, ScrollTrigger, lenis, splitting, lottie, then `naga.js`, then `scene.js` as a module. Each effect in `naga.js` checks for its library and degrades; never let a missing library hide content.
+Load order at the bottom of each page: gsap, ScrollTrigger, lenis, splitting, lottie, then `naga.js`. Each effect in `naga.js` checks for its library and degrades; never let a missing library hide content.
 
 To bump a library: edit the version in `package.json`, run `npm install` and `npm run vendor`.
 
@@ -39,12 +37,11 @@ To bump a library: edit the version in `package.json`, run `npm install` and `np
 
 - Resting state is visible. GSAP `from` tweens do the hiding; CSS never sets `opacity: 0`.
 - Respect `prefers-reduced-motion`: Lenis, scrubs and word reveals are skipped in `naga.js`.
-- 3D scenes pause when offscreen (IntersectionObserver). Keep pixel ratio capped at 2.
-- Scroll progress reaches a scene through the `naga:progress` CustomEvent on its container; keep `scene.js` free of ScrollTrigger imports.
+- No 3D. Product visuals are images in `assets/img/products/` (placeholder SVGs until photos or renders exist). The product page shot (`[data-hero-shot]`) settles from 1.08× to 1× on scroll; nothing else moves the product.
 
 ## Content status
 
-Only LAKAN II carries specs from the original LAKAN 15 page. SIPAG I and DIWA specs, and all three prices, are placeholders marked with `PLACEHOLDER SPECS` comments. Confirm with the product team before launch. Buy and Find a store buttons link to `#` until the store exists.
+Only LAKAN II carries specs from the original LAKAN 15 page. SIPAG I and DIWA specs, and all three prices, are placeholders marked with `PLACEHOLDER SPECS` comments. Confirm with the product team before launch. Buy and Find a store buttons link to `#` until the store exists. The three product images are placeholders; swap the files at the same paths.
 
 ## Verifying
 

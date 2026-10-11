@@ -49,7 +49,7 @@
 
 <main id="main">
 
-<!-- HERO: headline, tagline, two links. The product follows in the pinned scene. -->
+<!-- HERO: headline, tagline, two links. The product shot follows. -->
 <section class="phero" id="overview">
   <p class="eyebrow">Gaming laptop · Closeout price</p>
   <h1 class="t-hero" style="margin-top:14px" data-splitting>LAKAN II</h1>
@@ -61,16 +61,10 @@
   <p class="price">From <b>₱63,000</b> · was ₱73,500 · 0% installment available</p>
 </section>
 
-<!-- PINNED 3D SCENE: scroll opens the lid and orbits the camera. Drag to rotate.
-     To use the real Tripo3D model: drop the file at assets/models/lakan-ii.glb and replace
-     this block with the <model-viewer> snippet in assets/models/README.md. -->
-<section class="scene" data-scene="laptop" data-variant="gaming" data-label="LAKAN II" data-scene-pin aria-label="LAKAN II in 3D">
-  <canvas aria-label="LAKAN II, drag to rotate" role="img"></canvas>
-  <div class="caption">
-    <h2>Buksan mo.<br><em>Gigil na siya.</em></h2>
-    <p>Scroll opens the lid. Drag to rotate.</p>
-  </div>
-  <div class="progress"><span class="pct" data-pct>0%</span>lid open</div>
+<!-- PRODUCT SHOT: replace assets/img/products/lakan-ii.svg with a photo or render (same path, jpg/png/webp fine). -->
+<section class="pshot" aria-label="NAGA LAKAN II gaming laptop">
+  <figure class="pshot-frame" data-hero-shot><img src="assets/img/products/lakan-ii.svg" alt="NAGA LAKAN II gaming laptop" width="1600" height="900"></figure>
+  <div class="pshot-caption"><h2 class="t-h3">Buksan mo. <em>Gigil na siya.</em></h2><p class="muted">Full-power RTX 4070, 240Hz, per-key cyan.</p></div>
 </section>
 
 <!-- SPECS: bento. The number is the headline. -->
@@ -103,7 +97,7 @@
           <a class="btn btn-ghost" href="index.html#compare">Compare models</a>
         </div>
       </div>
-      <div class="glow" data-scene="laptop" data-variant="gaming" data-label="LAKAN II" data-mode="idle"><canvas aria-label="LAKAN II with the lid open, drag to rotate" role="img"></canvas></div>
+      <figure class="glow"><img src="assets/img/products/lakan-ii.svg" alt="NAGA LAKAN II gaming laptop" loading="lazy" width="1600" height="900"></figure>
     </div>
     <div class="statrow" data-reveal>
       <div data-reveal-child><div class="t-big">140<span class="accent unit">W</span></div><span class="label">Sustained GPU power</span></div>
@@ -156,6 +150,5 @@
 <script src="assets/vendor/splitting.min.js"></script>
 <script src="assets/vendor/lottie_light.min.js"></script>
 <script src="assets/js/naga.js"></script>
-<script type="module" src="assets/js/scene.js"></script>
 </body>
 </html>

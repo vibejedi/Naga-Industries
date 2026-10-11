@@ -1,6 +1,6 @@
 ---
 name: naga-design-system
-description: Naga Industries visual system. Load before adding or changing any page, section, component, color, type, motion or 3D scene on the site. Covers tokens, type scale, layout patterns (Apple-style tiles, bento, Razer-style dark chapter), motion rules and the library stack.
+description: Naga Industries visual system. Load before adding or changing any page, section, component, color, type, motion or product image on the site. Covers tokens, type scale, layout patterns (Apple-style tiles, bento, Razer-style dark chapter), product imagery, motion rules and the library stack.
 ---
 
 # Naga design system
@@ -37,10 +37,10 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - **Global nav** `.nav`: fixed, 48px, translucent with 20px blur. Dark sections carry `data-nav-dark`; `naga.js` flips the nav to `.on-dark` while one is under it.
 - **Product bar** `.subnav`: sticky under the nav on product pages. Model name left, section links and a small cyan Buy pill right.
 - **Entrance** `.entrance`: the carved-wall film, full height, scrolls away with copy drifting up. Homepage only.
-- **Product tile** `.ptile`: eyebrow, headline, tagline, two chevron links, product render. Stack: one full tile, then `.tile-pair`.
-- **Product hero** `.phero` then **pinned scene** `.scene[data-scene-pin]`: scroll scrubs the 3D model.
+- **Product tile** `.ptile`: eyebrow, headline, tagline, two chevron links, product image in `figure.render`. Stack: one full tile, then `.tile-pair`.
+- **Product hero** `.phero` then **product shot** `.pshot`: a rounded 16:9 image frame (`figure.pshot-frame[data-hero-shot]`) with a two-line caption. No 3D; the product is photographed or rendered offline.
 - **Bento** `.bento` with `.tile.w2/.w3`: numbers as headlines, one `.dark-tile`, one `.cyan-tile` per grid.
-- **Performance chapter** `.chapter.dark`: `.perf` two-column (copy + `.glow` scene), `.statrow` of three big numbers, `.dgrid` of hover-lit `.dcard`s.
+- **Performance chapter** `.chapter.dark`: `.perf` two-column (copy + `figure.glow` holding the product image over a cyan radial glow), `.statrow` of three big numbers, `.dgrid` of hover-lit `.dcard`s.
 - **Buttons**: `.btn-fill` (cyan pill, one per screen), `.btn-ghost` (outlined pill). Reading links use `.link` (chevron).
 - Gutters via `--gutter`; content width `--wrap` (1120px). Grids wrap to one column under 560px.
 
@@ -49,11 +49,16 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - Lenis smooth scroll + GSAP ScrollTrigger. Reveals use `[data-reveal]` on a group and `[data-reveal-child]` on items; headlines use `[data-splitting]` for word-by-word rise.
 - Resting state is always visible. GSAP `from` tweens hide; CSS never does.
 - `prefers-reduced-motion` disables Lenis, scrubs and word reveals.
-- 3D: `assets/js/scene.js` (three.js ESM). `data-scene="laptop|minipc"`, `data-variant="gaming|work"`, `data-mode="idle"` for auto-orbit renders. Scroll progress arrives as the `naga:progress` event. Real GLBs go through `<model-viewer>`; see `assets/models/README.md`.
+- Product shot: `[data-hero-shot] img` scrubs from scale 1.08 to 1 as it enters. Keep product motion to this one settle.
+
+## Product imagery
+
+- Files live at `assets/img/products/<product>.svg` (placeholders) and are referenced from the homepage tile, the product page shot and the dark chapter. Replace with photos or renders at the same path; any of svg, jpg, png or webp works if the `src` is updated.
+- Shoot or render at 16:9, 1600×900 or larger, product centered, on transparent or pure white (light chapters) and reuse the same file on black (the glow sits behind it). A single three-quarter view with the lid open reads best at tile size.
 
 ## Adding a product page
 
-Copy `lakan-ii.html`. Change: title and meta, `.subnav` name and price, `.phero` copy, the scene's `data-scene`/`data-variant`/`data-label`, bento tiles, the dark chapter, and the buy block (`data-count`). Add the product to the nav, the homepage tiles, the compare table and the footer on every page.
+Copy `lakan-ii.html`. Change: title and meta, `.subnav` name and price, `.phero` copy, the `.pshot` image and caption, bento tiles, the dark chapter image, and the buy block (`data-count`). Add the product to the nav, the homepage tiles, the compare table and the footer on every page.
 
 ## Checks before committing
 

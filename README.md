@@ -19,12 +19,11 @@ npx serve .          # or any static server
 assets/
   css/naga.css        design tokens and every component
   js/naga.js          nav, Lenis smooth scroll, GSAP reveals, Splitting headlines, Lottie mark, counters
-  js/scene.js         three.js product scenes (ES module); scroll progress arrives as a 'naga:progress' event
   vendor/             pinned library builds (see package.json); nothing loads from a CDN except Google Fonts
   img/                wordmarks, poster frames, favicon
+  img/products/       product images (placeholder SVGs; replace with photos or renders at the same paths)
   video/              1080p H.264 entrance film (source 4K HEVC master kept in video/source/)
   lottie/             naga-wave.json, the animated mark in the nav
-  models/             drop GLB files here; README explains the model-viewer swap
 .claude/skills/naga-design-system/SKILL.md   the design system, loaded by Claude before visual work
 CLAUDE.md                                    project conventions for Claude Code sessions
 ```
@@ -33,10 +32,8 @@ CLAUDE.md                                    project conventions for Claude Code
 
 | Library | Version | Role |
 |---|---|---|
-| GSAP + ScrollTrigger | 3.15.0 | reveals, pinned scene scrub, nav dark detection |
+| GSAP + ScrollTrigger | 3.15.0 | reveals, product-shot settle, nav dark detection |
 | Lenis | 1.3.26 | smooth scrolling |
-| three.js | 0.183.0 | procedural product scenes |
-| model-viewer | 4.4.0 | real GLB models with orbit and AR (see `assets/models/README.md`) |
 | lottie-web (light) | 5.13.0 | animated wave mark |
 | Splitting | 1.1.0 | word-by-word headline reveals |
 
@@ -53,6 +50,6 @@ Only LAKAN II carries specs from the original LAKAN 15 page. Everything below is
 - All "Buy" and "Find a store" buttons link to `#` until the store exists
 - The film still streams from the Higgsfield CloudFront URL; host it with the site before launch
 
-## 3D models
+## Product images
 
-Pages render procedural stand-ins. When the Tripo3D GLB of each product is ready, follow `assets/models/README.md` to switch that page to `<model-viewer>`.
+`assets/img/products/lakan-ii.svg`, `sipag-i.svg` and `diwa.svg` are placeholders drawn in the brand colors. Replace each with a photo or render (16:9, 1600×900 or larger, product centered on white or transparent). If you use jpg, png or webp, update the three `src` attributes per product (homepage tile, product page shot, dark chapter).

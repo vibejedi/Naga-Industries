@@ -150,26 +150,19 @@
   });
 
   /* ---------------------------------------------------------------
-     7) Scene scrub: pin each [data-scene-pin] section and publish progress
-        to the 3D module through a CustomEvent (keeps the module decoupled).
+     7) Product shot: eases from slightly enlarged to true size and
+        gains a little lift as it enters, the way a product reveal settles.
      --------------------------------------------------------------- */
-  document.querySelectorAll('[data-scene-pin]').forEach((sec) => {
-    const emit = (p) => sec.dispatchEvent(new CustomEvent('naga:progress', { detail: p }));
-    if (hasST && !reduce) {
-      ScrollTrigger.create({
-        trigger: sec, start: 'top top', end: '+=160%', pin: true, scrub: .6,
-        onUpdate: (st) => emit(st.progress)
+  if (hasST && !reduce) {
+    document.querySelectorAll('[data-hero-shot]').forEach((fig) => {
+      const img = fig.querySelector('img');
+      if (!img) return;
+      gsap.fromTo(img, { scale: 1.08, yPercent: 4 }, {
+        scale: 1, yPercent: 0, ease: 'none',
+        scrollTrigger: { trigger: fig, start: 'top 90%', end: 'top 30%', scrub: true }
       });
-    } else {
-      const onScroll = () => {
-        const r = sec.getBoundingClientRect();
-        const p = Math.min(1, Math.max(0, (window.innerHeight - r.top) / (window.innerHeight + r.height)));
-        emit(p);
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
-  });
+    });
+  }
 
   /* ---------------------------------------------------------------
      8) Film frame: hide the label once playing
