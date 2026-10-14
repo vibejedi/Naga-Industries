@@ -53,7 +53,7 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 
 ## Product imagery
 
-- Files live at `assets/img/products/<product>.svg` (placeholders) and are referenced from the homepage tile, the product page shot and the dark chapter. Replace with photos or renders at the same path; any of svg, jpg, png or webp works if the `src` is updated.
+- Files live at `assets/img/products/<product>.webp` (transparent 16:9, 2000×1125) and are referenced from the homepage tile, the product page shot and the dark chapter. The current set are AI concept renders made to one brief: matte black (LAKAN II), silver-white (SIPAG I), black with a cyan light bar (DIWA), three-quarter view from slightly above, soft key light upper left, cyan rim light, soft contact shadow, lowercase "naga" wordmark only. Any new render or photo must match that brief so the three read as one family.
 - Shoot or render at 16:9, 1600×900 or larger, product centered, on transparent or pure white (light chapters) and reuse the same file on black (the glow sits behind it). A single three-quarter view with the lid open reads best at tile size.
 
 ## Adding a product page

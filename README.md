@@ -21,7 +21,7 @@ assets/
   js/naga.js          nav, Lenis smooth scroll, GSAP reveals, Splitting headlines, Lottie mark, counters
   vendor/             pinned library builds (see package.json); nothing loads from a CDN except Google Fonts
   img/                wordmarks, poster frames, favicon
-  img/products/       product images (placeholder SVGs; replace with photos or renders at the same paths)
+  img/products/       product renders (transparent 16:9 WebP, 2000×1125)
   video/              1080p H.264 entrance film (source 4K HEVC master kept in video/source/)
   lottie/             naga-wave.json, the animated mark in the nav
 .claude/skills/naga-design-system/SKILL.md   the design system, loaded by Claude before visual work
@@ -52,4 +52,4 @@ Only LAKAN II carries specs from the original LAKAN 15 page. Everything below is
 
 ## Product images
 
-`assets/img/products/lakan-ii.svg`, `sipag-i.svg` and `diwa.svg` are placeholders drawn in the brand colors. Replace each with a photo or render (16:9, 1600×900 or larger, product centered on white or transparent). If you use jpg, png or webp, update the three `src` attributes per product (homepage tile, product page shot, dark chapter).
+`assets/img/products/lakan-ii.webp`, `sipag-i.webp` and `diwa.webp` are AI-generated concept renders (GPT Image 2.5 via Higgsfield, transparent background, cleaned and reframed to 16:9 at 2000×1125). They are design intent, not photographs of shipping hardware. To replace one with a real product photo, export a transparent 16:9 WebP at the same path; the homepage tile, the product page shot and the dark chapter all read from it.
