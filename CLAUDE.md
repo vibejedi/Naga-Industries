@@ -17,6 +17,7 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 - Tokens live in `assets/css/naga.css` under `:root`. Never introduce a new color; use the tokens.
 - One accent: `--cyan` for fills and glow, `--cyan-link` for text links on white. No teal variants.
 - Display face Outfit (echoes the round "naga" wordmark); body is the system font stack.
+- Accent face Tilt Neon (`--font-accent`) for product names only: add `.nameplate` to a product-name heading; `.subnav .pname` and the compare header `.pn` already use it. One weight, so never bold it.
 - Headlines: short, tight tracking, Taglish voice. Numbers are the headline in spec tiles. No emoji as icons.
 - Every page: `.nav` (fixed, 48px) and, on product pages, `.subnav` (sticky, Buy pill). Sections that are dark carry `data-nav-dark` so the nav flips.
 

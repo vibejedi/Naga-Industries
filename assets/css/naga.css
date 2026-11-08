@@ -22,6 +22,8 @@
   /* Type */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
   --font-text: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  /* Accent: product names only (SIPAG I, LAKAN II, DIWA). One weight; never bold it. */
+  --font-accent: 'Tilt Neon', 'Outfit', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 
   /* Scale */
   --t-hero: clamp(3rem, 8vw, 6rem);
@@ -106,6 +108,11 @@ a { color: inherit; }
 }
 .chapter.dark .t-big small, .tile.dark-tile .t-big small { color: var(--onvoid-2); }
 .muted { color: var(--ink-2); }
+
+/* Product nameplate: Tilt Neon, a monoline face with round ends like bent neon tubing.
+   It has one weight, so font-synthesis stops browsers faking a bold. On black it gets a faint cyan glow. */
+.nameplate { font-family: var(--font-accent); font-weight: 400; font-synthesis: none; letter-spacing: .02em; line-height: 1.02; }
+.ptile.dark .nameplate, .chapter.dark .nameplate { text-shadow: 0 0 28px rgba(0, 217, 245, .28); }
 .measure { max-width: 62ch; }
 
 /* --------------------------------------------------------------------------
@@ -178,7 +185,7 @@ a { color: inherit; }
   background: rgba(255, 255, 255, .86); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--hairline);
 }
-.subnav .pname { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; letter-spacing: -.02em; }
+.subnav .pname { font-family: var(--font-accent); font-weight: 400; font-synthesis: none; font-size: 1.2rem; letter-spacing: .02em; }
 .subnav .pname small { font-family: var(--font-text); font-weight: 500; color: var(--ink-2); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; margin-left: 10px; }
 .subnav .right { display: flex; align-items: center; gap: 20px; font-size: .8rem; }
 .subnav .right a:not(.btn) { color: var(--ink-2); text-decoration: none; }
@@ -322,7 +329,7 @@ a { color: inherit; }
 .cmp th { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); border-top: 0; }
 .cmp td:first-child { font-weight: 600; white-space: nowrap; color: var(--ink-2); }
 .cmp td.hi { color: var(--cyan-link); font-weight: 600; }
-.cmp thead th .pn { display: block; font-family: var(--font-display); font-size: 1.1rem; letter-spacing: -.02em; text-transform: none; color: var(--ink); font-weight: 600; }
+.cmp thead th .pn { display: block; font-family: var(--font-accent); font-size: 1.25rem; letter-spacing: .02em; text-transform: none; color: var(--ink); font-weight: 400; font-synthesis: none; }
 
 /* --------------------------------------------------------------------------
    Footer
