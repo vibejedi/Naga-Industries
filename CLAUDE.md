@@ -38,11 +38,11 @@ To bump a library: edit the version in `package.json`, run `npm install` and `np
 
 - Resting state is visible. GSAP `from` tweens do the hiding; CSS never sets `opacity: 0`.
 - Respect `prefers-reduced-motion`: Lenis, scrubs and word reveals are skipped in `naga.js`.
-- No 3D. Product visuals are transparent 16:9 WebP renders in `assets/img/products/` (AI concept renders until real photos exist). The product page shot (`[data-hero-shot]`) settles from 1.08× to 1× on scroll; nothing else moves the product.
+- No 3D. Product visuals are transparent 16:9 WebP renders in `assets/img/products/` (SIPAG I and LAKAN II: renders of the real Clevo chassis; DIWA: AI concept render). The product page shot (`[data-hero-shot]`) settles from 1.08× to 1× on scroll; nothing else moves the product.
 
 ## Content status
 
-LAKAN II specs and price are confirmed (Clevo V255RNN1 base, ₱89,900 with the Naga Karga backpack; panel resolution and refresh rate still to confirm). SIPAG I specs are confirmed for the black restock (Clevo V740TU-2) except RAM and SSD capacity and price; DIWA specs and prices are placeholders marked with `PLACEHOLDER SPECS` comments. Confirm with the product team before launch. Buy and Find a store buttons link to `#` until the store exists. The three product images are AI concept renders, not photos of shipping units; swap the files at the same paths when photography exists.
+LAKAN II specs and price are confirmed (Clevo V255RNN1 base, ₱89,900 with the Naga Karga backpack; panel resolution and refresh rate still to confirm). SIPAG I specs are confirmed for the black restock (Clevo V740TU-2) except RAM and SSD capacity and price; DIWA specs and prices are placeholders marked with `PLACEHOLDER SPECS` comments. Confirm with the product team before launch. Buy and Find a store buttons link to `#` until the store exists. SIPAG I and LAKAN II images are Higgsfield renders built from the Clevo spec-sheet photos (real chassis, Naga wallpaper on screen, wordmark on the lid); the DIWA image is still an AI concept render. Swap files at the same paths when photography exists.
 
 ## Verifying
 
