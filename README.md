@@ -41,11 +41,11 @@ To update: change the version in `package.json`, then `npm install && npm run ve
 
 ## Content to confirm before launch
 
-Only LAKAN II carries specs from the original LAKAN 15 page. Everything below is a placeholder written to make the pages read like finished product pages. Each is marked `PLACEHOLDER SPECS` in the HTML.
+LAKAN II carries confirmed specs. SIPAG I and DIWA are still placeholders written to make the pages read like finished product pages, marked `PLACEHOLDER SPECS` in the HTML.
 
 - **SIPAG I**: 14" 2.8K OLED 90Hz, Ryzen 7 8840U, 32GB LPDDR5X, 1TB, 1.3 kg, 70Wh, 18 hrs video, ₱49,990
 - **DIWA**: Ryzen AI 9 HX 370 (50 TOPS), 64GB LPDDR5X, 2TB, 1.1 L, 28 dB, 65W, ₱59,990
-- **LAKAN II**: carried from LAKAN 15 (RTX 4070 140W, 15.3" 2.5K 240Hz, i9 14th Gen / Ryzen 7 8845HS, 32GB DDR5, 1TB, ₱63,000, was ₱73,500); the 99Wh battery, MUX switch, Thunderbolt 4 and 2.5GbE claims are new placeholders
+- **LAKAN II** (confirmed): built on the Clevo V255RNN1 (spec sheet v3.0, 2025/11). Intel Core 7 250H, 16GB DDR5-5600 dual channel (two SO-DIMM, up to 64GB), RTX 5060 Laptop up to 115W with 8GB GDDR7 and Dynamic Boost, 512GB PCIe Gen4 SSD (second M.2 slot free), one-zone RGB full-size keyboard with numpad, Intel AX211 Wi-Fi 6E + Bluetooth, Gigabit LAN, HDMI + Mini DisplayPort 1.4 + USB-C, 53.35Wh battery (up to 7.5 h on integrated graphics per Clevo), 180W charger, 2.25 kg, 361 × 247 × 24.5 mm. ₱89,900 with the Naga Karga backpack. Still to confirm: panel resolution (QHD or FHD) and refresh rate, which USB-C option ships, webcam (HD or FHD), and backpack photos
 - Homepage "why Naga" claims: 24-hour burn-in, 0% up to 12 months, free insured shipping, 7-day replacement
 - All "Buy" and "Find a store" buttons link to `#` until the store exists
 - The film still streams from the Higgsfield CloudFront URL; host it with the site before launch
