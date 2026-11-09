@@ -264,6 +264,14 @@ a { color: inherit; }
 .pshot-caption h2 em { font-style: normal; color: var(--cyan-link); }
 .pshot-caption p { font-size: .95rem; }
 
+/* Views: two more angles of the product, under the hero shot. */
+.views { padding-top: 0; }
+.gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
+.gview { margin: 0; background: var(--paper-2); border-radius: var(--radius); padding: clamp(16px, 3vw, 32px) clamp(16px, 3vw, 32px) 20px; display: flex; flex-direction: column; gap: 12px; }
+.gview img { width: 100%; height: auto; display: block; }
+.gview figcaption { font-size: .85rem; color: var(--ink-2); }
+@media (max-width: 720px) { .gallery { grid-template-columns: 1fr; } }
+
 /* --------------------------------------------------------------------------
    Bento
    -------------------------------------------------------------------------- */

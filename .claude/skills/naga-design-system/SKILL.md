@@ -40,6 +40,7 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - **Entrance** `.entrance`: the carved-wall film, full height, scrolls away with copy drifting up. Homepage only.
 - **Product tile** `.ptile`: eyebrow, headline, tagline, two chevron links, product image in `figure.render`. Stack: one full tile, then `.tile-pair`.
 - **Product hero** `.phero` then **product shot** `.pshot`: a rounded 16:9 image frame (`figure.pshot-frame[data-hero-shot]`) with a two-line caption. No 3D; the product is photographed or rendered offline.
+- **Views** `section.chapter.views` right after the product shot: a two-up `.gallery` of `figure.gview` cards (tinted, rounded) holding the `-front` and `-closed` shots with a one-line caption. One column under 720px.
 - **Bento** `.bento` with `.tile.w2/.w3`: numbers as headlines, one `.dark-tile`, one `.cyan-tile` per grid.
 - **Performance chapter** `.chapter.dark`: `.perf` two-column (copy + `figure.glow` holding the product image over a cyan radial glow), `.statrow` of three big numbers, `.dgrid` of hover-lit `.dcard`s.
 - **Buttons**: `.btn-fill` (cyan pill, one per screen), `.btn-ghost` (outlined pill). Reading links use `.link` (chevron).
@@ -54,7 +55,7 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 
 ## Product imagery
 
-- Files live at `assets/img/products/<product>.webp` (transparent 16:9, 2000×1125) and are referenced from the homepage tile, the product page shot and the dark chapter. The current set are AI concept renders made to one brief: matte black (LAKAN II), silver-white (SIPAG I), black with a cyan light bar (DIWA), three-quarter view from slightly above, soft key light upper left, cyan rim light, soft contact shadow, lowercase "naga" wordmark only. Any new render or photo must match that brief so the three read as one family.
+- Files live at `assets/img/products/<product>.webp` (transparent 16:9, 2000×1125) and are referenced from the homepage tile, the product page shot and the dark chapter. SIPAG I and LAKAN II are renders of the real Clevo chassis (made from the spec-sheet photos): black, Naga wallpaper on screen (cyan for SIPAG I, dark for LAKAN II), black "naga" wordmark in gloss on the matte lid, no floor or shadow. Each laptop has four shots: `<product>.webp` (three-quarter front, the main image), `-front`, `-closed` and `-lid` (rear three-quarter, used in the dark chapter). DIWA is an AI concept render (black, cyan light bar). New shots must match: same chassis, studio light, transparent background, wordmark reading upright to the camera.
 - Shoot or render at 16:9, 1600×900 or larger, product centered, on transparent or pure white (light chapters) and reuse the same file on black (the glow sits behind it). A single three-quarter view with the lid open reads best at tile size.
 
 ## Adding a product page
