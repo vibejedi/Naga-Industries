@@ -38,7 +38,7 @@ To bump a library: edit the version in `package.json`, run `npm install` and `np
 
 - Resting state is visible. GSAP `from` tweens do the hiding; CSS never sets `opacity: 0`.
 - Respect `prefers-reduced-motion`: Lenis, scrubs and word reveals are skipped in `naga.js`.
-- No 3D. Product visuals are transparent 16:9 WebP renders in `assets/img/products/` (SIPAG I and LAKAN II: renders of the real Clevo chassis; DIWA: AI concept render). The product page shot (`[data-hero-shot]`) settles from 1.08× to 1× on scroll; nothing else moves the product.
+- No 3D. Product visuals are transparent 16:9 WebP renders in `assets/img/products/` (SIPAG I and LAKAN II: renders of the real Clevo chassis; DIWA: AI concept render). The product page shot (`[data-hero-shot]`) settles from 1.08× to 1× on scroll; nothing else moves the product, except the b-roll clips in `.reel` (`assets/video/broll/`), which play muted only while on screen and stay on their poster with reduced motion.
 
 ## Content status
 
