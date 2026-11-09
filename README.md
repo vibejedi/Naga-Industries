@@ -23,6 +23,7 @@ assets/
   img/                wordmarks, poster frames, favicon
   img/products/       product renders (transparent 16:9 WebP, 2000×1125)
   video/              1080p H.264 entrance film (source 4K HEVC master kept in video/source/)
+  video/broll/        silent b-roll loops for the product pages (<product>-<shot>.mp4 + .jpg poster)
   lottie/             naga-wave.json, the animated mark in the nav
 .claude/skills/naga-design-system/SKILL.md   the design system, loaded by Claude before visual work
 CLAUDE.md                                    project conventions for Claude Code sessions
@@ -63,3 +64,7 @@ All files are transparent 16:9 WebP at 2000×1125.
 | `diwa.webp` | three-quarter | homepage tile, DIWA page |
 
 The SIPAG I and LAKAN II images are GPT Image 2.6 renders made on Higgsfield from the product photos in the Clevo spec sheets (V740TU-2 and V255RNN1), so the chassis, ports and keyboard match the shipping units. Added on top: the Naga wallpaper on the screen (cyan for SIPAG I, dark for LAKAN II), the "naga" wordmark on the lid as a small flat print (about 14% of the lid width, slightly darker than the lid, no gloss or emboss) matched to a photo of the production lid (on the top-down closed shots it is printed on in post, so size and position are exact), the small silver wordmark on the bottom screen bezel, and a cyan keyboard backlight on LAKAN II. They are renders, not photographs. The DIWA image is still an AI concept render. To replace any of them, export a transparent 16:9 WebP at the same path.
+
+## B-roll
+
+`assets/video/broll/` holds three silent loops per laptop (`sipag-desk/keys/lid`, `lakan-studio/keys/lid`), shown in the "In motion" reel on each product page. Each was made on Higgsfield in two steps: a styled still built from the chassis renders (GPT Image 2.6), then a 6-second Kling 4.0 image-to-video clip with a slow camera move. They are re-encoded to 1440×810 H.264 with no audio, and the last 0.8 s cross-fades into the first so the loop has no jump; the `.jpg` next to each clip is its first frame and serves as the poster. `naga.js` plays a clip only while it is on screen; with reduced motion the clips stay on the poster and show controls. These are AI-generated scenes, not footage of real units.

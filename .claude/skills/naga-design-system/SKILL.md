@@ -40,6 +40,7 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - **Entrance** `.entrance`: the carved-wall film, full height, scrolls away with copy drifting up. Homepage only.
 - **Product tile** `.ptile`: eyebrow, headline, tagline, two chevron links, product image in `figure.render`. Stack: one full tile, then `.tile-pair`.
 - **Product hero** `.phero` then **product shot** `.pshot`: a rounded 16:9 image frame (`figure.pshot-frame[data-hero-shot]`) with a two-line caption. No 3D; the product is photographed or rendered offline.
+- **Reel** `section.chapter.reel` after Views: eyebrow, short headline, then `.reel-grid` with one `.reel-clip.wide` and two `.reel-clip`s, each a muted looping `<video preload="none" poster>`. Clips live in `assets/video/broll/`; `naga.js` plays them only on screen and never with reduced motion.
 - **Views** `section.chapter.views` right after the product shot: a two-up `.gallery` of `figure.gview` cards (tinted, rounded) holding the `-front` and `-closed` shots with a one-line caption. One column under 720px.
 - **Bento** `.bento` with `.tile.w2/.w3`: numbers as headlines, one `.dark-tile`, one `.cyan-tile` per grid.
 - **Performance chapter** `.chapter.dark`: `.perf` two-column (copy + `figure.glow` holding the product image over a cyan radial glow), `.statrow` of three big numbers, `.dgrid` of hover-lit `.dcard`s.

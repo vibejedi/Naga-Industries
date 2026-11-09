@@ -326,6 +326,20 @@
     });
   }
 
+  /* ---------------------------------------------------------------
+     11) B-roll reel: muted loops that play only while on screen.
+         The poster is the resting state; with reduced motion the clips
+         never autoplay and get controls instead.
+     --------------------------------------------------------------- */
+  document.querySelectorAll('.reel video').forEach((v) => {
+    v.muted = true;
+    if (reduce || !('IntersectionObserver' in window)) { v.controls = true; return; }
+    new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => { v.controls = true; }); }
+      else v.pause();
+    }), { threshold: .35 }).observe(v);
+  });
+
   // Fonts can arrive after layout; let ScrollTrigger re-measure.
   if (hasST && document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
 })();

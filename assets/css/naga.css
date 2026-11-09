@@ -272,6 +272,15 @@ a { color: inherit; }
 .gview figcaption { font-size: .85rem; color: var(--ink-2); }
 @media (max-width: 720px) { .gallery { grid-template-columns: 1fr; } }
 
+/* Reel: silent b-roll loops. One wide clip, two below. Posters are the resting state. */
+.reel { padding-top: 0; }
+.reel h2 em { font-style: normal; color: var(--cyan-link); }
+.reel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
+.reel-clip { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--void-2); aspect-ratio: 16 / 9; }
+.reel-clip.wide { grid-column: 1 / -1; }
+.reel-clip video { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 720px) { .reel-grid { grid-template-columns: 1fr; } }
+
 /* --------------------------------------------------------------------------
    Bento
    -------------------------------------------------------------------------- */
