@@ -113,6 +113,12 @@ a { color: inherit; }
    It has one weight, so font-synthesis stops browsers faking a bold. On black it gets a faint cyan glow. */
 .nameplate { font-family: var(--font-accent); font-weight: 400; font-synthesis: none; letter-spacing: .02em; line-height: 1.02; }
 .ptile.dark .nameplate, .chapter.dark .nameplate { text-shadow: 0 0 28px rgba(0, 217, 245, .28); }
+/* Nameplate animations (naga.js section 10). Nothing here hides the resting name. */
+.nameplate[data-nameplate="lakan"] { position: relative; }
+.np-slash { position: absolute; bottom: -.08em; height: max(3px, .045em); background: var(--cyan); border-radius: 999px;
+  box-shadow: 0 0 18px rgba(0, 217, 245, .6); transform-origin: 0 50%; opacity: 0; pointer-events: none; }
+.np-mask .word { overflow: hidden; vertical-align: top; padding-top: .34em; margin-top: -.34em; }
+.phero { overflow-x: clip; }
 .measure { max-width: 62ch; }
 
 /* --------------------------------------------------------------------------
