@@ -42,7 +42,7 @@ To bump a library: edit the version in `package.json`, run `npm install` and `np
 
 ## Content status
 
-LAKAN II specs and price are confirmed (Clevo V255RNN1 base, ₱89,900 with the Naga Karga backpack; panel resolution and refresh rate still to confirm). SIPAG I and DIWA specs and prices are placeholders marked with `PLACEHOLDER SPECS` comments. Confirm with the product team before launch. Buy and Find a store buttons link to `#` until the store exists. The three product images are AI concept renders, not photos of shipping units; swap the files at the same paths when photography exists.
+LAKAN II specs and price are confirmed (Clevo V255RNN1 base, ₱89,900 with the Naga Karga backpack; panel resolution and refresh rate still to confirm). SIPAG I specs are confirmed for the black restock (Clevo V740TU-2) except RAM and SSD capacity and price; DIWA specs and prices are placeholders marked with `PLACEHOLDER SPECS` comments. Confirm with the product team before launch. Buy and Find a store buttons link to `#` until the store exists. The three product images are AI concept renders, not photos of shipping units; swap the files at the same paths when photography exists.
 
 ## Verifying
 
