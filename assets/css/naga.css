@@ -272,6 +272,21 @@ a { color: inherit; }
 .gview figcaption { font-size: .85rem; color: var(--ink-2); }
 @media (max-width: 720px) { .gallery { grid-template-columns: 1fr; } }
 
+/* Baku: the mascot beside its copy. Used on DIWA (#baku) and the homepage band. */
+.baku { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.baku-art { margin: 0; position: relative; }
+.baku-art::before { content: ''; position: absolute; inset: 6% 8%; background: radial-gradient(circle at 50% 58%, rgba(0, 217, 245, .2), rgba(0, 217, 245, 0) 62%); }
+.baku-art img { position: relative; display: block; width: 100%; max-width: 420px; height: auto; margin-inline: auto; }
+.baku .t-tag { margin-top: 12px; }
+.baku .measure { margin-top: 16px; }
+.baku-points { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; }
+.baku-points li { border-top: 1px solid var(--hairline); padding-top: 14px; }
+.baku-points h3 { font-size: 1rem; font-weight: 600; }
+.baku-points p { font-size: .9rem; color: var(--ink-2); margin-top: 6px; }
+.baku .row { margin-top: 24px; }
+@media (max-width: 820px) { .baku { grid-template-columns: 1fr; } .baku-art img { max-width: 280px; } }
+@media (max-width: 480px) { .baku-points { grid-template-columns: 1fr; } }
+
 /* Reel: silent b-roll loops. One wide clip, two below. Posters are the resting state. */
 .reel { padding-top: 0; }
 .reel h2 em { font-style: normal; color: var(--cyan-link); }
@@ -367,6 +382,8 @@ footer ul { list-style: none; margin: 0; padding: 0; }
 footer li { margin-bottom: 10px; }
 footer li a { color: var(--onvoid); text-decoration: none; font-size: .9rem; opacity: .85; }
 footer li a:hover { color: var(--cyan); opacity: 1; }
+footer .social a { display: inline-flex; align-items: center; gap: 10px; }
+footer .social svg { width: 16px; height: 16px; flex: none; }
 .fine { max-width: var(--wrap); margin: 56px auto 0; padding-top: 22px; border-top: 1px solid var(--hairline-dark); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--onvoid-2); font-size: .75rem; }
 
 /* --------------------------------------------------------------------------
