@@ -31,7 +31,7 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - Text: system stack (`--font-text`), SF Pro on Apple devices, Inter elsewhere.
 - Accent: Tilt Neon (`--font-accent`), for product names only (SIPAG I, LAKAN II, DIWA). Monoline strokes with round ends, like the glowing cyan lines in the entrance film. Used in four places: homepage tile headings and product page heroes (add `.nameplate`), the sticky product bar (`.subnav .pname`) and the compare table header (`.pn`). Set in capitals, weight 400, letter-spacing +0.02em, `font-synthesis: none` because it has one weight. On black it carries a faint cyan glow. Never use it for headlines, body, nav or numbers.
 - Roles: `.t-hero` (clamp 3rem to 6rem), `.t-h2`, `.t-h3`, `.t-tag` (grey tagline), `.t-big` (number as headline, tabular), `.eyebrow` (11.5px, +0.22em, uppercase, cyan-link).
-- Copy: English (Naga exports worldwide), short, declarative. Product names (SIPAG, LAKAN, DIWA, Baku) stay Filipino; no other Tagalog. One sentence per card. Numbers are the headline in spec tiles. No emoji icons.
+- Copy: English (Naga exports worldwide), short, declarative. Product names (SIPAG, LAKAN, DIWA, Baku) and the motto SULONG stay Filipino; no other Tagalog. Show USD next to peso prices (≈ US$, rounded to $10). One sentence per card. Numbers are the headline in spec tiles. No emoji icons.
 
 ## Layout patterns
 
