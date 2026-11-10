@@ -31,7 +31,7 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - Text: system stack (`--font-text`), SF Pro on Apple devices, Inter elsewhere.
 - Accent: Tilt Neon (`--font-accent`), for product names only (SIPAG I, LAKAN II, DIWA). Monoline strokes with round ends, like the glowing cyan lines in the entrance film. Used in four places: homepage tile headings and product page heroes (add `.nameplate`), the sticky product bar (`.subnav .pname`) and the compare table header (`.pn`). Set in capitals, weight 400, letter-spacing +0.02em, `font-synthesis: none` because it has one weight. On black it carries a faint cyan glow. Never use it for headlines, body, nav or numbers.
 - Roles: `.t-hero` (clamp 3rem to 6rem), `.t-h2`, `.t-h3`, `.t-tag` (grey tagline), `.t-big` (number as headline, tabular), `.eyebrow` (11.5px, +0.22em, uppercase, cyan-link).
-- Copy: Taglish, short, declarative. One sentence per card. Numbers are the headline in spec tiles. No emoji icons.
+- Copy: English (Naga exports worldwide), short, declarative. Product names (SIPAG, LAKAN, DIWA, Baku) stay Filipino; no other Tagalog. One sentence per card. Numbers are the headline in spec tiles. No emoji icons.
 
 ## Layout patterns
 
@@ -40,6 +40,7 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - **Entrance** `.entrance`: the carved-wall film, full height, scrolls away with copy drifting up. Homepage only.
 - **Product tile** `.ptile`: eyebrow, headline, tagline, two chevron links, product image in `figure.render`. Stack: one full tile, then `.tile-pair`.
 - **Product hero** `.phero` then **product shot** `.pshot`: a rounded 16:9 image frame (`figure.pshot-frame[data-hero-shot]`) with a two-line caption. No 3D; the product is photographed or rendered offline.
+- **Baku** `.wrap.baku`: two columns, `figure.baku-art` (the mascot over a soft cyan glow) and copy with a `.nameplate` heading, then `.baku-points` (2×2 list) on DIWA or a `.row` of buttons on the homepage band.
 - **Reel** `section.chapter.reel` after Views: eyebrow, short headline, then `.reel-grid` with one `.reel-clip.wide` and two `.reel-clip`s, each a muted looping `<video preload="none" poster>`. Clips live in `assets/video/broll/`; `naga.js` plays them only on screen and never with reduced motion.
 - **Views** `section.chapter.views` right after the product shot: a two-up `.gallery` of `figure.gview` cards (tinted, rounded) holding the `-front` and `-closed` shots with a one-line caption. One column under 720px.
 - **Bento** `.bento` with `.tile.w2/.w3`: numbers as headlines, one `.dark-tile`, one `.cyan-tile` per grid.
