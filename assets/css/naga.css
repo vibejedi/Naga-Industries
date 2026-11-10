@@ -367,6 +367,7 @@ a { color: inherit; }
 .cmp th { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); border-top: 0; }
 .cmp td:first-child { font-weight: 600; white-space: nowrap; color: var(--ink-2); }
 .cmp td.hi { color: var(--cyan-link); font-weight: 600; }
+.cmp .usd { font-size: .85em; color: var(--ink-2); }
 .cmp thead th .pn { display: block; font-family: var(--font-accent); font-size: 1.25rem; letter-spacing: .02em; text-transform: none; color: var(--ink); font-weight: 400; font-synthesis: none; }
 
 /* --------------------------------------------------------------------------
