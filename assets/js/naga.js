@@ -71,6 +71,30 @@
   }
 
   /* ---------------------------------------------------------------
+     2b) Light and dark theme. The head script already set data-theme
+         before paint; this button flips it and remembers the choice.
+         Until a choice is made, the page follows the system setting.
+     --------------------------------------------------------------- */
+  const root = document.documentElement;
+  const isDarkTheme = () => root.getAttribute('data-theme') === 'dark';
+  const store = (s, k, v) => { try { if (v === undefined) return s.getItem(k); s.setItem(k, v); } catch (e) { /* storage blocked */ } return null; };
+  const themeBtn = document.querySelector('.theme-btn');
+  const syncThemeBtn = () => themeBtn && themeBtn.setAttribute('aria-label', isDarkTheme() ? 'Switch to light mode' : 'Switch to dark mode');
+  const setTheme = (mode, remember) => {
+    root.setAttribute('data-theme', mode);
+    if (remember) store(localStorage, 'naga-theme', mode);
+    syncThemeBtn();
+    window.dispatchEvent(new CustomEvent('naga:theme', { detail: mode }));
+  };
+  themeBtn?.addEventListener('click', () => setTheme(isDarkTheme() ? 'light' : 'dark', true));
+  const sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+  sysDark.addEventListener?.('change', (e) => {
+    const chosen = store(localStorage, 'naga-theme');
+    if (chosen !== 'light' && chosen !== 'dark') setTheme(e.matches ? 'dark' : 'light', false);
+  });
+  syncThemeBtn();
+
+  /* ---------------------------------------------------------------
      3) Lottie wave mark in the nav and footer
      --------------------------------------------------------------- */
   if (typeof window.lottie !== 'undefined') {
@@ -176,7 +200,7 @@
      --------------------------------------------------------------- */
   document.querySelectorAll('canvas.waves').forEach((c) => {
     const ctx = c.getContext('2d');
-    const dark = c.closest('.dark') !== null;
+    const darkTile = c.closest('.dark') !== null;
     let w = 0, h = 0, t = Math.random() * 10, raf = 0, visible = false;
     const size = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -184,6 +208,7 @@
       c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     const draw = () => {
+      const dark = darkTile || isDarkTheme();
       ctx.clearRect(0, 0, w, h);
       const lines = 16;
       for (let i = 0; i < lines; i++) {
@@ -199,7 +224,8 @@
         ctx.stroke();
       }
       const g = ctx.createLinearGradient(0, 0, 0, h * .55);
-      const bg = dark ? '0,0,0' : (c.closest('.tint') ? '245,247,248' : '255,255,255');
+      const tint = c.closest('.tint') !== null;
+      const bg = darkTile ? '0,0,0' : dark ? (tint ? '10,12,14' : '0,0,0') : (tint ? '245,247,248' : '255,255,255');
       g.addColorStop(0, `rgba(${bg},0)`); g.addColorStop(1, `rgba(${bg},1)`);
       ctx.fillStyle = g; ctx.fillRect(0, 0, w, h * .55);
     };
@@ -210,6 +236,7 @@
       if (visible) tick();
     }));
     window.addEventListener('resize', () => { size(); draw(); });
+    window.addEventListener('naga:theme', draw);
     size(); draw(); io.observe(c);
   });
 
@@ -339,6 +366,98 @@
       else v.pause();
     }), { threshold: .35 }).observe(v);
   });
+
+  /* ---------------------------------------------------------------
+     12) Ambient music: the Bakunawa Night loop, quiet, behind the page.
+         Browsers block sound until a gesture, so it starts on the first
+         click, tap or key press, unless the visitor muted it (remembered).
+         Web Audio loops the buffer without a gap, keeps the position
+         between pages, pauses in background tabs and ducks under any
+         video playing with sound.
+     --------------------------------------------------------------- */
+  (function ambientMusic() {
+    const btn = document.querySelector('.sound-btn');
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!btn) return;
+    if (!AC) { btn.hidden = true; return; }
+    const SRC = 'assets/audio/naga-ambient-bakunawa-night.mp3';
+    const LOOP_END = 54;      // seconds: the loop length of the master
+    const LEVEL = 0.22;       // background, not foreground
+    let wanted = store(localStorage, 'naga-music') !== 'off';
+    let ctx = null, gain = null, src = null, buf = null, loading = null;
+    let offset = parseFloat(store(sessionStorage, 'naga-music-pos')) || 0;
+    let startedAt = 0, playing = false, ducked = false;
+
+    const sync = () => {
+      btn.setAttribute('aria-pressed', String(playing));
+      btn.setAttribute('aria-label', playing ? 'Mute background music' : 'Play background music');
+    };
+    const load = () => loading || (loading = fetch(SRC).then((r) => { if (!r.ok) throw new Error('music ' + r.status); return r.arrayBuffer(); }));
+    const level = () => (ducked ? LEVEL * 0.15 : LEVEL);
+    const ramp = (v, s) => {
+      const now = ctx.currentTime;
+      gain.gain.cancelScheduledValues(now);
+      gain.gain.setValueAtTime(gain.gain.value, now);
+      gain.gain.linearRampToValueAtTime(v, now + s);
+    };
+    const position = () => (src ? (ctx.currentTime - startedAt) % src.loopEnd : offset);
+
+    async function start() {
+      if (playing) return;
+      playing = true; sync();
+      try {
+        if (!ctx) { ctx = new AC(); gain = ctx.createGain(); gain.gain.value = 0; gain.connect(ctx.destination); }
+        if (ctx.state === 'suspended') await ctx.resume();
+        if (!buf) buf = await ctx.decodeAudioData(await load());
+        if (!playing || src) return;           // muted again while loading
+        src = ctx.createBufferSource();
+        src.buffer = buf; src.loop = true;
+        src.loopStart = 0; src.loopEnd = Math.min(LOOP_END, buf.duration);
+        src.connect(gain);
+        offset %= src.loopEnd;
+        src.start(0, offset);
+        startedAt = ctx.currentTime - offset;
+        ramp(level(), 2.5);
+      } catch (e) { playing = false; sync(); }
+    }
+    function stop() {
+      if (!playing) return;
+      playing = false; sync();
+      if (!src) return;
+      offset = position();
+      const s = src; src = null;
+      ramp(0, 0.6);
+      s.stop(ctx.currentTime + 0.65);
+    }
+
+    btn.addEventListener('click', () => {
+      wanted = !playing;
+      store(localStorage, 'naga-music', wanted ? 'on' : 'off');
+      wanted ? start() : stop();
+    });
+
+    const GESTURES = ['pointerdown', 'keydown', 'touchstart'];
+    const firstGesture = (e) => {
+      GESTURES.forEach((n) => window.removeEventListener(n, firstGesture, true));
+      if (wanted && !btn.contains(e.target)) start();
+    };
+    if (wanted) {
+      GESTURES.forEach((n) => window.addEventListener(n, firstGesture, true));
+      const saveData = navigator.connection && navigator.connection.saveData;
+      if (!saveData) window.addEventListener('load', () => (window.requestIdleCallback || setTimeout)(() => load().catch(() => {})));
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (!ctx) return;
+      if (document.hidden) ctx.suspend(); else if (playing) ctx.resume();
+    });
+    window.addEventListener('pagehide', () => store(sessionStorage, 'naga-music-pos', String(ctx ? position() : offset)));
+    document.querySelectorAll('video').forEach((v) => {
+      v.addEventListener('play', () => { if (!v.muted) { ducked = true; if (src) ramp(level(), 0.4); } });
+      ['pause', 'ended'].forEach((n) => v.addEventListener(n, () => { if (ducked) { ducked = false; if (src) ramp(level(), 1); } }));
+    });
+    sync();
+  })();
 
   // Fonts can arrive after layout; let ScrollTrigger re-measure.
   if (hasST && document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
