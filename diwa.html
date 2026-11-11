@@ -146,14 +146,32 @@
 
 <section class="chapter" id="buy">
   <div class="wrap" style="text-align:center">
-    <p class="eyebrow">Pre-order</p>
+    <p class="eyebrow">Reserve</p>
     <h2 class="t-h2" data-splitting>Wake it up.</h2>
     <div class="t-big" style="margin-top:28px">Coming soon<small>Baku included · Pricing and pre-orders to be announced · Free shipping in the Philippines · $100 flat rate worldwide</small></div>
-    <div class="row" style="justify-content:center;margin-top:28px">
-      <a class="btn btn-fill" href="#">Get notified</a>
-      <a class="btn btn-ghost" href="#">Find a store</a>
-    </div>
-    <p class="muted" style="margin-top:18px;font-size:.85rem">Ships from Manila, insured, with a 7-day replacement guarantee.</p>
+    <!-- ORDER: pre-order / reservation form. Behaviour in assets/js/naga-store.js, settings in assets/data/store.json. -->
+    <form class="order" data-order="diwa" novalidate>
+      <div class="order-fields">
+        <div class="fld-row">
+          <label class="fld"><span>Quantity</span><select name="qty"><option>1</option></select><em class="err"></em></label>
+          <label class="fld"><span>Ship to</span><select name="country" autocomplete="country"><option value="PH">Philippines</option></select><em class="err"></em></label>
+        </div>
+        <label class="fld"><span>Full name</span><input name="name" autocomplete="name" maxlength="120" required><em class="err"></em></label>
+        <label class="fld"><span>Email</span><input name="email" type="email" autocomplete="email" maxlength="160" required><em class="err"></em></label>
+      </div>
+      <aside class="order-summary">
+        <h3>Your reservation</h3>
+        <dl>
+          <div><dt data-o="item">DIWA × 1</dt><dd data-o="subtotal"></dd></div>
+          <div><dt>Shipping<small data-o="carrier">DHL Express from Manila</small></dt><dd data-o="shipping"></dd></div>
+          <div><dt>Delivery<small data-o="zone"></small></dt><dd data-o="eta"></dd></div>
+        </dl>
+        <button class="btn btn-fill order-go" type="submit">Reserve my DIWA</button>
+        <p class="order-msg" data-o="msg" role="status" aria-live="polite"></p>
+        <p class="order-fine">No payment now. We will email you first when DIWA pricing and pre-orders open.</p>
+        <noscript><p class="order-fine">The order form needs JavaScript. Email hello@nagatech.ph to order.</p></noscript>
+      </aside>
+    </form>
   </div>
 </section>
 
@@ -181,5 +199,7 @@
 <script src="assets/vendor/splitting.min.js"></script>
 <script src="assets/vendor/lottie_light.min.js"></script>
 <script src="assets/js/naga.js"></script>
+<script src="assets/js/store-core.js"></script>
+<script src="assets/js/naga-store.js"></script>
 </body>
 </html>

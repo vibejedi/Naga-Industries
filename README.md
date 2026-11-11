@@ -77,3 +77,47 @@ The SIPAG I and LAKAN II images are GPT Image 2.6 renders made on Higgsfield fro
 
 - Dark mode follows the visitor's system setting until they press the sun/moon button in the nav; the choice is stored in `localStorage` (`naga-theme`). The theme is applied before first paint, so there is no flash.
 - Background music starts on the visitor's first click, tap or key press (browsers do not allow sound earlier). The speaker button mutes it; that choice is stored too (`naga-music`). To change the track, replace `assets/audio/naga-ambient-bakunawa-night.mp3` and set `LOOP_END` in `naga.js` to the loop length in seconds.
+
+## Store: pre-orders, Shopify, crypto and shipping
+
+Every product page ends with an order form: pre-order for SIPAG I and LAKAN II, reservation (no payment) for DIWA. It quotes price, DHL shipping and delivery time live as the visitor picks a country and quantity.
+
+### How an order flows
+
+| Visitor picks | What happens | Needs |
+|---|---|---|
+| Card, PayPal and more | A Shopify cart is created and the visitor lands on Shopify checkout | `shopify.storeDomain`, `shopify.storefrontToken` and the product's `shopifyVariantId` in `store.json` |
+| Card, before Shopify is set up | The pre-order is saved and Naga emails a payment link | a destination for `/api/preorder` (below) |
+| Crypto · USDC on Solana | Privy connects a wallet (Phantom, Solflare, Backpack, or email with an embedded wallet), the visitor approves a USDC transfer with memo `naga:<ref>`, and `/api/preorder` checks it on-chain before confirming | `crypto.privyAppId` and `crypto.recipient` in `store.json`, plus a destination |
+| Reserve (DIWA) | The reservation is saved; no payment | a destination |
+
+If nothing is configured the form still renders, crypto shows "Coming soon", and submitting offers an email link with the order details, so no lead is lost.
+
+### Set up checklist
+
+1. **Shopify**: create the products (mark them as pre-order / continue selling when out of stock), create a Storefront API access token (Headless channel or a custom app), and copy each variant ID (`gid://shopify/ProductVariant/...`) into `store.json`. Set Shopify's shipping rates to match the table below.
+2. **Privy**: create an app at dashboard.privy.io, enable Solana and external wallets, add `naga.industries` to allowed origins, and paste the app ID into `crypto.privyAppId`.
+3. **Solana**: put Naga's receiving wallet address in `crypto.recipient` (it must be able to hold USDC). Use a dedicated RPC URL (Helius, QuickNode) in `crypto.rpcUrl`; the public endpoint is rate-limited.
+4. **Vercel environment variables** (Settings > Environment Variables):
+   - `PREORDER_WEBHOOK_URL`: where each order is POSTed as JSON (Zapier, Make, Slack, a Google Sheet via Apps Script).
+   - `SHOPIFY_STORE_DOMAIN` and `SHOPIFY_ADMIN_TOKEN` (scope `write_draft_orders`): also creates a Shopify draft order tagged `pre-order` (and `paid-usdc` for verified crypto payments).
+   - `SOLANA_RPC_URL` (optional): RPC for payment checks; defaults to `crypto.rpcUrl`.
+   - `CRYPTO_RECIPIENT` (optional): overrides `crypto.recipient` on the server.
+
+### Shipping (DHL Express from Manila)
+
+| Zone | Days after dispatch | Cost |
+|---|---|---|
+| Philippines | 3–5 | Free |
+| East and Southeast Asia | 4–7 | US$100 flat per order |
+| Oceania, South Asia and the Middle East | 5–9 | US$100 |
+| North America and Europe | 6–10 | US$100 |
+| Rest of the world | 8–14 | US$100 |
+
+Zones and days are estimates in `store.json` (`shipping`); confirm them with DHL.
+
+### Notes
+
+- Crypto prices use the USD figure in `store.json` (1 USDC = US$1). A verified payment must be at least the order total, sent to `crypto.recipient`, carry the order memo and be under an hour old. The same transaction submitted twice reaches the destinations twice with the same reference and signature; de-duplicate on those.
+- The Privy bundle is about 1.75 MB on first use and loads only when someone chooses crypto. Rebuild it with `npm run build:privy` after changing `scripts/privy/`.
+

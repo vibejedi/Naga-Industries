@@ -40,6 +40,7 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - **Entrance** `.entrance`: the carved-wall film, full height, scrolls away with copy drifting up. Homepage only.
 - **Product tile** `.ptile`: eyebrow, headline, tagline, two chevron links, product image in `figure.render`. Stack: one full tile, then `.tile-pair`.
 - **Product hero** `.phero` then **product shot** `.pshot`: a rounded 16:9 image frame (`figure.pshot-frame[data-hero-shot]`) with a two-line caption. No 3D; the product is photographed or rendered offline.
+- **Order** `form.order`: two cards on `--paper-2`, fields (`.fld` with uppercase micro-labels, `.pay-opt` radio cards) and `.order-summary` (a `dl` of rows, bold display-face total, full-width cyan button, `.order-msg` status line). One column under 820px.
 - **Nav tools** `.nav-tools` after the link list: `.sound-btn` (music on/off, `aria-pressed`) and `.theme-btn` (light/dark). Both icon-only, 17px line icons.
 - **Dark mode**: every surface must read from tokens so `:root[data-theme="dark"]` can remap it; check new components in both themes.
 - **Baku splash** (homepage) `section.chapter.baku-splash`: centered eyebrow, `.nameplate` heading and tagline, the coding photo in `figure.baku-shot` (rounded, full width), then `.baku-foot` with copy and buttons (Meet Baku, Machine.Fun). Light background so it never sits flush against the black Performance chapter.

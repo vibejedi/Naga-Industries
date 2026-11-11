@@ -155,14 +155,39 @@
 <!-- BUY -->
 <section class="chapter" id="buy">
   <div class="wrap" style="text-align:center">
-    <p class="eyebrow">Order</p>
+    <p class="eyebrow">Pre-order</p>
     <h2 class="t-h2" data-splitting>Get yours.</h2>
     <div class="t-big" style="margin-top:28px"><span data-count="89900" data-prefix="₱">₱89,900</span><small>≈ US$1,430 · Naga Karga backpack included · 0% installment up to 12 months · Free shipping in the Philippines · $100 flat rate worldwide</small></div>
-    <div class="row" style="justify-content:center;margin-top:28px">
-      <a class="btn btn-fill" href="#">Buy LAKAN II</a>
-      <a class="btn btn-ghost" href="#">Find a store</a>
-    </div>
-    <p class="muted" style="margin-top:18px;font-size:.85rem">In the box: LAKAN II, 180W charger, Naga Karga backpack. Ships in 2 to 3 days from Manila. Insured. 7-day replacement guarantee.</p>
+    <!-- ORDER: pre-order / reservation form. Behaviour in assets/js/naga-store.js, settings in assets/data/store.json. -->
+    <form class="order" data-order="lakan-ii" novalidate>
+      <div class="order-fields">
+        <div class="fld-row">
+          <label class="fld"><span>Quantity</span><select name="qty"><option>1</option></select><em class="err"></em></label>
+          <label class="fld"><span>Ship to</span><select name="country" autocomplete="country"><option value="PH">Philippines</option></select><em class="err"></em></label>
+        </div>
+        <label class="fld"><span>Full name</span><input name="name" autocomplete="name" maxlength="120" required><em class="err"></em></label>
+        <label class="fld"><span>Email</span><input name="email" type="email" autocomplete="email" maxlength="160" required><em class="err"></em></label>
+        <fieldset class="pay">
+          <legend>Pay with</legend>
+          <label class="pay-opt"><input type="radio" name="method" value="card" checked><span><b>Card, PayPal and more</b><small>Secure checkout by Shopify</small></span></label>
+          <label class="pay-opt"><input type="radio" name="method" value="crypto"><span><b>Crypto · USDC on Solana</b><small>Connect a wallet with Privy</small></span></label>
+        </fieldset>
+      </div>
+      <aside class="order-summary">
+        <h3>Order summary</h3>
+        <dl>
+          <div><dt data-o="item">LAKAN II × 1</dt><dd data-o="subtotal"></dd></div>
+          <div><dt>Shipping<small data-o="carrier">DHL Express from Manila</small></dt><dd data-o="shipping"></dd></div>
+          <div><dt>Delivery<small data-o="zone"></small></dt><dd data-o="eta"></dd></div>
+          <div class="total"><dt>Total</dt><dd><b data-o="total"></b><small data-o="total-php"></small></dd></div>
+        </dl>
+        <p class="usdc" data-o="usdc" hidden></p>
+        <button class="btn btn-fill order-go" type="submit">Pre-order LAKAN II</button>
+        <p class="order-msg" data-o="msg" role="status" aria-live="polite"></p>
+        <p class="order-fine">In the box: LAKAN II, 180W charger, Naga Karga backpack. Pre-orders ship in the order they are placed, insured, with a 7-day replacement guarantee. You get a confirmation email and DHL tracking.</p>
+        <noscript><p class="order-fine">The order form needs JavaScript. Email hello@nagatech.ph to order.</p></noscript>
+      </aside>
+    </form>
   </div>
 </section>
 
@@ -190,5 +215,7 @@
 <script src="assets/vendor/splitting.min.js"></script>
 <script src="assets/vendor/lottie_light.min.js"></script>
 <script src="assets/js/naga.js"></script>
+<script src="assets/js/store-core.js"></script>
+<script src="assets/js/naga-store.js"></script>
 </body>
 </html>

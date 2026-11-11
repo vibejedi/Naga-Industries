@@ -1,0 +1,4 @@
+# Not part of the website: tests, build tooling and their dependencies.
+tests/
+scripts/
+node_modules/

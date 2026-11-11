@@ -1,0 +1,43 @@
+{
+  "_readme": "Single source of truth for the store. Read by the browser (assets/js/naga-store.js) and by the server (api/preorder.js). Prices are per unit. Leave a key empty to switch that feature off; the site falls back gracefully. Secrets never go here: the Shopify Admin token and webhook URL are Vercel environment variables.",
+  "phpPerUsd": 63.06,
+  "maxQty": 5,
+  "products": {
+    "sipag-i": { "name": "SIPAG I", "kind": "Productivity laptop", "php": 49990, "usd": 790, "mode": "preorder", "shopifyVariantId": "", "_note": "Price is still a placeholder." },
+    "lakan-ii": { "name": "LAKAN II", "kind": "Gaming laptop", "php": 89900, "usd": 1430, "mode": "preorder", "shopifyVariantId": "", "_note": "Includes the Naga Karga backpack." },
+    "diwa": { "name": "DIWA", "kind": "AI mini PC", "mode": "reserve", "_note": "No price yet: reservations only, no payment." }
+  },
+  "shipping": {
+    "carrier": "DHL Express",
+    "origin": "Manila",
+    "freeCountries": ["PH"],
+    "flatUsd": 100,
+    "zones": [
+      { "id": "ph", "label": "Philippines", "days": [3, 5], "countries": ["PH"] },
+      { "id": "asia", "label": "East and Southeast Asia", "days": [4, 7], "countries": ["SG", "MY", "ID", "TH", "VN", "BN", "KH", "LA", "MM", "TL", "HK", "MO", "TW", "CN", "JP", "KR", "MN"] },
+      { "id": "oceania-me", "label": "Oceania, South Asia and the Middle East", "days": [5, 9], "countries": ["AU", "NZ", "FJ", "PG", "GU", "NC", "PF", "WS", "TO", "IN", "PK", "BD", "LK", "NP", "MV", "BT", "AE", "SA", "QA", "KW", "BH", "OM", "IL", "JO", "TR"] },
+      { "id": "na-eu", "label": "North America and Europe", "days": [6, 10], "countries": ["US", "CA", "GB", "IE", "DE", "FR", "IT", "ES", "PT", "NL", "BE", "LU", "AT", "CH", "SE", "NO", "DK", "FI", "IS", "PL", "CZ", "SK", "HU", "RO", "BG", "GR", "HR", "SI", "EE", "LV", "LT", "CY", "MT", "MC", "LI"] }
+    ],
+    "rest": { "id": "world", "label": "Rest of the world", "days": [8, 14] },
+    "_note": "Lead times are estimates from dispatch in Manila until delivery. Confirm the zones and days with DHL."
+  },
+  "shopify": {
+    "storeDomain": "",
+    "storefrontToken": "",
+    "apiVersion": "2026-07",
+    "_note": "storeDomain like naga-industries.myshopify.com. The Storefront token is public by design. Put each product's variant GID (gid://shopify/ProductVariant/...) in shopifyVariantId above."
+  },
+  "crypto": {
+    "privyAppId": "",
+    "chain": "solana:mainnet",
+    "token": "USDC",
+    "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "decimals": 6,
+    "recipient": "",
+    "rpcUrl": "https://api.mainnet-beta.solana.com",
+    "explorer": "https://solscan.io/tx/",
+    "_note": "recipient is Naga's Solana wallet that receives USDC. Use a dedicated RPC (Helius, QuickNode) for rpcUrl in production; the public endpoint is rate-limited."
+  },
+  "api": { "preorder": "/api/preorder" },
+  "contactEmail": "hello@nagatech.ph"
+}
