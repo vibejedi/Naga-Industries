@@ -1,0 +1,10 @@
+# Not part of the website: tests, build tooling and their dependencies.
+tests/
+scripts/
+node_modules/
+promo/
+
+# SEO tooling and agent skills (not part of the website)
+seo/
+.claude/
+.github/

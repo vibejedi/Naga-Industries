@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Tilt+Neon&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stage.css">
+<style>
+  .s1 { background: #000; display: grid; place-items: center; }
+  .s1 .h { font-size: 210px; text-align: center; }
+  .s1 .bar { left: 560px; width: 800px; top: 700px; transform-origin: 0 50%; }
+  .clip .shade { background: linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.45) 42%, rgba(0,0,0,0) 70%); }
+  .clip.right .shade { background: linear-gradient(270deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.45) 42%, rgba(0,0,0,0) 70%); }
+  .copy { position: absolute; left: 130px; top: 50%; transform: translateY(-50%); width: 1100px; }
+  .right .copy { left: auto; right: 130px; text-align: right; }
+  .big { font-size: 170px; margin-top: 18px; }
+  .big .u { font-size: 90px; color: var(--cyan); margin-left: 8px; }
+  .mid { font-size: 112px; margin-top: 18px; }
+  .sub { font-size: 38px; color: var(--onvoid-2); margin-top: 22px; font-family: var(--text); font-weight: 500; letter-spacing: 0; }
+  .flash { position: absolute; inset: 0; background: var(--cyan); opacity: 0; mix-blend-mode: screen; }
+  .end { background: radial-gradient(ellipse at 50% 46%, #062a31 0%, #000 62%); }
+  .end .glow { position: absolute; left: 50%; top: 40%; width: 1300px; height: 520px; transform: translate(-50%, -50%); background: radial-gradient(ellipse, rgba(0,217,245,.45), rgba(0,217,245,0) 65%); filter: blur(30px); }
+  .end .prod { position: absolute; left: 50%; top: 40%; width: 1060px; transform: translate(-50%, -50%); }
+  .end .name { position: absolute; left: 0; right: 0; top: 700px; text-align: center; font-size: 150px; text-shadow: 0 0 40px rgba(0,217,245,.35); }
+  .end .slash { position: absolute; left: 660px; width: 600px; top: 872px; transform-origin: 0 50%; }
+  .end .price { position: absolute; left: 0; right: 0; top: 900px; text-align: center; font-size: 40px; font-weight: 500; }
+  .end .price b { color: var(--cyan); font-weight: 600; }
+</style></head>
+<body><div class="stage" id="stage">
+
+  <section class="scene s1" id="s1"><h1 class="h" id="hook">No holding back.</h1><div class="bar" id="hookbar"></div></section>
+
+  <section class="scene clip" id="s2"><video class="fill" src="media/lakan-studio.mp4"></video><div class="shade"></div>
+    <div class="copy"><p class="eyebrow">Graphics</p><p class="h big"><span id="w">0</span><span class="u">W</span></p><p class="sub">NVIDIA GeForce RTX 5060 · 8GB GDDR7</p></div></section>
+
+  <section class="scene clip right" id="s3"><video class="fill" src="media/lakan-keys.mp4"></video><div class="shade"></div>
+    <div class="copy"><p class="eyebrow">Processor</p><p class="h mid">Core 7 250H</p><p class="sub">Up to 5.4 GHz · 16GB DDR5-5600</p></div></section>
+
+  <section class="scene clip" id="s4"><video class="fill" src="media/lakan-lid.mp4"></video><div class="shade"></div>
+    <div class="copy"><p class="eyebrow">In the box</p><p class="h mid">Naga Karga backpack</p><p class="sub">512GB Gen4 SSD · 15.6" display · one-zone RGB</p></div></section>
+
+  <section class="scene end" id="s5"><div class="glow"></div><img class="prod" id="prod" src="../assets/img/products/lakan-ii.webp">
+    <h2 class="np name" id="name">LAKAN II</h2><div class="bar slash" id="slash"></div>
+    <p class="price" id="price">₱89,900 <span style="color:var(--onvoid-2)">≈ US$1,430</span> · <b>Pre-order at naga.industries</b></p>
+    <div class="endmark" id="endmark"><img src="../assets/img/naga-wordmark-white.png" alt=""><span>Sulong.</span></div></section>
+
+  <div class="flash" id="flash"></div><div class="grain"></div>
+</div>
+<script src="../assets/vendor/gsap.min.js"></script>
+<script src="stage.js"></script>
+<script src="common.js"></script>
+<script>
+  const P = window.PROMO, B = 2.4;          // one bar at 99.4 BPM
+  const tl = gsap.timeline({ paused: true }); P.tl = tl;
+  const $ = (s) => document.querySelector(s);
+  const show = (el, at) => tl.set(el, { opacity: 1 }, at);
+  const hide = (el, at) => tl.set(el, { opacity: 0 }, at);
+  const flash = (at, k = .55) => tl.fromTo('#flash', { opacity: k }, { opacity: 0, duration: .35, ease: 'power2.out', immediateRender: false }, at);
+  const shake = (at, n = 6, a = 14) => { for (let i = 0; i < n; i++) tl.to('#stage', { x: (i % 2 ? -1 : 1) * a * (1 - i / n), y: (i % 3 - 1) * a * .5 * (1 - i / n), duration: .04 }, at + i * .04); tl.to('#stage', { x: 0, y: 0, duration: .05 }, at + n * .04); };
+  const rise = (sel, at) => tl.from(sel, { y: 70, opacity: 0, filter: 'blur(10px)', duration: .55, ease: 'power3.out', stagger: .08 }, at);
+
+  // S1: hook, one word per beat
+  show('#s1', 0);
+  const words = P.words($('#hook'));
+  words.forEach((w, i) => { tl.from(w, { scale: 1.9, opacity: 0, filter: 'blur(14px)', duration: .22, ease: 'power4.in' }, i * .6); shake(i * .6 + .2, 5, 12); });
+  tl.from('#hookbar', { scaleX: 0, duration: .45, ease: 'power3.out' }, 1.8);
+  hide('#s1', B);
+
+  // S2–S4: clips with copy, each cut on a bar
+  [['#s2', 1], ['#s3', 2], ['#s4', 3]].forEach(([sel, k]) => {
+    const at = B * k; show(sel, at); flash(at, .5);
+    P.video($(sel + ' video'), at, .3);
+    tl.fromTo(sel + ' video', { scale: 1.1 }, { scale: 1, duration: B + .2, ease: 'power2.out' }, at);
+    rise(sel + ' .copy > *', at + .12);
+    hide(sel, at + B);
+  });
+  P.count(tl, $('#w'), 115, B + .25, 1.3);
+
+  // S5: end card
+  const E = B * 4; show('#s5', E); flash(E, .8); shake(E, 8, 16);
+  tl.from('#prod', { scale: 1.18, y: 40, opacity: 0, filter: 'blur(12px)', duration: 1.1, ease: 'power3.out' }, E);
+  tl.from('.end .glow', { opacity: 0, scale: .6, duration: 1.4, ease: 'power2.out' }, E);
+  const chars = P.chars($('#name'));
+  tl.from(chars, { y: -140, scale: 1.6, opacity: 0, duration: .22, ease: 'power4.in', stagger: .06 }, E + .6);
+  shake(E + 1.1, 7, 14); flash(E + 1.1, .35);
+  tl.from('#slash', { scaleX: 0, duration: .4, ease: 'power3.out' }, E + 1.15);
+  rise('#price', E + 1.8);
+  rise('#endmark', E + 2.4);
+  tl.to('#stage', { opacity: 0, duration: .6, ease: 'power1.in' }, P.duration - .6);
+  tl.set({}, {}, P.duration);
+
+  P.audio = {
+    music: { src: 'naga-song-sulong.mp3', from: 17.3, gain: .9 }, fadeOut: 1.4,
+    hits: [
+      { src: 'naga-hit-bamboo-crack.mp3', at: 0.0, gain: 1.1 },
+      { src: 'naga-hit-bamboo-crack.mp3', at: 0.6, gain: .8 },
+      { src: 'naga-hit-bamboo-crack.mp3', at: 1.2, gain: .8 },
+      { src: 'naga-hit-riser-impact.mp3', at: E - 4.67, gain: .9 },
+      { src: 'naga-hit-gong-boom.mp3', at: E + 1.1, gain: 1.0 },
+    ],
+  };
+</script>
+</body></html>

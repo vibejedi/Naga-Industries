@@ -1,0 +1,26 @@
+# Naga Industries
+
+> Philippine laptop and AI mini PC brand. SIPAG I productivity laptop, LAKAN II gaming laptop and DIWA AI mini PC, which runs Baku, Naga's own local AI. Ships from Manila by DHL Express.
+
+Facts below match the website. Product names (SIPAG, LAKAN, DIWA, Baku) and the motto Sulong ("forward") are Filipino words.
+
+## Products
+
+- [LAKAN II gaming laptop: RTX 5060 at 115W, Core 7 250H](https://naga.industries/lakan-ii.html): gaming laptop. Intel Core 7 250H, NVIDIA GeForce RTX 5060 Laptop GPU at up to 115W, 16GB DDR5-5600, 512GB PCIe Gen4 SSD, 15.6-inch display. ₱89,900 (about US$1,430), Naga Karga backpack included. Pre-order.
+- [SIPAG I productivity laptop: 1.30 kg, up to 13 hours](https://naga.industries/sipag-i.html): productivity laptop. Intel Core Ultra 5 125U, 14-inch Full HD, 60Wh battery for up to 13 hours, 1.30 kg, USB-C charging. Price to be confirmed. Pre-order.
+- [DIWA AI mini PC with Baku, a private local AI](https://naga.industries/diwa.html): AI mini PC that runs Baku, Naga's own local AI. Coming soon, no price yet; reservations are open.
+
+## Baku
+
+- Baku is Naga's own AI. It runs on DIWA itself, keeps data on the machine, works offline and speaks every language. It is being built with the Machine.Fun ecosystem: https://machine.fun/project/J8RKZwmr8ol
+
+## Buying and shipping
+
+- Shipping: free in the Philippines; US$100 flat rate worldwide by DHL Express from Manila, 3 to 14 days by zone.
+- Contact: hello@nagatech.ph
+
+## Optional
+
+- [About Naga Industries: company facts, products and contact](https://naga.industries/about.html): company facts in one place.
+- [Facebook](https://www.facebook.com/nagaindustries): official account.
+- [Instagram](https://www.instagram.com/nagaindustriesph): official account.

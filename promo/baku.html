@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Tilt+Neon&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stage.css">
+<style>
+  .cap { position: absolute; left: 0; right: 0; bottom: 110px; text-align: center; font-family: var(--display); font-weight: 500; font-size: 58px; letter-spacing: -.01em; text-shadow: 0 2px 24px rgba(0,0,0,.8); }
+  .cap.top { bottom: auto; top: 110px; }
+  .s3 { background: #000; display: grid; place-items: center; }
+  .s3 .h { position: absolute; left: 0; right: 0; text-align: center; font-size: 150px; top: 50%; transform: translateY(-50%); }
+  .flash { position: absolute; inset: 0; background: var(--cyan); opacity: 0; mix-blend-mode: screen; }
+  .end { background: radial-gradient(ellipse at 50% 40%, #062a31 0%, #000 62%); }
+  .end .baku { position: absolute; left: 50%; top: 70px; height: 600px; transform: translateX(-50%); }
+  .end .name { position: absolute; left: 0; right: 0; top: 650px; text-align: center; font-size: 170px; text-shadow: 0 0 44px rgba(0,217,245,.45); }
+  .end .tag { position: absolute; left: 0; right: 0; top: 860px; text-align: center; font-size: 40px; font-weight: 500; }
+  .end .tag b { color: var(--cyan); font-weight: 600; }
+  .end .mf { position: absolute; left: 0; right: 0; top: 920px; text-align: center; font-size: 28px; color: var(--onvoid-2); letter-spacing: .02em; }
+  .end .endmark { bottom: 40px; }
+</style></head>
+<body><div class="stage" id="stage">
+  <section class="scene" id="s1"><video class="fill" src="media/baku-moon.mp4"></video><div class="shade" style="background:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,0) 40%)"></div>
+    <p class="cap" id="c1">In Philippine myth, the Bakunawa rose from the sea to swallow the moon.</p></section>
+  <section class="scene" id="s2"><video class="fill" src="media/baku-coding.mp4"></video>
+    <p class="cap" id="c2">Now it lives on your desk.</p></section>
+  <section class="scene s3" id="s3"><h2 class="h" id="k1">Private.</h2><h2 class="h" id="k2">Offline.</h2><h2 class="h" id="k3" style="font-size:120px">Speaks every language.</h2></section>
+  <section class="scene end" id="s4"><img class="baku" id="baku" src="../assets/img/baku.webp">
+    <h2 class="np name" id="name">Baku</h2>
+    <p class="tag" id="tag">Naga's own AI · <b>Only on DIWA</b></p>
+    <p class="mf" id="mf">Built with the Machine.Fun ecosystem</p>
+    <div class="endmark" id="endmark"><img src="../assets/img/naga-wordmark-white.png" alt=""><span>naga.industries</span></div></section>
+  <div class="flash" id="flash"></div><div class="grain"></div>
+</div>
+<script src="../assets/vendor/gsap.min.js"></script>
+<script src="stage.js"></script>
+<script src="common.js"></script>
+<script>
+  const P = window.PROMO, B = 2.4, tl = gsap.timeline({ paused: true }); P.tl = tl; const F = FX(tl), $ = (s) => document.querySelector(s);
+  F.clip('#s1', 0, B * 2, 0, 1.0); tl.fromTo('#s1 video', { scale: 1 }, { scale: 1.06, duration: B * 2, ease: 'none' }, 0);
+  F.drift(P.words($('#c1')), .4, .7);
+  tl.to('#c1', { opacity: 0, duration: .4 }, B * 2 - .5);
+  F.clip('#s2', B * 2, B * 2, .4, 1.04); F.flash(B * 2, .3); F.drift(P.words($('#c2')), B * 2 + .5, .8);
+  const K = B * 4; F.show('#s3', K); F.flash(K, .5);
+  ['#k1', '#k2', '#k3'].forEach((s, i) => { tl.fromTo(s, { opacity: 0, scale: 1.3, filter: 'blur(12px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: .3, ease: 'power3.out', immediateRender: true }, K + i * .8); if (i < 2) tl.to(s, { opacity: 0, duration: .15 }, K + i * .8 + .7); F.shake(K + i * .8 + .05, 4, 8); });
+  F.hide('#s3', B * 5);
+  const E = B * 5; F.show('#s4', E); F.flash(E, .6);
+  tl.from('#baku', { y: 80, scale: .85, opacity: 0, filter: 'blur(14px)', duration: 1.1, ease: 'back.out(1.6)' }, E);
+  tl.to('#baku', { y: -14, duration: 1.2, yoyo: true, repeat: 2, ease: 'sine.inOut' }, E + 1.1);
+  tl.from(P.chars($('#name')), { y: 50, opacity: 0, filter: 'blur(8px)', duration: .6, ease: 'power3.out', stagger: .08 }, E + .7);
+  F.rise('#tag', E + 1.5); F.rise('#mf', E + 1.9); F.rise('#endmark', E + 2.3); F.outro(P.duration);
+  P.audio = { music: { src: 'naga-song-bakunawa.mp3', from: 29.77, gain: .9 }, fadeIn: .3, fadeOut: 1.4, hits: [
+    { src: 'naga-hit-bamboo-crack.mp3', at: K, gain: .8 }, { src: 'naga-hit-bamboo-crack.mp3', at: K + .8, gain: .8 }, { src: 'naga-hit-bamboo-crack.mp3', at: K + 1.6, gain: .8 },
+    { src: 'naga-hit-gong-boom.mp3', at: E, gain: 1 } ] };
+</script></body></html>

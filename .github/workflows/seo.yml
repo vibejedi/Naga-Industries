@@ -1,0 +1,39 @@
+name: SEO
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 1 * * *'   # daily, 09:17 Manila time
+  workflow_dispatch:
+
+jobs:
+  generated-files:
+    # Head blocks, sitemap.xml, robots.txt and llms.txt must match seo/site.json + store.json.
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node scripts/seo.js check
+
+  monitor:
+    # Snapshot production and diff against the committed baseline. Fails only on "Fix now"
+    # (noindex, canonical moved, 4xx/5xx, robots.txt blocking the site, empty sitemap).
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for the Vercel deploy
+        if: github.event_name == 'push'
+        run: sleep 120
+      - name: Snapshot and diff
+        run: |
+          if [ ! -f seo/baseline.json ]; then echo "No seo/baseline.json yet: take one after the first deploy (see seo/README.md)."; exit 0; fi
+          python3 seo/seo_snapshot.py snap seo/urls.txt > after.json || { sleep 30; python3 seo/seo_snapshot.py snap seo/urls.txt > after.json; }
+          python3 seo/seo_snapshot.py diff seo/baseline.json after.json | tee diff.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: { name: seo-snapshot, path: 'after.json', if-no-files-found: ignore }

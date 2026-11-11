@@ -115,18 +115,35 @@
 
   /* ---------------------------------------------------------------
      5) Headline reveals (Splitting + GSAP)
+        Light chapters keep Apple's calm: words rise out of a soft blur.
+        Dark chapters are the Razer act: their headlines slam in word by
+        word, the line shakes on impact and the cyan <em> flashes (the
+        same beat as the promo films). Resting state is the plain text.
      --------------------------------------------------------------- */
+  const slams = hasST && !reduce ? [...document.querySelectorAll('.chapter.dark h2.t-h2:not(.nameplate)')] : [];
+  slams.forEach((h) => { h.removeAttribute('data-reveal-child'); h.removeAttribute('data-splitting'); h.setAttribute('data-slam', ''); });
   if (typeof window.Splitting !== 'undefined') {
-    Splitting({ target: '[data-splitting]', by: 'words' });
+    Splitting({ target: '[data-splitting], [data-slam]', by: 'words' });
   }
   if (hasST && !reduce) {
     document.querySelectorAll('[data-splitting]').forEach((h) => {
       const words = h.querySelectorAll('.word');
       if (!words.length) return;
       gsap.from(words, {
-        yPercent: 60, opacity: 0, duration: .9, ease: 'power3.out', stagger: .05,
+        yPercent: 70, opacity: 0, filter: 'blur(8px)', duration: 1, ease: 'expo.out', stagger: .06, clearProps: 'filter',
         scrollTrigger: { trigger: h, start: 'top 85%', once: true }
       });
+    });
+
+    slams.forEach((h) => {
+      const words = h.querySelectorAll('.word');
+      if (!words.length) return;
+      const tl = gsap.timeline({ paused: true })
+        .from(words, { scale: 1.8, opacity: 0, filter: 'blur(12px)', duration: .3, ease: 'power4.in', stagger: .09, clearProps: 'filter,scale' })
+        .to(h, { keyframes: { x: [-9, 8, -5, 3, -1, 0], y: [3, -2, 1, 0] }, duration: .32, ease: 'none' }, '-=.03');
+      const em = h.querySelector('em');
+      if (em) tl.fromTo(em, { textShadow: '0 0 36px rgba(0,217,245,0.95)' }, { textShadow: '0 0 0px rgba(0,217,245,0)', duration: 1.1, ease: 'power2.out', clearProps: 'textShadow' }, '<');
+      ScrollTrigger.create({ trigger: h, start: 'top 85%', once: true, onEnter: () => tl.play() });
     });
 
     // Generic rise-in for blocks marked data-reveal (and their children with data-reveal-child)
@@ -452,12 +469,155 @@
       if (document.hidden) ctx.suspend(); else if (playing) ctx.resume();
     });
     window.addEventListener('pagehide', () => store(sessionStorage, 'naga-music-pos', String(ctx ? position() : offset)));
-    document.querySelectorAll('video').forEach((v) => {
-      v.addEventListener('play', () => { if (!v.muted) { ducked = true; if (src) ramp(level(), 0.4); } });
-      ['pause', 'ended'].forEach((n) => v.addEventListener(n, () => { if (ducked) { ducked = false; if (src) ramp(level(), 1); } }));
-    });
+    // Duck while any video plays with sound (a promo can be unmuted mid-play, hence volumechange).
+    const vids = [...document.querySelectorAll('video')];
+    const reduck = () => {
+      const d = vids.some((v) => !v.paused && !v.ended && !v.muted && v.volume > 0);
+      if (d !== ducked) { ducked = d; if (src) ramp(level(), d ? 0.4 : 1); }
+    };
+    vids.forEach((v) => ['play', 'pause', 'ended', 'volumechange'].forEach((n) => v.addEventListener(n, reduck)));
     sync();
   })();
+
+  /* ---------------------------------------------------------------
+     13) Living sea: WebGL caustics drifting behind every dark chapter,
+         like light through water above the Bakunawa. Only cyan light is
+         added on top of the chapter's own black; no WebGL, no change.
+         Renders at quarter resolution, 30 fps, only while on screen; with
+         reduced motion it draws one still frame.
+     --------------------------------------------------------------- */
+  (function livingSea() {
+    const chapters = document.querySelectorAll('.chapter.dark');
+    if (!chapters.length) return;
+    const VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+    const FRAG = [
+      'precision mediump float;',
+      'uniform vec2 uRes;uniform float uTime;uniform float uCell;',
+      'vec2 h2(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return fract(sin(p)*43758.5453);}',
+      // Distance to the nearest cell edge (F2 - F1) of moving Voronoi cells: bright where it is small.
+      'float edge(vec2 p,float t){vec2 i=floor(p),f=fract(p);float a=8.,b=8.;',
+      ' for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){vec2 g=vec2(float(x),float(y));vec2 o=h2(i+g);',
+      '  o=.5+.42*sin(t+6.2831*o);float d=length(g+o-f);if(d<a){b=a;a=d;}else if(d<b){b=d;}}',
+      ' return b-a;}',
+      'void main(){',
+      ' vec2 uv=gl_FragCoord.xy/uCell;float t=uTime*.3;',
+      ' uv+=vec2(sin(uv.y*2.1+t),cos(uv.x*1.7-t*.8))*.32+sin(uv.yx*4.3+t*1.3)*.07;',
+      ' float c1=pow(1.-smoothstep(0.,.085,edge(uv,t)),2.),c2=pow(1.-smoothstep(0.,.07,edge(uv*1.7+vec2(3.1,1.7),t*1.2)),2.);',
+      ' float c=c1*.55+c2*.3+c1*c2*.9;',
+      ' float patch=smoothstep(.25,1.,sin(uv.x*.42+t*.25)*sin(uv.y*.37-t*.18)*.5+.5+.25);',
+      ' float x=gl_FragCoord.x/uRes.x,top=gl_FragCoord.y/uRes.y;',
+      ' float r=(sin(x*19.+t*1.1)*.5+.5)*(sin(x*37.-t*.7+1.3)*.5+.5);r=pow(r,3.)*smoothstep(.25,1.,top);',
+      ' float a=(c*patch*.5*smoothstep(-.2,1.,top)+r*.2)*.6;',
+      ' gl_FragColor=vec4(vec3(0.,.851,.961)*a,a);}',
+    ].join('\n');
+
+    chapters.forEach((sec) => {
+      const c = document.createElement('canvas');
+      c.className = 'sea'; c.setAttribute('aria-hidden', 'true');
+      const gl = c.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false, powerPreference: 'low-power' });
+      if (!gl) return;
+      const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; };
+      const vs = sh(gl.VERTEX_SHADER, VERT), fs = sh(gl.FRAGMENT_SHADER, FRAG);
+      if (!vs || !fs) return;
+      const prog = gl.createProgram();
+      gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+      gl.useProgram(prog);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(prog, 'p');
+      gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      const uRes = gl.getUniformLocation(prog, 'uRes'), uTime = gl.getUniformLocation(prog, 'uTime'), uCell = gl.getUniformLocation(prog, 'uCell');
+      sec.prepend(c);
+
+      const SCALE = 0.5; // canvas pixels per CSS pixel
+      const size = () => {
+        const w = Math.max(1, Math.round(sec.clientWidth * SCALE)), h = Math.max(1, Math.round(sec.clientHeight * SCALE));
+        if (c.width !== w || c.height !== h) { c.width = w; c.height = h; }
+        gl.viewport(0, 0, w, h);
+        gl.uniform2f(uRes, w, h);
+        gl.uniform1f(uCell, 230 * SCALE);
+      };
+      const t0 = performance.now() - Math.random() * 20000;
+      const draw = (now) => { gl.uniform1f(uTime, (now - t0) / 1000); gl.drawArrays(gl.TRIANGLES, 0, 3); };
+      let raf = 0, last = 0, visible = false;
+      const loop = (now) => {
+        if (!visible) return;
+        raf = requestAnimationFrame(loop);
+        if (now - last < 33) return;
+        last = now; draw(now);
+      };
+      size(); draw(performance.now()); c.classList.add('on');
+      if ('ResizeObserver' in window) new ResizeObserver(() => { size(); if (!visible || reduce) draw(performance.now()); }).observe(sec);
+      if (reduce) return;
+      new IntersectionObserver((es) => es.forEach((e) => {
+        visible = e.isIntersecting;
+        cancelAnimationFrame(raf);
+        if (visible && !document.hidden) raf = requestAnimationFrame(loop);
+      })).observe(sec);
+      document.addEventListener('visibilitychange', () => { cancelAnimationFrame(raf); if (visible && !document.hidden) raf = requestAnimationFrame(loop); });
+    });
+  })();
+
+  /* ---------------------------------------------------------------
+     14) Numbers count up: spec numbers in stat rows and bento tiles
+         (115W, 5.4 GHz, 1.30 kg...) run from zero when they come into
+         view. The text already holds the final number, so that is the
+         resting state; prices use [data-count] (section 6) instead.
+     --------------------------------------------------------------- */
+  if (!reduce && 'IntersectionObserver' in window) {
+    document.querySelectorAll('.statrow .t-big, .bento .t-big').forEach((el) => {
+      if (el.querySelector('[data-count]')) return;
+      const node = [...el.childNodes].find((n) => n.nodeType === 3 && n.textContent.trim());
+      const m = node && /^(\s*)(\d+(?:\.\d+)?)(\s*)$/.exec(node.textContent);
+      if (!m || parseFloat(m[2]) < 3) return;
+      const target = parseFloat(m[2]), dec = (m[2].split('.')[1] || '').length;
+      const set = (v) => { node.textContent = m[1] + v.toFixed(dec) + m[3]; };
+      const io = new IntersectionObserver((es) => es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        const t0 = performance.now(), dur = 1300;
+        (function step(now) {
+          const p = Math.min(1, (now - t0) / dur);
+          set(target * (1 - Math.pow(1 - p, 4)));
+          if (p < 1) requestAnimationFrame(step); else set(target);
+        })(t0);
+      }), { threshold: .6 });
+      io.observe(el);
+    });
+  }
+
+  /* ---------------------------------------------------------------
+     15) Promo films (figure.promo): muted loop that plays only on
+         screen. "Sound on" restarts it with sound (the ambient music
+         ducks); "Pause" stops it. With reduced motion it never
+         autoplays and shows native controls instead.
+     --------------------------------------------------------------- */
+  document.querySelectorAll('.promo').forEach((fig) => {
+    const v = fig.querySelector('video');
+    const sound = fig.querySelector('.promo-sound'), pause = fig.querySelector('.promo-pause');
+    if (!v) return;
+    v.muted = true;
+    if (reduce || !('IntersectionObserver' in window)) { v.controls = true; fig.querySelector('.promo-ui')?.remove(); return; }
+    let userPaused = false;
+    const ui = () => {
+      if (sound) { sound.setAttribute('aria-pressed', String(!v.muted)); sound.querySelector('span').textContent = v.muted ? 'Sound on' : 'Sound off'; }
+      if (pause) { pause.setAttribute('aria-pressed', String(userPaused)); pause.querySelector('span').textContent = userPaused ? 'Play' : 'Pause'; }
+    };
+    const play = () => { const p = v.play(); if (p && p.catch) p.catch(() => { v.controls = true; }); };
+    sound?.addEventListener('click', () => {
+      const on = v.muted;
+      v.muted = !on;
+      if (on) { v.currentTime = 0; userPaused = false; play(); }
+      ui();
+    });
+    pause?.addEventListener('click', () => { userPaused = !userPaused; if (userPaused) v.pause(); else play(); ui(); });
+    new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { if (!userPaused) play(); }
+      else { v.pause(); if (!v.muted) { v.muted = true; ui(); } }
+    }), { threshold: .5 }).observe(v);
+    ui();
+  });
 
   // Fonts can arrive after layout; let ScrollTrigger re-measure.
   if (hasST && document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
