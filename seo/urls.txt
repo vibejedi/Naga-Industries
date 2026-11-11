@@ -1,0 +1,9 @@
+# Key URLs for the SEO change monitor (seo/seo_snapshot.py). One per line; production host only.
+# Templates: homepage, the three product pages, the About fact sheet, the comparison guide.
+https://naga.industries/
+https://naga.industries/lakan-ii.html
+https://naga.industries/sipag-i.html
+https://naga.industries/diwa.html
+https://naga.industries/about.html
+# Control: must keep redirecting to / (a final_url change here means the redirect broke).
+https://naga.industries/index.html

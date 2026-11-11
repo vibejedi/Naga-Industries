@@ -6,8 +6,12 @@
   "scripts": {
     "vendor": "node scripts/vendor.js",
     "serve": "npx --yes serve -l 8080 .",
-    "test": "node tests/preorder.test.js && npm --prefix scripts/privy test",
-    "build:privy": "npm --prefix scripts/privy ci && npm --prefix scripts/privy run build"
+    "test": "node scripts/seo.js check && node tests/preorder.test.js && npm --prefix scripts/privy test",
+    "build:privy": "npm --prefix scripts/privy ci && npm --prefix scripts/privy run build",
+    "seo": "node scripts/seo.js build",
+    "seo:check": "node scripts/seo.js check",
+    "seo:snap": "python3 seo/seo_snapshot.py snap seo/urls.txt > after.json",
+    "seo:diff": "python3 seo/seo_snapshot.py diff seo/baseline.json after.json"
   },
   "devDependencies": {
     "gsap": "3.15.0",

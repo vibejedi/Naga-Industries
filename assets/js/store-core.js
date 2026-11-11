@@ -51,6 +51,19 @@
 
   const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+  // "How did you hear about Naga?" (optional). AI assistants sit mid-list on purpose, so the
+  // answer is not led by the order. Used for the monthly AI traffic report (dark AI traffic
+  // that analytics never sees as a referral); see .claude/skills/ai-traffic-analytics.
+  const HEARD = ['Google search', 'Facebook', 'Instagram', 'YouTube', 'ChatGPT', 'Google AI Overview or AI Mode', 'Gemini',
+    'Perplexity', 'Copilot', 'Claude', 'Other AI assistant', 'A friend or colleague', 'Other'];
+
+  /** Optional marketing fields, cleaned: unknown answers are dropped rather than rejected. */
+  function attribution(o) {
+    const heard = HEARD.includes(o.heard) ? o.heard : '';
+    const ai = /^[a-z][a-z-]{1,19}$/.test(String(o.ai || '')) ? String(o.ai) : '';
+    return { heard, ai };
+  }
+
   /** Returns {field: message} for anything wrong; empty object when the order is valid. */
   function validate(cfg, o) {
     const e = {};
@@ -72,5 +85,5 @@
     return 'NG-' + Array.from(a, (b) => (b % 36).toString(36)).join('').toUpperCase();
   }
 
-  return { COUNTRIES, zoneFor, quote, validate, newRef, REF: /^NG-[A-Z0-9]{8}$/ };
+  return { COUNTRIES, HEARD, zoneFor, quote, validate, attribution, newRef, REF: /^NG-[A-Z0-9]{8}$/ };
 });

@@ -1,0 +1,77 @@
+{
+  "_readme": "SEO source of truth. `npm run seo` writes each page's <!-- seo --> head block (title, description, canonical, Open Graph, JSON-LD) and regenerates sitemap.xml, robots.txt and llms.txt from this file and assets/data/store.json. Edit here, never in the generated blocks. Only list pages that should be indexed.",
+  "origin": "https://naga.industries",
+  "siteName": "Naga Industries",
+  "locale": "en",
+  "org": {
+    "name": "Naga Industries",
+    "alternateName": "Naga",
+    "slogan": "Sulong",
+    "description": "Philippine laptop and AI mini PC brand. SIPAG I productivity laptop, LAKAN II gaming laptop and DIWA AI mini PC, which runs Baku, Naga's own local AI. Ships from Manila by DHL Express.",
+    "logo": "assets/img/naga-logo-512.png",
+    "email": "hello@nagatech.ph",
+    "sameAs": ["https://www.facebook.com/nagaindustries", "https://www.instagram.com/nagaindustriesph"]
+  },
+  "pages": [
+    {
+      "file": "index.html",
+      "path": "/",
+      "type": "WebPage",
+      "title": "Naga Industries | Philippine laptops and AI mini PCs",
+      "description": "Philippine-built laptops and AI mini PCs. SIPAG I for work, LAKAN II for play, and DIWA, the AI mini PC that runs Baku, our own private AI. Free shipping in the Philippines, $100 flat rate worldwide.",
+      "image": "assets/img/og/home.jpg",
+      "imageAlt": "Naga Industries: a carved stone wall with the glowing naga serpent"
+    },
+    {
+      "file": "lakan-ii.html",
+      "path": "/lakan-ii.html",
+      "type": "ItemPage",
+      "product": "lakan-ii",
+      "title": "LAKAN II gaming laptop: RTX 5060 at 115W, Core 7 250H | Naga",
+      "description": "NAGA LAKAN II gaming laptop: Intel Core 7 250H, NVIDIA GeForce RTX 5060 at up to 115W, 16GB DDR5 and a 15.6-inch display, with the Naga Karga backpack. ₱89,900 (about US$1,430), with local warranty.",
+      "image": "assets/img/og/lakan-ii.jpg",
+      "imageAlt": "NAGA LAKAN II gaming laptop with a cyan-backlit keyboard",
+      "productName": "NAGA LAKAN II",
+      "category": "Gaming laptop",
+      "productImages": ["assets/img/products/lakan-ii.webp", "assets/img/products/lakan-ii-front.webp", "assets/img/products/lakan-ii-lid.webp", "assets/img/products/lakan-ii-closed.webp"],
+      "productDescription": "15.6-inch gaming laptop with an Intel Core 7 250H processor, NVIDIA GeForce RTX 5060 Laptop GPU (8GB GDDR7, up to 115W), 16GB DDR5-5600 memory and a 512GB PCIe Gen4 SSD. Ships with the Naga Karga backpack."
+    },
+    {
+      "file": "sipag-i.html",
+      "path": "/sipag-i.html",
+      "type": "ItemPage",
+      "product": "sipag-i",
+      "title": "SIPAG I productivity laptop: 1.30 kg, up to 13 hours | Naga",
+      "description": "NAGA SIPAG I productivity laptop in black: Intel Core Ultra 5 125U, 14-inch Full HD, 60Wh battery for up to 13 hours, 1.30 kg, USB-C charging. Assembled in the Philippines with local warranty.",
+      "image": "assets/img/og/sipag-i.jpg",
+      "imageAlt": "NAGA SIPAG I productivity laptop with the cyan Naga wallpaper",
+      "productName": "NAGA SIPAG I",
+      "category": "Productivity laptop",
+      "productImages": ["assets/img/products/sipag-i.webp", "assets/img/products/sipag-i-front.webp", "assets/img/products/sipag-i-lid.webp", "assets/img/products/sipag-i-closed.webp"],
+      "productDescription": "14-inch Full HD productivity laptop with an Intel Core Ultra 5 125U processor, a 60Wh battery rated for up to 13 hours, USB-C charging and a 1.30 kg metal body."
+    },
+    {
+      "file": "diwa.html",
+      "path": "/diwa.html",
+      "type": "ItemPage",
+      "product": "diwa",
+      "title": "DIWA AI mini PC with Baku, a private local AI | Naga",
+      "description": "NAGA DIWA is an AI mini PC that runs Baku, Naga's own AI, on the machine. Your data stays private, it works offline and it speaks every language. Coming soon: reserve yours.",
+      "image": "assets/img/og/diwa.jpg",
+      "imageAlt": "NAGA DIWA AI mini PC with a cyan light bar",
+      "productName": "NAGA DIWA",
+      "category": "AI mini PC",
+      "productImages": ["assets/img/products/diwa.webp"],
+      "productDescription": "AI mini PC that runs Baku, Naga's own local AI, on the machine: private, offline and multilingual. Coming soon; reservations are open."
+    },
+    {
+      "file": "about.html",
+      "path": "/about.html",
+      "type": "AboutPage",
+      "title": "About Naga Industries: company facts, products and contact",
+      "description": "Naga Industries is a Philippine laptop and AI mini PC brand. The facts in one place: products, prices, Baku, shipping, contact and official accounts.",
+      "image": "assets/img/og/home.jpg",
+      "imageAlt": "Naga Industries: a carved stone wall with the glowing naga serpent"
+    }
+  ]
+}

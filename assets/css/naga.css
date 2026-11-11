@@ -488,6 +488,21 @@ footer .social svg { width: 16px; height: 16px; flex: none; }
 .fine { max-width: var(--wrap); margin: 56px auto 0; padding-top: 22px; border-top: 1px solid var(--hairline-dark); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--onvoid-2); font-size: .75rem; }
 
 /* --------------------------------------------------------------------------
+   Doc pages (About, guides): fact lists and reading text
+   -------------------------------------------------------------------------- */
+.doc-hero { padding-top: 96px; }
+.doc .t-h3 { scroll-margin-top: calc(var(--nav-h) + 24px); }
+.facts { margin: 22px 0 0; border-top: 1px solid var(--hairline); }
+.facts > div { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 6px 28px; padding: 16px 0; border-bottom: 1px solid var(--hairline); }
+.facts dt { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; padding-top: 3px; }
+.facts dt .pn { font-family: var(--font-accent); font-size: 1.25rem; letter-spacing: .02em; text-transform: none; color: var(--ink); font-weight: 400; font-synthesis: none; }
+.facts dd { margin: 0; }
+.facts dd b { font-weight: 600; }
+.link-plain { color: var(--cyan-link); text-decoration: none; }
+.link-plain:hover { text-decoration: underline; }
+@media (max-width: 560px) { .facts > div { grid-template-columns: 1fr; } }
+
+/* --------------------------------------------------------------------------
    Motion helpers (GSAP adds the animation; these are the resting states)
    -------------------------------------------------------------------------- */
 [data-reveal] { opacity: 1; }

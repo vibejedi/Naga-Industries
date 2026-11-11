@@ -1,0 +1,23 @@
+id,prompt,group,type,value_1to3,demand,target,win_path,source,evidence,confidence
+P01,best RTX 5060 gaming laptop in the Philippines under 90k pesos,gaming-laptop-ph,best-of,3,unknown,gap: comparison page,both,rival research: PH price band ₱75k-₱105k,seen,low
+P02,LAKAN II vs Lenovo LOQ 15 which is better for gaming,gaming-laptop-ph,vs,3,unknown,gap: comparison page,own,rival research: LOQ is the price leader,seen,low
+P03,is a 115W RTX 5060 laptop faster than a 100W one,gaming-laptop-ph,question,2,unknown,https://naga.industries/lakan-ii.html,own,rival research: LOQ 100 W vs field 115 W,seen,low
+P04,gaming laptop with free backpack Philippines,gaming-laptop-ph,best-of,2,unknown,https://naga.industries/lakan-ii.html,own,rival research: Datablitz bundles include backpacks,seen,low
+P05,best gaming laptop for students in the Philippines 2026,gaming-laptop-ph,best-of,3,unknown,gap: comparison page,both,inferred,inferred,low
+P06,which gaming laptop has the best warranty in the Philippines,gaming-laptop-ph,question,2,unknown,https://naga.industries/about.html#help,third-party,"rival research: 2-year warranties at ASUS, MSI, Acer",seen,low
+P07,Philippine-made laptop brands,local-brand,best-of,3,unknown,https://naga.industries/about.html,both,inferred,inferred,low
+P08,laptops assembled in the Philippines with local warranty,local-brand,best-of,3,unknown,https://naga.industries/about.html,both,inferred,inferred,low
+P09,best lightweight laptop for work in the Philippines under 1.3 kg,work-laptop-ph,best-of,3,unknown,https://naga.industries/sipag-i.html,both,inferred,inferred,low
+P10,laptop with 13 hour battery and USB-C charging for office work,work-laptop-ph,best-of,2,unknown,https://naga.industries/sipag-i.html,own,inferred,inferred,low
+P11,Intel Core Ultra 5 125U laptop Philippines price,work-laptop-ph,price,2,unknown,https://naga.industries/sipag-i.html,own,inferred,inferred,low
+P12,mini PC that runs a local AI model offline,local-ai,best-of,3,unknown,https://naga.industries/diwa.html,both,inferred,inferred,low
+P13,private AI assistant that runs on your own computer without the cloud,local-ai,best-of,3,unknown,https://naga.industries/diwa.html#baku,both,inferred,inferred,low
+P14,best mini PC for running LLMs at home,local-ai,best-of,3,unknown,https://naga.industries/diwa.html,third-party,inferred,inferred,low
+P15,AI that speaks Tagalog and runs offline,local-ai,question,2,unknown,https://naga.industries/diwa.html#baku,own,CLAUDE.md: Baku speaks all languages,seen,low
+P16,laptop shipping from the Philippines to the US cost,shipping,question,2,unknown,https://naga.industries/about.html,own,store.json: $100 flat DHL,seen,low
+P17,what is Naga Industries,brand,brand,1,unknown,https://naga.industries/about.html,own,brand check,brand,low
+P18,Naga LAKAN II price and specs,brand,brand,1,unknown,https://naga.industries/lakan-ii.html,own,brand check,brand,low
+P19,Naga SIPAG I review,brand,brand,1,unknown,https://naga.industries/sipag-i.html,third-party,brand check,brand,low
+P20,what is Baku AI by Naga,brand,brand,1,unknown,https://naga.industries/diwa.html#baku,own,brand check,brand,low
+P21,is Naga Industries legit,brand,brand,1,unknown,https://naga.industries/about.html,both,brand check,brand,low
+P22,Naga DIWA release date and price,brand,brand,1,unknown,https://naga.industries/diwa.html,own,brand check,brand,low

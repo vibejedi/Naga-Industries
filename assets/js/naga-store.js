@@ -54,6 +54,7 @@
     const qtySel = form.elements.qty, ctySel = form.elements.country;
     qtySel.innerHTML = Array.from({ length: cfg.maxQty }, (_, i) => '<option>' + (i + 1) + '</option>').join('');
     fillCountries(ctySel);
+    if (form.elements.heard) form.elements.heard.innerHTML = '<option value="">Choose one</option>' + Core.HEARD.map((h) => '<option>' + h + '</option>').join('');
 
     const shopifyReady = !!(cfg.shopify.storeDomain && cfg.shopify.storefrontToken && product.shopifyVariantId);
     const cryptoReady = !!(cfg.crypto.privyAppId && cfg.crypto.recipient);
@@ -109,6 +110,8 @@
       const order = {
         product: key, qty: Number(qtySel.value), country: ctySel.value,
         name: form.elements.name.value.trim(), email: form.elements.email.value.trim(),
+        heard: form.elements.heard ? form.elements.heard.value : '',
+        ai: (window.NagaAnalytics && window.NagaAnalytics.aiSource()) || '',
       };
       const errs = Core.validate(cfg, order);
       showErrors(errs);
@@ -128,7 +131,12 @@
     });
   }
 
-  function clearContact(form) { form.elements.name.value = ''; form.elements.email.value = ''; }
+  function clearContact(form) { form.elements.name.value = ''; form.elements.email.value = ''; if (form.elements.heard) form.elements.heard.value = ''; }
+
+  // Tells assets/js/naga-analytics.js about a completed step (no personal data in the event).
+  function announce(step, order, ref, q) {
+    document.dispatchEvent(new CustomEvent('naga:order', { detail: { step, ref, product: order.product, qty: order.qty, country: order.country, valueUsd: q && q.priced ? q.totalUsd : 0 } }));
+  }
 
   async function api(cfg, body) {
     const r = await fetch(cfg.api.preorder, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
@@ -143,7 +151,7 @@
   async function reserveOrder(form, cfg, order, ref, product) {
     $(form, '.order-go').textContent = 'Saving…';
     const res = await api(cfg, Object.assign({ type: 'reserve', ref }, order));
-    if (res.ok) { say(form, 'You are on the list for ' + product.name + '. We will email ' + order.email + ' first when pricing and pre-orders open. Reference ' + ref + '.', 'ok'); clearContact(form); return; }
+    if (res.ok) { announce('reserve', order, ref); say(form, 'You are on the list for ' + product.name + '. We will email ' + order.email + ' first when pricing and pre-orders open. Reference ' + ref + '.', 'ok'); clearContact(form); return; }
     say(form, '', 'error', fallbackHtml(cfg, order, ref, 'Reservations are not open online yet.'));
   }
 
@@ -164,14 +172,14 @@
       });
       const data = await r.json().catch(() => ({}));
       const cart = data.data && data.data.cartCreate;
-      if (cart && cart.cart && cart.cart.checkoutUrl) { window.location.href = cart.cart.checkoutUrl; return; }
+      if (cart && cart.cart && cart.cart.checkoutUrl) { announce('checkout', order, ref, Core.quote(cfg, order.product, order.qty, order.country)); window.location.href = cart.cart.checkoutUrl; return; }
       const why = (cart && cart.userErrors && cart.userErrors[0] && cart.userErrors[0].message) || (data.errors && data.errors[0] && data.errors[0].message);
       throw new Error('Checkout could not open' + (why ? ': ' + why : '.') + ' Please try again.');
     }
     // Card checkout not connected yet: keep the pre-order and follow up by email.
     $(form, '.order-go').textContent = 'Saving…';
     const res = await api(cfg, Object.assign({ type: 'card-request', ref }, order));
-    if (res.ok) { say(form, 'Card checkout opens soon. We saved your pre-order (' + ref + ') and will email ' + order.email + ' a secure payment link.', 'ok'); clearContact(form); return; }
+    if (res.ok) { announce('card-request', order, ref, Core.quote(cfg, order.product, order.qty, order.country)); say(form, 'Card checkout opens soon. We saved your pre-order (' + ref + ') and will email ' + order.email + ' a secure payment link.', 'ok'); clearContact(form); return; }
     say(form, '', 'error', fallbackHtml(cfg, order, ref, 'Online pre-orders are not open yet.'));
   }
 
@@ -188,7 +196,7 @@
     // The server checks the transaction on-chain; it can take a few seconds to be visible.
     for (let i = 0; i < 6; i++) {
       const res = await api(cfg, Object.assign({ type: 'crypto', ref, signature: paid.signature, from: paid.from }, order));
-      if (res.ok) { say(form, '', 'ok', 'Paid. Your pre-order ' + ref + ' is confirmed and a receipt is on its way to ' + order.email + '. ' + link + '.'); clearContact(form); return; }
+      if (res.ok) { announce('paid', order, ref, q); say(form, '', 'ok', 'Paid. Your pre-order ' + ref + ' is confirmed and a receipt is on its way to ' + order.email + '. ' + link + '.'); clearContact(form); return; }
       if (res.status !== 409) break;
       await new Promise((r) => setTimeout(r, 3000));
     }

@@ -93,7 +93,9 @@ async function toShopifyDraft(domain, token, record) {
     tags: ['pre-order', record.type].concat(record.payment ? ['paid-usdc'] : []),
     lineItems: [line],
     shippingAddress: { countryCode: record.country, firstName: record.name },
-    customAttributes: [{ key: 'Naga order ref', value: record.ref }, { key: 'Ship to', value: record.country }],
+    customAttributes: [{ key: 'Naga order ref', value: record.ref }, { key: 'Ship to', value: record.country }]
+      .concat(record.heard ? [{ key: 'Heard about Naga', value: record.heard }] : [])
+      .concat(record.ai ? [{ key: 'Arrived from AI', value: record.ai }] : []),
   };
   const r = await fetch('https://' + domain + '/admin/api/' + cfg.shopify.apiVersion + '/graphql.json', {
     method: 'POST',
@@ -128,7 +130,7 @@ module.exports = async function handler(req, res) {
   if (!webhook && !(shopDomain && shopToken)) return send(res, 503, { error: 'not_configured' });
 
   const quote = Core.quote(cfg, order.product, order.qty, order.country);
-  const record = Object.assign({}, order, { quote, createdAt: new Date().toISOString(), source: req.headers['referer'] || '' });
+  const record = Object.assign({}, order, Core.attribution(body), { quote, createdAt: new Date().toISOString(), source: req.headers['referer'] || '' });
 
   if (order.type === 'crypto') {
     const c = cfg.crypto;

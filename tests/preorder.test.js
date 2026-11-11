@@ -56,6 +56,16 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   assert.equal(calls[0].body.quote.shippingUsd, 100, 'US pays flat shipping');
   assert.deepEqual(calls[0].body.quote.days, [6, 10], 'US lead time');
 
+  // Optional attribution: known answers pass through, anything else is dropped, never rejected.
+  calls = [];
+  r = await call(Object.assign({ type: 'reserve', product: 'diwa', heard: 'ChatGPT', ai: 'perplexity' }, base));
+  assert.equal(r.status, 200);
+  assert.equal(calls[0].body.heard, 'ChatGPT'); assert.equal(calls[0].body.ai, 'perplexity');
+  calls = [];
+  r = await call(Object.assign({ type: 'reserve', product: 'diwa', heard: '<script>', ai: 'Bad Value!' }, base));
+  assert.equal(r.status, 200);
+  assert.equal(calls[0].body.heard, ''); assert.equal(calls[0].body.ai, '');
+
   // Validation.
   r = await call(Object.assign({ type: 'reserve', product: 'diwa' }, base, { email: 'nope' }));
   assert.equal(r.status, 400); assert.ok(r.body.fields.email);
