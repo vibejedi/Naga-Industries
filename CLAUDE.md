@@ -9,7 +9,8 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 | `index.html`    | Homepage: entrance film, three product tiles, performance chapter, "why Naga" bento, compare table, film |
 | `sipag-i.html`  | NAGA SIPAG I, productivity laptop                     |
 | `lakan-ii.html` | NAGA LAKAN II, gaming laptop                          |
-| `diwa.html`     | NAGA DIWA, AI mini PC                                 |
+| `diwa.html`     | NAGA DIWA, AI mini PC (Baku section with the Baku film) |
+| `about.html`    | Company facts: the visible brand fact sheet (keep in step with `seo/brand-facts.md`) |
 
 ## Design system (read `.claude/skills/naga-design-system/SKILL.md` before touching visuals)
 
@@ -30,7 +31,7 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 | lottie-web (light) | animated wave mark in the nav, `assets/lottie/naga-wave.json` |
 | Splitting      | splits `[data-splitting]` headlines into words for GSAP    |
 
-Load order at the bottom of each page: gsap, ScrollTrigger, lenis, splitting, lottie, then `naga.js`. Each effect in `naga.js` checks for its library and degrades; never let a missing library hide content.
+Load order at the bottom of each page: gsap, ScrollTrigger, lenis, splitting, lottie, then `naga.js` and `naga-analytics.js`. Each effect in `naga.js` checks for its library and degrades; never let a missing library hide content.
 
 To bump a library: edit the version in `package.json`, run `npm install` and `npm run vendor`.
 
@@ -38,6 +39,9 @@ To bump a library: edit the version in `package.json`, run `npm install` and `np
 
 - Resting state is visible. GSAP `from` tweens do the hiding; CSS never sets `opacity: 0`.
 - Respect `prefers-reduced-motion`: Lenis, scrubs and word reveals are skipped in `naga.js`.
+- Light chapters reveal headlines calmly (`[data-splitting]` words rise out of a blur). Dark chapters are the Razer act: their `h2.t-h2` slams in word by word with a shake and a cyan flash on the `<em>`, and spec numbers in `.statrow` and `.bento` `.t-big` count up from zero (text already holds the final number).
+- Living sea: `naga.js` (13) puts a WebGL caustics canvas (`canvas.sea`) behind every `.chapter.dark`. It only adds cyan light over `--void`, renders at quarter resolution and 30 fps while on screen, draws one still frame with reduced motion, and does nothing without WebGL.
+- Promo films: `figure.promo` (muted loop on screen, Pause and Sound on buttons; Sound on restarts with sound and the ambient music ducks). Files in `assets/video/promo/` are web encodes of `promo/` renders. Only the Baku film is on the site; the product promos wait for b-roll rebuilt from accurate reference photos.
 - No 3D. Product visuals are transparent 16:9 WebP renders in `assets/img/products/` (SIPAG I and LAKAN II: renders of the real Clevo chassis; DIWA: AI concept render). The product page shot (`[data-hero-shot]`) settles from 1.08× to 1× on scroll; nothing else moves the product, except the b-roll clips in `.reel` (`assets/video/broll/`), which play muted only while on screen and stay on their poster with reduced motion.
 
 ## Sound
@@ -46,7 +50,15 @@ Ambient music (`assets/audio/naga-ambient-bakunawa-night.mp3`, the 54 s Bakunawa
 
 ## Content status
 
-LAKAN II specs and price are confirmed (Clevo V255RNN1 base, ₱89,900 with the Naga Karga backpack; panel resolution and refresh rate still to confirm). SIPAG I specs are confirmed for the black restock (Clevo V740TU-2) except RAM and SSD capacity and price; DIWA specs and prices are placeholders marked with `PLACEHOLDER SPECS` comments. Baku, Naga's own local LLM, ships on DIWA and is being built with the Machine.Fun ecosystem (project link https://machine.fun/project/J8RKZwmr8ol, on the homepage splash and the DIWA section). It has its own section (`diwa.html#baku`, mascot `assets/img/baku.webp`) plus a splash on the homepage built around `assets/img/baku-coding.webp` (Higgsfield render of Baku coding on a SIPAG I underwater); claims are limited to what is confirmed: it runs on the machine, keeps data private, works offline and speaks all languages. Socials (Facebook nagaindustries, Instagram nagaindustriesph) sit in every footer. Confirm with the product team before launch. DIWA has no price yet: it shows "Coming soon" and takes reservations only. Shipping is free in the Philippines and a $100 flat rate worldwide by DHL Express from Manila (3 to 14 days by zone). SIPAG I and LAKAN II images are Higgsfield renders built from the Clevo spec-sheet photos (real chassis, Naga wallpaper on screen, small flat-printed wordmark on the lid, as on the production lid); the DIWA image is still an AI concept render. Swap files at the same paths when photography exists.
+LAKAN II specs and price are confirmed (Clevo V255RNN1 base, ₱89,900 with the Naga Karga backpack; panel resolution and refresh rate still to confirm). SIPAG I specs are confirmed for the black restock (Clevo V740TU-2) except RAM and SSD capacity and price; DIWA specs and prices are placeholders marked with `PLACEHOLDER SPECS` comments. Baku, Naga's own local LLM, ships on DIWA and is being built with the Machine.Fun ecosystem (project link https://machine.fun/project/J8RKZwmr8ol, on the homepage splash and the DIWA section). It has its own section (`diwa.html#baku`, mascot `assets/img/baku.webp`) plus a splash on the homepage built around `assets/img/baku-coding.webp` (Higgsfield render of Baku coding on a SIPAG I underwater); claims are limited to what is confirmed: it runs on the machine, keeps data private, works offline and speaks all languages. Socials (Facebook nagaindustries, Instagram nagaindustriesph) sit in every footer. Confirm with the product team before launch. DIWA has no price yet: it shows "Coming soon" and takes reservations only. Shipping is free in the Philippines and a $100 flat rate worldwide by DHL Express from Manila (3 to 14 days by zone). SIPAG I and LAKAN II images are Higgsfield renders built from the Clevo spec-sheet photos (real chassis, Naga wallpaper on screen, small flat-printed wordmark on the lid, as on the production lid); the DIWA image is still an AI concept render. Swap files at the same paths when photography exists. The b-roll clips and the LAKAN II, SIPAG I and DIWA promo films were judged inaccurate (the laptop designs do not match the real units); Naga is shooting reference photos, and the b-roll and product promos get rebuilt from them.
+
+## SEO and analytics (see `seo/README.md`)
+
+- Each page's head has a generated `<!-- seo -->` block (title, description, canonical, Open Graph, one JSON-LD `@graph`). Never edit it by hand: change `seo/site.json` (or prices in `store.json`) and run `npm run seo`, which also writes `sitemap.xml`, `robots.txt` and `llms.txt`. `npm test` fails if they are stale.
+- Canonical URLs are `https://naga.industries/<page>.html`; link to the homepage as `/`, never `index.html`. A new indexable page goes in `seo/site.json`, the footer and `seo/urls.txt`.
+- Structured data must match visible text; a price goes into Product/Offer markup only when `priceConfirmed` is true in `store.json`.
+- `assets/js/naga-analytics.js`: Vercel Web Analytics and GA4 (`GA4_ID`, empty = off) on naga.industries only, with AI assistant referrals tagged. Order forms carry an optional "How did you hear about Naga?" (`Core.HEARD`).
+- SEO skills (RomeoSEO, MIT) are in `.claude/skills/`; use them for audits, schema, comparison pages and content QA.
 
 ## Store (pre-orders, Shopify, crypto, shipping)
 

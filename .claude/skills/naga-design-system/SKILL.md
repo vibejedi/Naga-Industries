@@ -46,6 +46,8 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - **Baku splash** (homepage) `section.chapter.baku-splash`: centered eyebrow, `.nameplate` heading and tagline, the coding photo in `figure.baku-shot` (rounded, full width), then `.baku-foot` with copy and buttons (Meet Baku, Machine.Fun). Light background so it never sits flush against the black Performance chapter.
 - **Baku** `.wrap.baku`: two columns, `figure.baku-art` (the mascot over a soft cyan glow) and copy with a `.nameplate` heading, then `.baku-points` (2×2 list) on DIWA or a `.row` of buttons on the homepage band.
 - **Reel** `section.chapter.reel` after Views: eyebrow, short headline, then `.reel-grid` with one `.reel-clip.wide` and two `.reel-clip`s, each a muted looping `<video preload="none" poster>`. Clips live in `assets/video/broll/`; `naga.js` plays them only on screen and never with reduced motion.
+- **Promo film** `figure.promo` (16:9, rounded, `--void-2`) with `.promo-ui` (Pause and Sound on pills, glass on video) and a `.promo-cap` line under it. Muted loop while on screen; Sound on restarts with sound. Used for the Baku film inside `diwa.html#baku`.
+- **Doc page** (`about.html`): a `.phero.doc-hero` header, then `.chapter.doc` with `.t-h3` headings and `dl.facts` rows (uppercase micro-label `dt`, plain `dd`; product names in `dt .pn`). Links in running text use `.link-plain`.
 - **Views** `section.chapter.views` right after the product shot: a two-up `.gallery` of `figure.gview` cards (tinted, rounded) holding the `-front` and `-closed` shots with a one-line caption. One column under 720px.
 - **Bento** `.bento` with `.tile.w2/.w3`: numbers as headlines, one `.dark-tile`, one `.cyan-tile` per grid.
 - **Performance chapter** `.chapter.dark`: `.perf` two-column (copy + `figure.glow` holding the product image over a cyan radial glow), `.statrow` of three big numbers, `.dgrid` of hover-lit `.dcard`s.
@@ -58,6 +60,7 @@ Never add a color. If something needs emphasis on dark, use `--cyan`; on white, 
 - Resting state is always visible. GSAP `from` tweens hide; CSS never does.
 - `prefers-reduced-motion` disables Lenis, scrubs and word reveals.
 - Product shot: `[data-hero-shot] img` scrubs from scale 1.08 to 1 as it enters. Keep product motion to this one settle.
+- Dark chapters carry the energy: `h2.t-h2` slams in word by word (shake, cyan flash on `<em>`), `.statrow`/`.bento` numbers count up, and the **living sea** (`canvas.sea`, WebGL caustics in `--cyan` light only) drifts behind the content. Light chapters stay calm. Never put the sea behind light chapters or product renders' own frames.
 
 ## Product imagery
 

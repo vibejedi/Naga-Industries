@@ -488,6 +488,32 @@ footer .social svg { width: 16px; height: 16px; flex: none; }
 .fine { max-width: var(--wrap); margin: 56px auto 0; padding-top: 22px; border-top: 1px solid var(--hairline-dark); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--onvoid-2); font-size: .75rem; }
 
 /* --------------------------------------------------------------------------
+   Living sea: a WebGL caustics layer behind every dark chapter (naga.js 13).
+   The chapter's own --void background is the resting state; the canvas only
+   adds light, so without WebGL nothing changes.
+   -------------------------------------------------------------------------- */
+.chapter.dark { position: relative; isolation: isolate; overflow: hidden; }
+.chapter.dark > .wrap { position: relative; z-index: 1; }
+.sea { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+.sea.on { opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   Promo film: muted loop that plays on screen, sound and pause on tap (naga.js 15)
+   -------------------------------------------------------------------------- */
+.promo { position: relative; margin: 56px 0 0; border-radius: var(--radius); overflow: hidden; background: var(--void-2); aspect-ratio: 16 / 9; box-shadow: 0 30px 80px rgba(0, 0, 0, .28); }
+.promo video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.promo .promo-ui { position: absolute; right: 16px; bottom: 16px; display: flex; gap: 8px; }
+.promo button {
+  display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--hairline-dark); border-radius: 999px;
+  background: rgba(0, 0, 0, .55); color: var(--onvoid); font: 500 .82rem/1 var(--font-text); padding: 9px 14px; cursor: pointer;
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.promo button:hover { border-color: var(--cyan); }
+.promo button svg { width: 15px; height: 15px; flex: none; }
+.promo button[aria-pressed="true"] { background: var(--cyan); color: var(--on-cyan); border-color: var(--cyan); }
+.promo-cap { margin-top: 14px; font-size: .88rem; color: var(--ink-2); }
+
+/* --------------------------------------------------------------------------
    Doc pages (About, guides): fact lists and reading text
    -------------------------------------------------------------------------- */
 .doc-hero { padding-top: 96px; }
