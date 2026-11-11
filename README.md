@@ -25,6 +25,7 @@ assets/
   video/              1080p H.264 entrance film (source 4K HEVC master kept in video/source/)
   video/broll/        silent b-roll loops for the product pages (<product>-<shot>.mp4 + .jpg poster)
   lottie/             naga-wave.json, the animated mark in the nav
+  audio/              naga-ambient-bakunawa-night.mp3, the background music (96 kbps, 636 KB)
 .claude/skills/naga-design-system/SKILL.md   the design system, loaded by Claude before visual work
 CLAUDE.md                                    project conventions for Claude Code sessions
 ```
@@ -71,3 +72,8 @@ The SIPAG I and LAKAN II images are GPT Image 2.6 renders made on Higgsfield fro
 ## B-roll
 
 `assets/video/broll/` holds three silent loops per laptop (`sipag-desk/keys/lid`, `lakan-studio/keys/lid`), shown in the "In motion" reel on each product page. Each was made on Higgsfield in two steps: a styled still built from the chassis renders (GPT Image 2.6), then a 6-second Kling 4.0 image-to-video clip with a slow camera move. They are re-encoded to 1440×810 H.264 with no audio, and the last 0.8 s cross-fades into the first so the loop has no jump; the `.jpg` next to each clip is its first frame and serves as the poster. `naga.js` plays a clip only while it is on screen; with reduced motion the clips stay on the poster and show controls. These are AI-generated scenes, not footage of real units.
+
+## Dark mode and music
+
+- Dark mode follows the visitor's system setting until they press the sun/moon button in the nav; the choice is stored in `localStorage` (`naga-theme`). The theme is applied before first paint, so there is no flash.
+- Background music starts on the visitor's first click, tap or key press (browsers do not allow sound earlier). The speaker button mutes it; that choice is stored too (`naga-music`). To change the track, replace `assets/audio/naga-ambient-bakunawa-night.mp3` and set `LOOP_END` in `naga.js` to the loop length in seconds.

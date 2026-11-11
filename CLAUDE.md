@@ -14,7 +14,7 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 ## Design system (read `.claude/skills/naga-design-system/SKILL.md` before touching visuals)
 
 - Direction: Apple's calm (two neutrals, one accent, thin blurred nav, bento, chevron links) with one Razer-style black chapter per page.
-- Tokens live in `assets/css/naga.css` under `:root`. Never introduce a new color; use the tokens.
+- Tokens live in `assets/css/naga.css` under `:root`. Never introduce a new color; use the tokens. Dark mode remaps the same tokens under `:root[data-theme="dark"]` (paper → void, ink → onvoid); `data-theme` is set before paint by the inline script in each page head and flipped by `.theme-btn` in the nav. Text on cyan uses `--on-cyan` so it stays dark in both themes. Never hard-code white or black backgrounds; use `--paper`, `--glass` and friends.
 - One accent: `--cyan` for fills and glow, `--cyan-link` for text links on white. No teal variants.
 - Display face Outfit (echoes the round "naga" wordmark); body is the system font stack.
 - Accent face Tilt Neon (`--font-accent`) for product names only: add `.nameplate` to a product-name heading; `.subnav .pname` and the compare header `.pn` already use it. One weight, so never bold it.
@@ -39,6 +39,10 @@ To bump a library: edit the version in `package.json`, run `npm install` and `np
 - Resting state is visible. GSAP `from` tweens do the hiding; CSS never sets `opacity: 0`.
 - Respect `prefers-reduced-motion`: Lenis, scrubs and word reveals are skipped in `naga.js`.
 - No 3D. Product visuals are transparent 16:9 WebP renders in `assets/img/products/` (SIPAG I and LAKAN II: renders of the real Clevo chassis; DIWA: AI concept render). The product page shot (`[data-hero-shot]`) settles from 1.08× to 1× on scroll; nothing else moves the product, except the b-roll clips in `.reel` (`assets/video/broll/`), which play muted only while on screen and stay on their poster with reduced motion.
+
+## Sound
+
+Ambient music (`assets/audio/naga-ambient-bakunawa-night.mp3`, the 54 s Bakunawa Night loop from the Naga sound kit) plays quietly behind every page. Browsers block sound until a gesture, so `naga.js` (section 12) starts it on the first click, tap or key press; `.sound-btn` in the nav mutes it and the choice is remembered. It loops gaplessly with Web Audio, resumes where it left off on the next page, pauses in background tabs and ducks under any video playing with sound.
 
 ## Content status
 
