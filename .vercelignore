@@ -8,3 +8,6 @@ promo/
 seo/
 .claude/
 .github/
+
+# Internal docs (token model and legal notes)
+docs/

@@ -86,12 +86,13 @@ async function toShopifyDraft(domain, token, record) {
   const p = cfg.products[record.product];
   const line = p.shopifyVariantId
     ? { variantId: p.shopifyVariantId, quantity: record.qty }
-    : { title: p.name + ' (pre-order)', quantity: record.qty, originalUnitPrice: String(record.quote.unitUsd || 0) };
+    : { title: p.name + ' (pre-order)', quantity: record.qty, originalUnitPrice: String(record.quote.unit || 0) };
   const input = {
     email: record.email,
     note: 'Naga ' + record.type + ' ' + record.ref + (record.payment ? ' · paid ' + record.payment.amount + ' USDC · ' + record.payment.signature : ''),
     tags: ['pre-order', record.type].concat(record.payment ? ['paid-usdc'] : []),
     lineItems: [line],
+    presentmentCurrencyCode: record.quote.currency,
     shippingAddress: { countryCode: record.country, firstName: record.name },
     customAttributes: [{ key: 'Naga order ref', value: record.ref }, { key: 'Ship to', value: record.country }]
       .concat(record.heard ? [{ key: 'Heard about Naga', value: record.heard }] : [])

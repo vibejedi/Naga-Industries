@@ -25,4 +25,4 @@ Needs Node, Playwright with Chromium (`CHROME` and `PW` env vars override the pa
 - `audio/`: tracks and hits from the Naga sound kit (ElevenLabs Music via Higgsfield).
 - Product renders, Baku art and wordmarks come from `../assets/img/`.
 
-Prices and specs in the end cards must match the site; SIPAG I's ₱49,990 is still a placeholder.
+Prices and specs in the end cards must match the site (SIPAG I ₱49,900, LAKAN II ₱99,900).

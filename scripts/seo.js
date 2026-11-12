@@ -43,20 +43,20 @@ function website() {
   return { '@type': 'WebSite', '@id': WEB, url: O + '/', name: site.siteName, alternateName: site.org.alternateName, inLanguage: site.locale, publisher: { '@id': ORG } };
 }
 
-function shippingDetails() {
+// Shipping details for one offer: local=true is the free in-country delivery that comes with the
+// peso price; local=false is every other DHL zone at the flat USD rate.
+function shippingDetails(local) {
   const s = store.shipping;
+  const home = String(store.localCountry || 'PH');
   const days = (d) => ({ '@type': 'ShippingDeliveryTime', transitTime: { '@type': 'QuantitativeValue', minValue: d[0], maxValue: d[1], unitCode: 'DAY' } });
   const region = (ccs) => ccs.map((cc) => ({ '@type': 'DefinedRegion', addressCountry: cc }));
-  return s.zones.map((z) => {
-    const free = z.countries.every((cc) => s.freeCountries.includes(cc));
-    return {
-      '@type': 'OfferShippingDetails',
-      shippingLabel: s.carrier + ' from ' + s.origin + ': ' + z.label,
-      shippingRate: free ? { '@type': 'MonetaryAmount', value: 0, currency: 'PHP' } : { '@type': 'MonetaryAmount', value: s.flatUsd, currency: 'USD' },
-      shippingDestination: region(z.countries),
-      deliveryTime: days(z.days),
-    };
-  });
+  return s.zones.filter((z) => z.countries.includes(home) === local).map((z) => ({
+    '@type': 'OfferShippingDetails',
+    shippingLabel: s.carrier + ' from ' + s.origin + ': ' + z.label,
+    shippingRate: local ? { '@type': 'MonetaryAmount', value: 0, currency: 'PHP' } : { '@type': 'MonetaryAmount', value: s.flatUsd, currency: 'USD' },
+    shippingDestination: region(z.countries.filter((cc) => cc !== home || local)),
+    deliveryTime: days(z.days),
+  }));
 }
 
 function product(pg) {
@@ -70,14 +70,16 @@ function product(pg) {
     countryOfAssembly: 'Philippines',
   };
   if (p && p.priceConfirmed && p.php) {
-    node.offers = {
+    const offer = (price, currency, local) => ({
       '@type': 'Offer', url: url + '#buy',
-      price: p.php, priceCurrency: 'PHP',
+      price, priceCurrency: currency,
       availability: p.mode === 'preorder' ? 'https://schema.org/PreOrder' : 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       seller: { '@id': ORG },
-      shippingDetails: shippingDetails(),
-    };
+      shippingDetails: shippingDetails(local),
+    });
+    // Philippine price in pesos; international price in USD (both shown on the page).
+    node.offers = [offer(p.php, 'PHP', true)].concat(p.usd ? [offer(p.usd, 'USD', false)] : []);
   }
   return node;
 }
@@ -170,7 +172,7 @@ function llms() {
     const p = P[k];
     if (!p || !p.php) return 'Price to be announced';
     if (!p.priceConfirmed) return 'Price to be confirmed';
-    return '₱' + p.php.toLocaleString('en-US') + ' (about US$' + p.usd.toLocaleString('en-US') + ')';
+    return '₱' + p.php.toLocaleString('en-US') + ' in the Philippines, US$' + p.usd.toLocaleString('en-US') + ' international';
   };
   const s = store.shipping;
   const byFile = Object.fromEntries(site.pages.map((pg) => [pg.file, pg]));
@@ -185,8 +187,8 @@ function llms() {
     '',
     '## Products',
     '',
-    link('lakan-ii.html', `gaming laptop. Intel Core 7 250H, NVIDIA GeForce RTX 5060 Laptop GPU at up to 115W, 16GB DDR5-5600, 512GB PCIe Gen4 SSD, 15.6-inch display. ${price('lakan-ii')}, Naga Karga backpack included. Pre-order.`),
-    link('sipag-i.html', `productivity laptop. Intel Core Ultra 5 125U, 14-inch Full HD, 60Wh battery for up to 13 hours, 1.30 kg, USB-C charging. ${price('sipag-i')}. Pre-order.`),
+    link('lakan-ii.html', `gaming laptop. Intel Core 7 250H, NVIDIA GeForce RTX 5060 Laptop GPU at up to 115W, 16GB DDR5-5600, 512GB PCIe Gen4 SSD, 15.6-inch QHD 165Hz display. ${price('lakan-ii')}, Naga Karga backpack included. Pre-order.`),
+    link('sipag-i.html', `productivity laptop. Intel Core Ultra 5 125U, 16GB DDR5, 512GB SSD, 14-inch Full HD, 60Wh battery for up to 13 hours, 1.30 kg, USB-C charging. ${price('sipag-i')}. Pre-order.`),
     link('diwa.html', 'AI mini PC that runs Baku, Naga\'s own local AI. Coming soon, no price yet; reservations are open.'),
     '',
     '## Baku',

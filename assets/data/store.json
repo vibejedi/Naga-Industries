@@ -1,10 +1,12 @@
 {
   "_readme": "Single source of truth for the store. Read by the browser (assets/js/naga-store.js) and by the server (api/preorder.js). Prices are per unit. Leave a key empty to switch that feature off; the site falls back gracefully. Secrets never go here: the Shopify Admin token and webhook URL are Vercel environment variables.",
   "phpPerUsd": 63.06,
+  "localCountry": "PH",
+  "_pricing": "Orders to localCountry pay php (VAT included, free delivery). Every other country pays usd, the fixed international price, plus the flat shipping rate. phpPerUsd only converts for display and for the USDC amount on local orders.",
   "maxQty": 5,
   "products": {
-    "sipag-i": { "name": "SIPAG I", "kind": "Productivity laptop", "php": 49990, "usd": 790, "mode": "preorder", "priceConfirmed": false, "shopifyVariantId": "", "_note": "Price is still a placeholder. While priceConfirmed is false, the price stays out of structured data (scripts/seo.js)." },
-    "lakan-ii": { "name": "LAKAN II", "kind": "Gaming laptop", "php": 89900, "usd": 1430, "mode": "preorder", "priceConfirmed": true, "shopifyVariantId": "", "_note": "Includes the Naga Karga backpack." },
+    "sipag-i": { "name": "SIPAG I", "kind": "Productivity laptop", "php": 49900, "usd": 699, "mode": "preorder", "priceConfirmed": true, "shopifyVariantId": "", "_note": "16GB RAM, 512GB SSD. Set priceConfirmed to false to keep a price out of structured data (scripts/seo.js)." },
+    "lakan-ii": { "name": "LAKAN II", "kind": "Gaming laptop", "php": 99900, "usd": 1499, "mode": "preorder", "priceConfirmed": true, "shopifyVariantId": "", "_note": "Includes the Naga Karga backpack." },
     "diwa": { "name": "DIWA", "kind": "AI mini PC", "mode": "reserve", "_note": "No price yet: reservations only, no payment." }
   },
   "shipping": {
@@ -37,6 +39,15 @@
     "rpcUrl": "https://api.mainnet-beta.solana.com",
     "explorer": "https://solscan.io/tx/",
     "_note": "recipient is Naga's Solana wallet that receives USDC. Use a dedicated RPC (Helius, QuickNode) for rpcUrl in production; the public endpoint is rate-limited."
+  },
+  "naga": {
+    "discount": 0.05,
+    "appliesTo": "international",
+    "chain": "solana:mainnet",
+    "mint": "D7J4EfJY9fTMJ5CLUo6ZAwx5zEDZXam381aqmuiumfun",
+    "enabled": false,
+    "minHold": 0,
+    "_note": "$NAGA holder/staker discount. Off while enabled is false: the server applies it only after verifying the buyer's holding on-chain, and that verifier still needs minHold and the staking program. appliesTo: international, local or all. Do not show it on the site before the SEC disclosure document has been public for 30 days."
   },
   "api": { "preorder": "/api/preorder" },
   "contactEmail": "hello@nagatech.ph"
