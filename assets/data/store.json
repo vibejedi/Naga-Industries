@@ -43,10 +43,11 @@
   "naga": {
     "discount": 0.05,
     "appliesTo": "international",
-    "chain": "",
-    "mint": "",
+    "chain": "solana:mainnet",
+    "mint": "D7J4EfJY9fTMJ5CLUo6ZAwx5zEDZXam381aqmuiumfun",
+    "enabled": false,
     "minHold": 0,
-    "_note": "$NAGA holder/staker discount. Off until the token exists: the server applies it only after verifying the buyer's holding on-chain, and that verifier is built once the chain, mint and staking program are known. appliesTo: international, local or all. Do not show it on the site before the SEC disclosure document has been public for 30 days."
+    "_note": "$NAGA holder/staker discount. Off while enabled is false: the server applies it only after verifying the buyer's holding on-chain, and that verifier still needs minHold and the staking program. appliesTo: international, local or all. Do not show it on the site before the SEC disclosure document has been public for 30 days."
   },
   "api": { "preorder": "/api/preorder" },
   "contactEmail": "hello@nagatech.ph"

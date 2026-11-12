@@ -129,7 +129,8 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   q = Core.quote(cfg, 'lakan-ii', 2, 'DE');
   assert.equal(q.currency, 'USD'); assert.equal(q.total, L.usd * 2 + cfg.shipping.flatUsd);
   // $NAGA discount only when the server verified the holding, and only where appliesTo allows it.
-  const N = Object.assign({}, cfg, { naga: Object.assign({}, cfg.naga, { discount: 0.05, appliesTo: 'international' }) });
+  const N = Object.assign({}, cfg, { naga: Object.assign({}, cfg.naga, { enabled: true, discount: 0.05, appliesTo: 'international' }) });
+  assert.equal(Core.quote(cfg, 'lakan-ii', 1, 'US', { nagaVerified: true }).discount, 0, 'discount stays off while naga.enabled is false');
   assert.equal(Core.quote(N, 'lakan-ii', 1, 'US').discount, 0, 'no discount without verification');
   q = Core.quote(N, 'lakan-ii', 1, 'US', { nagaVerified: true });
   assert.equal(q.discount, Math.round(L.usd * 5) / 100); assert.equal(q.total, Math.round((L.usd * 0.95 + cfg.shipping.flatUsd) * 100) / 100);

@@ -526,6 +526,7 @@ footer .social svg { width: 16px; height: 16px; flex: none; }
 .facts dd b { font-weight: 600; }
 .link-plain { color: var(--cyan-link); text-decoration: none; }
 .link-plain:hover { text-decoration: underline; }
+.addr { font: 500 .92rem/1.5 ui-monospace, 'SF Mono', Menlo, Consolas, monospace; overflow-wrap: anywhere; }
 @media (max-width: 560px) { .facts > div { grid-template-columns: 1fr; } }
 
 /* Split bar: one row of proportional segments (flex values set inline) with a keyed list under it. */

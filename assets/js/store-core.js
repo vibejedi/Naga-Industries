@@ -47,7 +47,7 @@
     const free = cfg.shipping.freeCountries.includes(cc);
     const naga = cfg.naga || {};
     const applies = naga.appliesTo === 'all' || (naga.appliesTo === 'international' && !local) || (naga.appliesTo === 'local' && local);
-    const discountRate = o.nagaVerified && applies && naga.discount > 0 ? naga.discount : 0;
+    const discountRate = o.nagaVerified && naga.enabled && applies && naga.discount > 0 ? naga.discount : 0;
     const round2 = (x) => Math.round(x * 100) / 100;
     const subtotal = priced ? unit * n : null;
     const discount = priced ? round2(subtotal * discountRate) : 0;

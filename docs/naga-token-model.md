@@ -16,12 +16,12 @@ machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holdi
 
 | Piece | Rule |
 |---|---|
-| Launch | Fair launch on Machine.Fun, no presale. Chain and contract: confirm with Machine.Fun |
+| Launch | Fair launch on Machine.Fun (Raydium, Solana), no presale. Contract: `D7J4EfJY9fTMJ5CLUo6ZAwx5zEDZXam381aqmuiumfun` |
 | Creator fees | 1.5% of each $NAGA trade, paid to Naga's wallet. Split: 50% Machine Rewards pool, 40% Naga (Baku, products, bonds), 10% school fund. Three public wallets |
 | Pay | Holders and stakers get 5% off a laptop (currently international orders; `naga` block in `store.json`). Verified on the server at checkout |
 | Stake | Locks tokens for access: pre-release products, starting with DIWA. First 300 stakers get a Naga Karga backpack (buyer pays shipping). No yield |
 | Burn | Burn $NAGA to unlock Baku when it launches |
-| Machine Bond | Per bonded laptop sold, Naga buys $NAGA on the open market and locks it on-chain to the machine's ID for 12 months: US$50 (LAKAN II), US$35 (SIPAG I). At expiry 50% is burned and 50% returns to the Naga treasury |
+| Machine Bond | Per bonded laptop sold, Naga buys $NAGA on the open market and locks it on-chain to the machine's ID for 12 months: US$50 (LAKAN II), US$35 (SIPAG I), confirmed by Naga. At expiry 50% is burned and 50% returns to the Naga treasury |
 | Renewal | After 12 months the owner keeps eligibility by staking their own $NAGA to the machine (same size as the original bond) for another 12 months. Staked tokens are returned in full |
 | Naga Node | peaqOS on every bonded laptop. Offered explicitly at purchase, off by default, can be left at any time |
 | Machine Rewards | The pool (50% of creator fees) is shared monthly among active bonded machines in proportion to verified work (uptime and contribution through peaqOS), on top of what partner networks pay the machine directly |
@@ -69,7 +69,7 @@ machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holdi
 
 1. Counsel signs off the model and the page text.
 2. The SEC disclosure document has been public for 30 days; link it on the page.
-3. Confirm with Machine.Fun: chain, contract address, how the 1.5% creator fee pays out, and the
+3. Confirm with Machine.Fun: how the 1.5% creator fee pays out, and the
    peaqOS bonding and staking contracts. Fill "The details" on the page.
 4. Build what the page promises: wallet check for the 5% discount, the Naga Node opt-in checkbox
    on the order forms (recorded with the order), the staking and bond contracts, three public
