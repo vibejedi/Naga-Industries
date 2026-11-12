@@ -20,7 +20,7 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 - One accent: `--cyan` for fills and glow, `--cyan-link` for text links on white. No teal variants.
 - Display face Outfit (echoes the round "naga" wordmark); body is the system font stack.
 - Accent face Tilt Neon (`--font-accent`) for product names only: add `.nameplate` to a product-name heading; `.subnav .pname` and the compare header `.pn` already use it. One weight, so never bold it.
-- Copy is English for the export market: short headlines, tight tracking. Product names (SIPAG, LAKAN, DIWA, Baku) and the brand motto SULONG stay Filipino; no other Tagalog. Prices come in two: pesos for the Philippines (VAT included) and a fixed USD price for everywhere else (`php` and `usd` in `store.json`); show both, never a converted figure. Numbers are the headline in spec tiles. No emoji as icons.
+- Copy is English for the export market: short headlines, tight tracking. Write it with `.claude/skills/stop-slop` (MIT): "we" and "you", active voice, real numbers and named things, no slogans, no stacked fragments, no "not X, it's Y", no adverbs, no em dashes. Product names (SIPAG, LAKAN, DIWA, Baku) and the brand motto SULONG stay Filipino; no other Tagalog. Prices come in two: pesos for the Philippines (VAT included) and a fixed USD price for everywhere else (`php` and `usd` in `store.json`); show both, never a converted figure. Numbers are the headline in spec tiles. No emoji as icons.
 - Every page: `.nav` (fixed, 48px) and, on product pages, `.subnav` (sticky, Buy pill). Sections that are dark carry `data-nav-dark` so the nav flips.
 
 ## Libraries (vendored in `assets/vendor/`, versions pinned in `package.json`)

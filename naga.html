@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <script>/* Theme before first paint: stored choice, else the system setting. */(function(){var t;try{t=localStorage.getItem('naga-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
 <title>$NAGA: the Naga token</title>
-<meta name="description" content="$NAGA is the Naga Industries token: holder discounts, first access for stakers, Baku unlocks, bonded machines and a school fund. What it does, what it is not, and the risks.">
+<meta name="description" content="$NAGA is the Naga Industries token. Holders take 5% off a laptop, stakers see DIWA first, and a tenth of our creator fees buys laptops for Filipino students.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,123 +52,123 @@
 
 <!-- $NAGA: DRAFT, NOT DEPLOYED. naga.html is listed in .vercelignore and carries noindex until
      (1) a Philippine securities lawyer has reviewed the model and this text and (2) the SEC
-     disclosure document has been public for 30 days. Launch steps: docs/naga-token-model.md.
-     Model source of truth: docs/naga-token-model.md. Bracketed values are confirmed at launch. -->
+     disclosure document has been public for 30 days. Model and launch steps: docs/naga-token-model.md.
+     Copy follows .claude/skills/stop-slop: "we" and "you", active voice, real numbers, no slogans. -->
 <main id="main" style="padding-top:var(--nav-h)">
 
 <section class="phero doc-hero" style="padding-bottom:64px">
   <p class="eyebrow">The Naga token</p>
   <h1 class="t-hero" style="margin-top:14px">$NAGA</h1>
-  <p class="t-tag">Your key to future ready machines. Pay. Stake. Burn. Give.</p>
-  <p class="price">$NAGA unlocks perks in Naga products. It is <b>not an investment</b> and promises no return.</p>
+  <p class="t-tag">It takes 5% off a Naga laptop and puts SIPAG I units in Philippine classrooms.</p>
+  <p class="price">We promise <b>no price and no return</b>. Buy it to use it.</p>
 </section>
 
-<!-- WHAT IT DOES: the four uses. Every perk here must work on launch day or carry its date. -->
+<!-- USES: each perk must work on launch day or carry its date. Discount prices follow store.json (usd × 0.95). -->
 <section class="chapter tint" id="uses">
   <div class="wrap">
-    <p class="eyebrow">What it does</p>
-    <h2 class="t-h2" data-splitting>One token. Four uses.</h2>
+    <p class="eyebrow">Uses</p>
+    <h2 class="t-h2" data-splitting>What you do with it.</h2>
     <div class="bento" data-reveal>
-      <div class="tile w3" data-reveal-child><div class="t-big">5<span class="unit">%</span><small>Pay · Off for holders</small></div><p>Hold or stake $NAGA and take 5% off a LAKAN II or SIPAG I on international orders. Your wallet is checked at checkout.</p></div>
-      <div class="tile w3 dark-tile" data-reveal-child><div class="t-big">First<small>Stake · Pre-release access</small></div><p>Stakers see new Naga machines before anyone else, starting with DIWA. Staking locks your tokens. It pays no interest.</p></div>
-      <div class="tile w2" data-reveal-child><h3>Burn · Unlock Baku</h3><p>When Baku, our private on-device AI, launches, you unlock it by burning $NAGA. Spend it once and Baku is yours.</p></div>
-      <div class="tile w2" data-reveal-child><div class="t-big">10<span class="unit">%</span><small>Give · To schools</small></div><p>Of the creator fees Naga receives. Each time the fund reaches US$699, a SIPAG I goes to a student in an underserved Philippine school.</p></div>
-      <div class="tile w2 cyan-tile" data-reveal-child><h3>300 Founding Stakers</h3><p>The first 300 stakers get a Naga Karga backpack. You cover the shipping.</p></div>
+      <div class="tile w3" data-reveal-child><div class="t-big">5<span class="unit">%</span><small>Off a laptop</small></div><p>Hold or stake $NAGA and a LAKAN II drops from US$1,499 to US$1,424. A SIPAG I drops from US$699 to US$664. We check your wallet at checkout, on international orders.</p></div>
+      <div class="tile w3 dark-tile" data-reveal-child><div class="t-big">DIWA<small>Stakers see it first</small></div><p>Lock your $NAGA and you get DIWA, our AI mini PC, before the public does. We pay no interest on staked tokens.</p></div>
+      <div class="tile w2" data-reveal-child><h3>Burn it for Baku</h3><p>Baku is our AI. It runs on your machine and keeps your files there. On release day you burn $NAGA once, and Baku is yours.</p></div>
+      <div class="tile w2" data-reveal-child><div class="t-big">10<span class="unit">%</span><small>To a school fund</small></div><p>We send a tenth of our creator fees there. Each US$699 the fund collects buys one SIPAG I for a Filipino student who needs a laptop.</p></div>
+      <div class="tile w2 cyan-tile" data-reveal-child><h3>300 backpacks</h3><p>The first 300 stakers get a Naga Karga backpack. You pay the shipping.</p></div>
     </div>
   </div>
 </section>
 
-<!-- BONDED MACHINES: the one dark chapter. Bond sizes are fixed per model (not a share of profit). -->
+<!-- BONDED LAPTOPS: the one dark chapter. Bond sizes are fixed per model, not a share of profit. -->
 <section class="chapter dark" id="bond" data-nav-dark>
   <div class="wrap">
-    <p class="eyebrow">$NAGA Bonded machines</p>
+    <p class="eyebrow">Bonded laptops</p>
     <div data-reveal>
-      <h2 class="t-h2" data-reveal-child>Every machine <em>carries a bond.</em></h2>
-      <p class="muted measure" style="margin-top:16px" data-reveal-child>When you buy a $NAGA Bonded laptop, Naga buys $NAGA on the open market and locks it to your machine for a year: US$50 worth for a LAKAN II, US$35 for a SIPAG I. You pay nothing extra. The bond is what makes your machine eligible for Machine Rewards.</p>
+      <h2 class="t-h2" data-reveal-child>Your laptop ships <em>with a bond.</em></h2>
+      <p class="muted measure" style="margin-top:16px" data-reveal-child>You order a LAKAN II. Before it leaves Manila, we buy US$50 of $NAGA on the open market and lock it to your laptop's ID for 12 months. A SIPAG I gets US$35. Your price stays the same, and a bonded laptop can collect Machine Rewards.</p>
     </div>
     <div class="statrow" data-reveal>
-      <div data-reveal-child><div class="t-big">12<span class="accent unit">mo</span></div><span class="label">Bond locked to your machine</span></div>
-      <div data-reveal-child><div class="t-big">50<span class="accent unit">%</span></div><span class="label">Burned when the bond ends</span></div>
-      <div data-reveal-child><div class="t-big">50<span class="accent unit">%</span></div><span class="label">Returns to the Naga treasury</span></div>
+      <div data-reveal-child><div class="t-big">12<span class="accent unit">mo</span></div><span class="label">We lock the bond</span></div>
+      <div data-reveal-child><div class="t-big">50<span class="accent unit">%</span></div><span class="label">We burn at month 12</span></div>
+      <div data-reveal-child><div class="t-big">50<span class="accent unit">%</span></div><span class="label">Goes back to our treasury</span></div>
     </div>
     <div class="dgrid" data-reveal>
-      <div class="dcard" data-reveal-child><h4>1 · You buy a bonded machine</h4><p>A LAKAN II or SIPAG I at its normal price, with peaqOS built in.</p></div>
-      <div class="dcard" data-reveal-child><h4>2 · Naga bonds $NAGA to it</h4><p>Bought on the open market with Naga's own money and locked on-chain to your machine's ID. Anyone can verify it.</p></div>
-      <div class="dcard" data-reveal-child><h4>3 · Your machine can do paid work</h4><p>Opt in to Naga Node and your machine is eligible for Machine Rewards while its bond is active.</p></div>
-      <div class="dcard" data-reveal-child><h4>4 · After 12 months</h4><p>Half the bond is burned and half returns to the Naga treasury. To stay eligible, renew by staking your own $NAGA to the machine. Staked tokens stay yours.</p></div>
+      <div class="dcard" data-reveal-child><h4>1 · You order</h4><p>A LAKAN II or a SIPAG I at the listed price. peaqOS comes installed.</p></div>
+      <div class="dcard" data-reveal-child><h4>2 · We buy the bond</h4><p>We pay for it from our margin and lock it on-chain under your laptop's ID. You can look it up.</p></div>
+      <div class="dcard" data-reveal-child><h4>3 · Your laptop works</h4><p>Switch on Naga Node and your laptop can collect Machine Rewards while the bond runs.</p></div>
+      <div class="dcard" data-reveal-child><h4>4 · Month 12</h4><p>We burn half the bond and return half to our treasury. To keep collecting, stake your own $NAGA to the laptop. You get those tokens back.</p></div>
     </div>
   </div>
 </section>
 
-<!-- NAGA NODE: opt-in DePIN through peaqOS. Rewards are payment for work, never a return on the token. -->
+<!-- NAGA NODE: opt-in DePIN through peaqOS. Rewards are pay for work, never a return on the token. -->
 <section class="chapter" id="node">
   <div class="wrap">
-    <p class="eyebrow">Naga Node · Opt-in</p>
-    <h2 class="t-h2" data-splitting>Idle time, put to work.</h2>
-    <p class="muted measure" style="margin-top:16px">Every bonded machine ships with peaqOS. If you switch on Naga Node when you buy, your machine can share spare internet, storage or computing power with partner networks while you are not using it, and it is paid for the work it does. It is off by default, and you can switch it off at any time.</p>
+    <p class="eyebrow">Naga Node · Your choice</p>
+    <h2 class="t-h2" data-splitting>Your laptop takes a night shift.</h2>
+    <p class="muted measure" style="margin-top:16px">A laptop sits idle most of the day. With Naga Node on, yours rents out the internet and computing power you aren't using, and partner networks pay it for the work. We ask you at checkout. Say no and nothing changes.</p>
     <ul class="baku-points" data-reveal>
-      <li data-reveal-child><h3>Network rewards</h3><p>Partner networks pay your machine directly for the bandwidth, storage or computing it supplies.</p></li>
-      <li data-reveal-child><h3>Machine Rewards</h3><p>Half of the creator fees Naga receives from $NAGA trading go into a pool. Each month it is shared among active bonded machines, according to the work each one did.</p></li>
+      <li data-reveal-child><h3>Network pay</h3><p>Partner networks pay your laptop for the bandwidth it carries and the computing it does.</p></li>
+      <li data-reveal-child><h3>Machine Rewards</h3><p>We put half of our $NAGA creator fees into a pool. Each month we split it among the bonded laptops that worked, by how much each one did.</p></li>
     </ul>
     <div class="tblwrap" data-reveal>
       <table class="cmp">
-        <thead><tr><th></th><th>Typical network rewards</th><th>Best setting</th><th>Electricity it uses</th></tr></thead>
+        <thead><tr><th style="white-space:nowrap">A month at home</th><th>Network pay</th><th>What it runs</th><th style="white-space:nowrap">Power bill</th></tr></thead>
         <tbody>
-          <tr><td>SIPAG I</td><td>₱300–600 a month</td><td>Bandwidth sharing</td><td>About ₱90 a month</td></tr>
-          <tr><td>LAKAN II</td><td>₱300–600 a month</td><td>Bandwidth sharing. GPU work only where power is cheap</td><td>About ₱120 a month</td></tr>
-          <tr><td>DIWA</td><td>Published when DIWA launches</td><td></td><td></td></tr>
+          <tr><td>SIPAG I</td><td>₱300–600</td><td>Bandwidth sharing</td><td style="white-space:nowrap">About ₱90</td></tr>
+          <tr><td>LAKAN II</td><td>₱300–600</td><td>Bandwidth sharing. We leave GPU jobs off where power costs more than they pay</td><td style="white-space:nowrap">About ₱120</td></tr>
+          <tr><td>DIWA</td><td colspan="3">We'll post numbers when DIWA ships</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="muted" style="margin-top:14px;font-size:.88rem">Naga's estimates for a home in the Philippines at Meralco rates, November 2026, before Machine Rewards. They are not promises: rewards depend on partner-network demand and your connection, and they can be zero. Machine Rewards depend on trading activity and can also be zero.</p>
+    <p class="muted" style="margin-top:14px;font-size:.88rem">We worked these out for a home in the Philippines at Meralco rates, November 2026. Some months your laptop will collect less, and some months nothing. Machine Rewards follow trading volume, so they swing too.</p>
 
-    <h3 class="t-h3" style="margin-top:64px">Before you opt in</h3>
+    <h3 class="t-h3" style="margin-top:64px">Before you say yes</h3>
     <ul class="baku-points">
-      <li><h3>Rewards are pay for work</h3><p>They are payment for what your machine does. They are not interest, dividends or a return on $NAGA.</p></li>
-      <li><h3>Nothing is guaranteed</h3><p>Rewards change month to month. Naga does not promise any amount, and a machine will not necessarily pay for itself.</p></li>
-      <li><h3>It uses your power and internet</h3><p>Partner traffic passes through your connection. Use unlimited home internet, not prepaid data, and check that your plan allows it.</p></li>
-      <li><h3>Your drive holds the keys</h3><p>The machine's wallet and peaqOS identity live on its drive. If you wipe, reinstall or replace the drive, the bond link and any unclaimed rewards are lost, and Naga cannot restore them. Claim your rewards and back up your recovery phrase first.</p></li>
-      <li><h3>Taxes are yours</h3><p>Rewards may count as taxable income where you live. Reporting them is your responsibility.</p></li>
-      <li><h3>You stay in control</h3><p>You choose what to share, and you can leave Naga Node whenever you like. Your machine works the same without it.</p></li>
+      <li><h3>It's pay for work</h3><p>Your laptop earns for what it does. Holding $NAGA earns nothing.</p></li>
+      <li><h3>We promise no amount</h3><p>At ₱450 a month, a SIPAG I needs about nine years to cover its own price. Buy it because you want the laptop.</p></li>
+      <li><h3>Your power, your internet</h3><p>Strangers' traffic travels through your connection. Use unlimited home internet and read your ISP's terms. Prepaid data will burn through its load.</p></li>
+      <li><h3>The drive holds the keys</h3><p>Your laptop's wallet lives on its drive. Wipe, reinstall or swap that drive and you lose the bond link and any rewards you haven't claimed. We can't restore them. Claim first, and write down your recovery phrase.</p></li>
+      <li><h3>You handle the tax</h3><p>Your government may count rewards as income. You report them.</p></li>
+      <li><h3>You can quit</h3><p>Turn Naga Node off whenever you like. The laptop runs the same without it.</p></li>
     </ul>
   </div>
 </section>
 
-<!-- FEES: how the creator fees Naga receives are used. Wallet addresses are published at launch. -->
+<!-- FEES: how we use the creator fees Machine.Fun pays us. Wallet addresses go in on launch day. -->
 <section class="chapter tint" id="fees">
   <div class="wrap">
     <p class="eyebrow">Where the fees go</p>
-    <h2 class="t-h2" data-splitting>Every trade funds the build.</h2>
-    <p class="muted measure" style="margin-top:16px">$NAGA is a fair launch on Machine.Fun: no presale, and anyone can buy or sell from day one. Naga Industries receives creator fees from that trading. This is how we use them, in three public wallets.</p>
-    <div class="split" role="img" aria-label="Creator fees: 50% Machine Rewards, 40% building Naga, 10% schools" data-reveal>
+    <h2 class="t-h2" data-splitting>We get paid when $NAGA trades.</h2>
+    <p class="muted measure" style="margin-top:16px">$NAGA launches on Machine.Fun with no presale. You can buy or sell from the first minute. Machine.Fun pays us a creator fee on trades, and we split it across three wallets you can audit.</p>
+    <div class="split" role="img" aria-label="Creator fees: 50% Machine Rewards, 40% Naga, 10% schools" data-reveal>
       <span class="s-a" style="flex:50">50%</span><span class="s-b" style="flex:40">40%</span><span class="s-c" style="flex:10">10%</span>
     </div>
     <ul class="baku-points split-key">
-      <li><h3><i class="k-a"></i>50% · Machine Rewards</h3><p>Paid to active bonded machines for the work they do.</p></li>
-      <li><h3><i class="k-b"></i>40% · Building Naga</h3><p>Baku, new machines, and the bonds on every laptop sold.</p></li>
-      <li><h3><i class="k-c"></i>10% · Schools</h3><p>Laptops for students in underserved Philippine schools.</p></li>
+      <li><h3><i class="k-a"></i>50% · Machine Rewards</h3><p>For the bonded laptops that worked that month.</p></li>
+      <li><h3><i class="k-b"></i>40% · Naga</h3><p>Baku, the next machines, and the bond on each laptop we sell.</p></li>
+      <li><h3><i class="k-c"></i>10% · Schools</h3><p>SIPAG I units for students.</p></li>
     </ul>
   </div>
 </section>
 
-<section class="chapter doc" id="risks">
+<section class="chapter doc" id="terms">
   <div class="wrap">
-    <h2 class="t-h3">What $NAGA is not</h2>
+    <h2 class="t-h3">Read this before you buy $NAGA</h2>
     <dl class="facts">
-      <div><dt>Not a share</dt><dd>$NAGA gives you no ownership in Naga Industries and no claim on its revenue or profit.</dd></div>
-      <div><dt>Not an investment</dt><dd>Naga promises no price, no return and no buyback of your tokens. The price can fall to zero.</dd></div>
-      <div><dt>No yield</dt><dd>Staking unlocks access. It pays no interest, and holding $NAGA pays nothing.</dd></div>
-      <div><dt>Not required</dt><dd>Every Naga machine works fully without $NAGA and without Naga Node.</dd></div>
-      <div><dt>Not for everyone</dt><dd>$NAGA is not offered where the law does not allow it. Only use money you can afford to lose.</dd></div>
+      <div><dt>Ownership</dt><dd>$NAGA is a token. It gives you no share of Naga Industries and no cut of our revenue.</dd></div>
+      <div><dt>Price</dt><dd>We set no price and promise no return. We won't buy your tokens back, and the price can hit zero.</dd></div>
+      <div><dt>Staking</dt><dd>We pay no interest on staked tokens. Holding pays nothing either.</dd></div>
+      <div><dt>Without it</dt><dd>Your Naga laptop works the same if you skip $NAGA.</dd></div>
+      <div><dt>Where</dt><dd>Some countries don't allow tokens like this one, and we don't offer $NAGA there. Spend only money you can lose.</dd></div>
     </dl>
 
-    <h2 class="t-h3" style="margin-top:64px">The details</h2>
+    <h2 class="t-h3" style="margin-top:64px">Launch details</h2>
     <dl class="facts">
-      <div><dt>Launch</dt><dd>Fair launch on Machine.Fun. Date announced on our official accounts.</dd></div>
-      <div><dt>Contract address</dt><dd>Published here and pinned on our official accounts at launch. Trust no other address.</dd></div>
-      <div><dt>Disclosure document</dt><dd>Linked here once it is filed with the Philippine SEC.</dd></div>
-      <div><dt>Wallets</dt><dd>The Machine Rewards, school fund and treasury wallets are published here at launch.</dd></div>
-      <div><dt>Stay safe</dt><dd>Naga will never message you first, ask for your recovery phrase, or run "send tokens, get double back" giveaways.</dd></div>
+      <div><dt>Launch</dt><dd>On Machine.Fun. We'll post the date on our Facebook and Instagram.</dd></div>
+      <div><dt>Contract address</dt><dd>We'll publish it here and pin it on our accounts. Treat any other address as a fake.</dd></div>
+      <div><dt>Disclosure document</dt><dd>We'll link it here once we file it with the Philippine SEC.</dd></div>
+      <div><dt>Wallets</dt><dd>We'll list the rewards, school and treasury wallets here on launch day.</dd></div>
+      <div><dt>Scams</dt><dd>We don't message you first, and we don't ask for your recovery phrase. A "send tokens, get double" giveaway under our name is a scam.</dd></div>
       <div><dt>Questions</dt><dd><a class="link-plain" href="mailto:hello@nagatech.ph">hello@nagatech.ph</a></dd></div>
     </dl>
 

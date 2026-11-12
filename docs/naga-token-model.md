@@ -43,8 +43,9 @@ machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holdi
 3. **Renewal is a stake that comes back, not a purchase that is consumed.** "Buy and stake to keep
    receiving fees" becomes "stake your own tokens to keep your machine eligible"; the tokens are
    returned, and rewards still depend on work.
-4. **Rewards language.** Always "rewards for the work your machine does", with ranges, the
-   electricity cost and "can be zero". Never "passive income", "earn while you sleep" without the
+4. **Rewards language.** Always pay for the work the laptop does, with ranges, the power bill
+   and the months it collects nothing. The page states the payback plainly: at ₱450 a month a
+   SIPAG I needs about nine years to cover its price. Never "passive income", "earn while you sleep" without the
    fine print, "pays for itself", yield, APY or price talk.
 
 ## Legal map (Philippines)
