@@ -56,7 +56,7 @@ LAKAN II specs and price are confirmed (Clevo V255RNN1 base, 15.6" QHD 165Hz, â‚
 ## $NAGA token (see `docs/naga-token-model.md`)
 
 - `naga.html` is live on the owner's decision, without an SEC disclosure filing. Keep every $NAGA claim true today: label what is still in build, and switch nothing on in the order forms (`naga.enabled`) until it works.
-- Positioning: $NAGA is the rewards token for Naga laptops (earned by a laptop's work, used for perks). Never ask anyone to buy it; no price, chart or buy link anywhere.
+- Positioning: $NAGA is the key to Naga Node (a bonded laptop takes paid bandwidth and computing work on peaqOS); perks come second. No daily earnings figure unless Naga has measured it on real laptops. Never ask anyone to buy it; no price, chart or buy link anywhere.
 - Wording rules: $NAGA unlocks perks; it is never an investment. Rewards are "for the work your machine does", shown as ranges with the electricity cost and "can be zero". Never promise a price, a return, yield, passive income or a machine that pays for itself. Staking gives access, not money.
 - Fee split bar: `.split` (segments `.s-a/.s-b/.s-c` with inline `flex`) and `.split-key`.
 

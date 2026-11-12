@@ -26,6 +26,18 @@ service provider, and it sells no tokens. The marketing rules that make this tru
 - Say nothing that suggests the token will rise, and never describe the bond or the burn as
   support for the price.
 
+**The point of the token (owner's direction).** $NAGA is the key to Naga Node: a laptop with
+$NAGA bonded to it can take paid bandwidth and computing work on peaqOS. Perks come second. This
+is also the most defensible design, because the owner's pay comes from their own laptop's work,
+paid by partner networks, and not from Naga's efforts or from other holders.
+
+**No "up to US$3 a day" claim.** The owner asked for it; nothing supports it. Public GPU-rental
+rates put a desktop RTX 5060 at about US$1.10 to US$1.40 a day gross at full load, and a LAKAN II
+burns about US$1.05 of Meralco power earning it. Bandwidth sharing pays about US$0.15 to US$0.65
+a day. An unsupported daily figure is a misleading earnings claim under consumer law, and a
+promised income is the fact that turns a rewards token into an investment. Publish measured
+numbers from real laptops once Naga Node runs.
+
 **What the label does not do.** Philippine regulators look at substance, not names. $NAGA trades
 on a public market, people can buy it with money, and Naga earns 1.5% of each trade. A regulator
 can still treat Naga's posts about it as marketing a crypto-asset, whatever Naga calls it. The
