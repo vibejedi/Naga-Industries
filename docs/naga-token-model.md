@@ -16,8 +16,8 @@ machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holdi
 
 | Piece | Rule |
 |---|---|
-| Launch | Fair launch on Machine.Fun, no presale. Chain, contract and creator-fee rate: confirm with Machine.Fun |
-| Creator fees | Paid by the platform to Naga's wallet. Split: 50% Machine Rewards pool, 40% Naga (Baku, products, bonds), 10% school fund. Three public wallets |
+| Launch | Fair launch on Machine.Fun, no presale. Chain and contract: confirm with Machine.Fun |
+| Creator fees | 1.5% of each $NAGA trade, paid to Naga's wallet. Split: 50% Machine Rewards pool, 40% Naga (Baku, products, bonds), 10% school fund. Three public wallets |
 | Pay | Holders and stakers get 5% off a laptop (currently international orders; `naga` block in `store.json`). Verified on the server at checkout |
 | Stake | Locks tokens for access: pre-release products, starting with DIWA. First 300 stakers get a Naga Karga backpack (buyer pays shipping). No yield |
 | Burn | Burn $NAGA to unlock Baku when it launches |
@@ -69,7 +69,7 @@ machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holdi
 
 1. Counsel signs off the model and the page text.
 2. The SEC disclosure document has been public for 30 days; link it on the page.
-3. Confirm with Machine.Fun: chain, contract address, creator-fee rate and payout, and the
+3. Confirm with Machine.Fun: chain, contract address, how the 1.5% creator fee pays out, and the
    peaqOS bonding and staking contracts. Fill "The details" on the page.
 4. Build what the page promises: wallet check for the 5% discount, the Naga Node opt-in checkbox
    on the order forms (recorded with the order), the staking and bond contracts, three public
