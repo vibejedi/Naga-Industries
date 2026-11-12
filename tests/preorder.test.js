@@ -53,7 +53,7 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   r = await call(Object.assign({ type: 'reserve', product: 'diwa' }, base));
   assert.equal(r.status, 200, 'reserve ok');
   assert.equal(calls[0].url, 'https://hooks.example.com/naga');
-  assert.equal(calls[0].body.quote.shippingUsd, 100, 'US pays flat shipping');
+  assert.equal(calls[0].body.quote.shipping, 100, 'US pays flat shipping');
   assert.deepEqual(calls[0].body.quote.days, [6, 10], 'US lead time');
 
   // Optional attribution: known answers pass through, anything else is dropped, never rejected.
@@ -119,6 +119,21 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   // Non-POST.
   const res405 = await new Promise((resolve) => handler({ method: 'GET', headers: {} }, { statusCode: 0, setHeader() {}, end(s) { resolve(this.statusCode); } }));
   assert.equal(res405, 405);
+
+  // Pricing: pesos in the Philippines (VAT included, free delivery), fixed USD price abroad.
+  const Core = require('../assets/js/store-core.js');
+  const L = cfg.products['lakan-ii'];
+  let q = Core.quote(cfg, 'lakan-ii', 1, 'PH');
+  assert.equal(q.currency, 'PHP'); assert.equal(q.total, L.php); assert.equal(q.shipping, 0);
+  assert.equal(q.usdc, (Math.ceil(L.php / cfg.phpPerUsd * 100) / 100).toFixed(2), 'PH crypto pays the peso price in USDC');
+  q = Core.quote(cfg, 'lakan-ii', 2, 'DE');
+  assert.equal(q.currency, 'USD'); assert.equal(q.total, L.usd * 2 + cfg.shipping.flatUsd);
+  // $NAGA discount only when the server verified the holding, and only where appliesTo allows it.
+  const N = Object.assign({}, cfg, { naga: Object.assign({}, cfg.naga, { discount: 0.05, appliesTo: 'international' }) });
+  assert.equal(Core.quote(N, 'lakan-ii', 1, 'US').discount, 0, 'no discount without verification');
+  q = Core.quote(N, 'lakan-ii', 1, 'US', { nagaVerified: true });
+  assert.equal(q.discount, Math.round(L.usd * 5) / 100); assert.equal(q.total, Math.round((L.usd * 0.95 + cfg.shipping.flatUsd) * 100) / 100);
+  assert.equal(Core.quote(N, 'lakan-ii', 1, 'PH', { nagaVerified: true }).discount, 0, 'international-only discount skips PH');
 
   console.log('preorder api: all checks passed');
 })().catch((e) => { console.error(e); process.exit(1); });

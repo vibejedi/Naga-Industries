@@ -6,8 +6,8 @@ Facts below match the website. Product names (SIPAG, LAKAN, DIWA, Baku) and the 
 
 ## Products
 
-- [LAKAN II gaming laptop: RTX 5060 at 115W, Core 7 250H](https://naga.industries/lakan-ii.html): gaming laptop. Intel Core 7 250H, NVIDIA GeForce RTX 5060 Laptop GPU at up to 115W, 16GB DDR5-5600, 512GB PCIe Gen4 SSD, 15.6-inch QHD 165Hz display. ₱99,900 (about US$1,580), Naga Karga backpack included. Pre-order.
-- [SIPAG I productivity laptop: 1.30 kg, up to 13 hours](https://naga.industries/sipag-i.html): productivity laptop. Intel Core Ultra 5 125U, 16GB DDR5, 512GB SSD, 14-inch Full HD, 60Wh battery for up to 13 hours, 1.30 kg, USB-C charging. ₱49,900 (about US$790). Pre-order.
+- [LAKAN II gaming laptop: RTX 5060 at 115W, Core 7 250H](https://naga.industries/lakan-ii.html): gaming laptop. Intel Core 7 250H, NVIDIA GeForce RTX 5060 Laptop GPU at up to 115W, 16GB DDR5-5600, 512GB PCIe Gen4 SSD, 15.6-inch QHD 165Hz display. ₱99,900 in the Philippines, US$1,499 international, Naga Karga backpack included. Pre-order.
+- [SIPAG I productivity laptop: 1.30 kg, up to 13 hours](https://naga.industries/sipag-i.html): productivity laptop. Intel Core Ultra 5 125U, 16GB DDR5, 512GB SSD, 14-inch Full HD, 60Wh battery for up to 13 hours, 1.30 kg, USB-C charging. ₱49,900 in the Philippines, US$699 international. Pre-order.
 - [DIWA AI mini PC with Baku, a private local AI](https://naga.industries/diwa.html): AI mini PC that runs Baku, Naga's own local AI. Coming soon, no price yet; reservations are open.
 
 ## Baku

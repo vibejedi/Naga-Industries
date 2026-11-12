@@ -16,6 +16,7 @@
   const $ = (root, sel) => root.querySelector(sel);
   const usd = (n) => 'US$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
   const php = (n) => '₱' + n.toLocaleString('en-US');
+  const money = (n, cur) => (cur === 'PHP' ? php(n) : usd(n));
   const days = (d) => d[0] + '–' + d[1] + ' days';
   const dataUrl = new URL('assets/data/store.json', document.baseURI).href;
 
@@ -76,14 +77,14 @@
     const render = () => {
       const q = Core.quote(cfg, key, qtySel.value, ctySel.value);
       $(form, '[data-o="item"]').textContent = product.name + ' × ' + q.qty;
-      $(form, '[data-o="subtotal"]').textContent = q.priced ? usd(q.subtotalUsd) : 'To be announced';
-      $(form, '[data-o="shipping"]').textContent = q.freeShipping ? 'Free' : usd(q.shippingUsd);
+      $(form, '[data-o="subtotal"]').textContent = q.priced ? money(q.subtotal, q.currency) : 'To be announced';
+      $(form, '[data-o="shipping"]').textContent = q.freeShipping ? 'Free' : money(q.shipping, q.currency);
       $(form, '[data-o="carrier"]').textContent = q.carrier + ' from ' + q.origin;
       $(form, '[data-o="eta"]').textContent = days(q.days) + ' after dispatch';
       $(form, '[data-o="zone"]').textContent = q.zone;
       if (q.priced) {
-        $(form, '[data-o="total"]').textContent = usd(q.totalUsd);
-        $(form, '[data-o="total-php"]').textContent = '≈ ' + php(q.totalPhp);
+        $(form, '[data-o="total"]').textContent = money(q.total, q.currency);
+        $(form, '[data-o="total-php"]').textContent = q.local ? 'VAT included' : '≈ ' + php(q.approxPhp);
       }
       const usdc = $(form, '[data-o="usdc"]');
       if (usdc) { usdc.hidden = method() !== 'crypto'; usdc.textContent = 'You will pay ' + (q.usdc || '') + ' USDC on Solana.'; }
@@ -135,7 +136,7 @@
 
   // Tells assets/js/naga-analytics.js about a completed step (no personal data in the event).
   function announce(step, order, ref, q) {
-    document.dispatchEvent(new CustomEvent('naga:order', { detail: { step, ref, product: order.product, qty: order.qty, country: order.country, valueUsd: q && q.priced ? q.totalUsd : 0 } }));
+    document.dispatchEvent(new CustomEvent('naga:order', { detail: { step, ref, product: order.product, qty: order.qty, country: order.country, valueUsd: q && q.priced ? q.usdTotal : 0 } }));
   }
 
   async function api(cfg, body) {

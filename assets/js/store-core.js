@@ -25,26 +25,41 @@
     return z || cfg.shipping.rest;
   }
 
-  /** Price, shipping and delivery estimate for one order. USD is the settlement currency. */
-  function quote(cfg, productKey, qty, country) {
+  /**
+   * Price, shipping and delivery estimate for one order.
+   * Orders shipping inside cfg.localCountry (the Philippines) are priced and settled in pesos
+   * (product.php, VAT included, free delivery). Every other country pays the international USD
+   * price (product.usd) plus the flat DHL rate. `usdc` is the amount to pay in USDC either way.
+   * opts.nagaVerified: the buyer's $NAGA holding was verified on the server; the cfg.naga
+   * discount then applies where cfg.naga.appliesTo allows it. The browser never sets it.
+   */
+  function quote(cfg, productKey, qty, country, opts) {
     const p = cfg.products[productKey];
     if (!p) throw new Error('Unknown product: ' + productKey);
+    const o = opts || {};
     const n = Math.max(1, Math.min(cfg.maxQty, parseInt(qty, 10) || 1));
     const cc = String(country || '').toUpperCase();
     const zone = zoneFor(cfg, cc);
-    const priced = typeof p.usd === 'number';
+    const local = cc === String(cfg.localCountry || 'PH').toUpperCase();
+    const currency = local ? 'PHP' : 'USD';
+    const unit = local ? p.php : p.usd;
+    const priced = typeof unit === 'number';
     const free = cfg.shipping.freeCountries.includes(cc);
-    const shippingUsd = free ? 0 : cfg.shipping.flatUsd;
-    const subtotalUsd = priced ? p.usd * n : null;
-    const totalUsd = priced ? subtotalUsd + shippingUsd : null;
+    const naga = cfg.naga || {};
+    const applies = naga.appliesTo === 'all' || (naga.appliesTo === 'international' && !local) || (naga.appliesTo === 'local' && local);
+    const discountRate = o.nagaVerified && applies && naga.discount > 0 ? naga.discount : 0;
+    const round2 = (x) => Math.round(x * 100) / 100;
+    const subtotal = priced ? unit * n : null;
+    const discount = priced ? round2(subtotal * discountRate) : 0;
+    const shipping = free ? 0 : (local ? 0 : cfg.shipping.flatUsd);
+    const total = priced ? round2(subtotal - discount + shipping) : null;
+    const usdTotal = priced ? (local ? Math.ceil(total / cfg.phpPerUsd * 100) / 100 : total) : null;
     return {
-      product: productKey, name: p.name, qty: n, country: cc, priced,
-      unitUsd: priced ? p.usd : null, unitPhp: priced ? p.php : null,
-      subtotalUsd, subtotalPhp: priced ? p.php * n : null,
-      shippingUsd, freeShipping: free,
-      totalUsd,
-      totalPhp: priced ? p.php * n + roundTo(shippingUsd * cfg.phpPerUsd, 10) : null,
-      usdc: priced ? totalUsd.toFixed(2) : null,
+      product: productKey, name: p.name, qty: n, country: cc, priced, local, currency,
+      unit: priced ? unit : null, subtotal, discountRate, discount, shipping, total,
+      freeShipping: shipping === 0,
+      approxPhp: priced ? (local ? total : roundTo(total * cfg.phpPerUsd, 10)) : null,
+      usdTotal, usdc: priced ? usdTotal.toFixed(2) : null,
       days: zone.days, zone: zone.label, carrier: cfg.shipping.carrier, origin: cfg.shipping.origin,
     };
   }
