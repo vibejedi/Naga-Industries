@@ -11,6 +11,7 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 | `lakan-ii.html` | NAGA LAKAN II, gaming laptop                          |
 | `diwa.html`     | NAGA DIWA, AI mini PC (Baku section with the Baku film) |
 | `about.html`    | Company facts: the visible brand fact sheet (keep in step with `seo/brand-facts.md`) |
+| `naga.html`     | $NAGA token page. **Draft, not deployed**: in `.vercelignore` with `noindex` until legal review and the SEC filing. Model and launch steps: `docs/naga-token-model.md` |
 
 ## Design system (read `.claude/skills/naga-design-system/SKILL.md` before touching visuals)
 
@@ -51,6 +52,12 @@ Ambient music (`assets/audio/naga-ambient-bakunawa-night.mp3`, the 54 s Bakunawa
 ## Content status
 
 LAKAN II specs and price are confirmed (Clevo V255RNN1 base, 15.6" QHD 165Hz, ₱99,900 / US$1,499 international, with the Naga Karga backpack). SIPAG I specs and price are confirmed for the black restock (Clevo V740TU-2, 16GB DDR5, 512GB SSD, ₱49,900 / US$699 international). DIWA specs and prices are placeholders marked with `PLACEHOLDER SPECS` comments. Baku, Naga's own local LLM, ships on DIWA and is being built with the Machine.Fun ecosystem (project link https://machine.fun/project/J8RKZwmr8ol, on the homepage splash and the DIWA section). It has its own section (`diwa.html#baku`, mascot `assets/img/baku.webp`) plus a splash on the homepage built around `assets/img/baku-coding.webp` (Higgsfield render of Baku coding on a SIPAG I underwater); claims are limited to what is confirmed: it runs on the machine, keeps data private, works offline and speaks all languages. Socials (Facebook nagaindustries, Instagram nagaindustriesph) sit in every footer. Confirm with the product team before launch. DIWA has no price yet: it shows "Coming soon" and takes reservations only. Shipping is free in the Philippines and a $100 flat rate worldwide by DHL Express from Manila (3 to 14 days by zone). SIPAG I and LAKAN II images are Higgsfield renders built from the Clevo spec-sheet photos (real chassis, Naga wallpaper on screen, small flat-printed wordmark on the lid, as on the production lid); the DIWA image is still an AI concept render. Swap files at the same paths when photography exists. The b-roll clips and the LAKAN II, SIPAG I and DIWA promo films were judged inaccurate (the laptop designs do not match the real units); Naga is shooting reference photos, and the b-roll and product promos get rebuilt from them.
+
+## $NAGA token (see `docs/naga-token-model.md`)
+
+- Nothing about $NAGA goes on a deployed page, the order forms or structured data until the launch checklist in that doc is done; token marketing in the Philippines needs an SEC disclosure document public for 30 days first.
+- Wording rules: $NAGA unlocks perks; it is never an investment. Rewards are "for the work your machine does", shown as ranges with the electricity cost and "can be zero". Never promise a price, a return, yield, passive income or a machine that pays for itself. Staking gives access, not money.
+- Fee split bar: `.split` (segments `.s-a/.s-b/.s-c` with inline `flex`) and `.split-key`.
 
 ## SEO and analytics (see `seo/README.md`)
 

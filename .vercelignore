@@ -8,3 +8,7 @@ promo/
 seo/
 .claude/
 .github/
+
+# $NAGA token page and model: draft until legal review and the SEC filing (docs/naga-token-model.md)
+naga.html
+docs/
