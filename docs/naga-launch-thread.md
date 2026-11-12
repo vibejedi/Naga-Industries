@@ -49,7 +49,7 @@ $NAGA also gets you:
 • A Naga Karga backpack for the first 300 stakers
 
 8/
-The laptops ship now.
+Both laptops are open for pre-order.
 
 LAKAN II, US$1,499: Core 7 250H, RTX 5060 at 115W, 15.6" QHD 165Hz, 16GB, 512GB, backpack in the box.
 
