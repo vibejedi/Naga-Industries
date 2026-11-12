@@ -1,6 +1,7 @@
 # $NAGA token model (v1 draft)
 
-Status: **draft for legal review. Nothing here is live.** `naga.html` is kept out of deploys by
+Status: **draft for legal review. The page is not live. The token is: $NAGA has been trading on
+Machine.Fun since before 12 November 2026, so the marketing rules below already apply.** `naga.html` is kept out of deploys by
 `.vercelignore` and carries `noindex`. This is not legal advice; it is the brief for a Philippine
 securities lawyer. Sources for the legal points are listed at the end.
 
@@ -24,7 +25,7 @@ machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holdi
 | Machine Bond | Per bonded laptop sold, Naga buys $NAGA on the open market and locks it on-chain to the machine's ID for 12 months: US$50 (LAKAN II), US$35 (SIPAG I), confirmed by Naga. At expiry 50% is burned and 50% returns to the Naga treasury |
 | Renewal | After 12 months the owner keeps eligibility by staking their own $NAGA to the machine (same size as the original bond) for another 12 months. Staked tokens are returned in full |
 | Naga Node | peaqOS on every bonded laptop. Offered explicitly at purchase, off by default, can be left at any time |
-| Machine Rewards | The pool (50% of creator fees) is shared monthly among active bonded machines in proportion to verified work (uptime and contribution through peaqOS), on top of what partner networks pay the machine directly |
+| Machine Rewards | The pool (50% of creator fees) is shared monthly among active bonded machines in proportion to verified work (uptime and contribution through peaqOS), on top of what partner networks pay the machine directly. Cap: a machine collects at most twice its network pay for that month; the overflow goes to the Naga treasury |
 | Drive wipe | The machine wallet and peaqOS identity live on the drive. Wiping, reinstalling or replacing it ends the bond link and forfeits unclaimed rewards. The owner accepts this at opt-in |
 
 ## What changed from the first brief, and why
@@ -43,7 +44,11 @@ machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holdi
 3. **Renewal is a stake that comes back, not a purchase that is consumed.** "Buy and stake to keep
    receiving fees" becomes "stake your own tokens to keep your machine eligible"; the tokens are
    returned, and rewards still depend on work.
-4. **Rewards language.** Always pay for the work the laptop does, with ranges, the power bill
+4. **Machine Rewards are capped.** 1.5% of each trade adds up fast: at US$10,000 of daily volume
+   the pool would pay each of 75 laptops about US$30 a month, four times its network pay. Uncapped,
+   the reward tracks trading volume instead of work and reads as a profit share. The cap (twice
+   the month's network pay) keeps it tied to work.
+5. **Rewards language.** Always pay for the work the laptop does, with ranges, the power bill
    and the months it collects nothing. The page states the payback plainly: at ₱450 a month a
    SIPAG I needs about nine years to cover its price. Never "passive income", "earn while you sleep" without the
    fine print, "pays for itself", yield, APY or price talk.
