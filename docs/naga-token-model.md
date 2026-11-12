@@ -1,8 +1,8 @@
 # $NAGA token model (v1 draft)
 
-Status: **draft for legal review. The page is not live. The token is: $NAGA has been trading on
-Machine.Fun since before 12 November 2026, so the marketing rules below already apply.** `naga.html` is kept out of deploys by
-`.vercelignore` and carries `noindex`. This is not legal advice; it is the brief for a Philippine
+Status: **the token is live and so is the page.** $NAGA trades on Machine.Fun, and the owner
+published `naga.html` on 12 November 2026 without an SEC disclosure filing or a legal opinion,
+against the advice recorded below. The discount, staking, bonds and Naga Node are still in build. This is not legal advice; it is the brief for a Philippine
 securities lawyer. Sources for the legal points are listed at the end.
 
 ## The model in one paragraph
@@ -89,17 +89,16 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Tax | Creator fees are Naga's income; rewards may be income to owners | BIR treatment of fees, bonds, burns and token-paid discounts; VAT on token-priced sales |
 | Other countries | Exports go worldwide | Which countries to exclude from the token (US, and others) |
 
-## Before `naga.html` goes live
+## Still to do (the page is live; these are not)
 
 1. Counsel signs off the model and the page text.
-2. The SEC disclosure document has been public for 30 days; link it on the page.
+2. Decide on the SEC disclosure document, or get a written opinion that none is needed.
 3. Confirm with Machine.Fun: how the 1.5% creator fee pays out, and the
    peaqOS bonding and staking contracts. Fill "The details" on the page.
 4. Build what the page promises: wallet check for the 5% discount, the Naga Node opt-in checkbox
    on the order forms (recorded with the order), the staking and bond contracts, three public
    wallets, and a rewards dashboard with real numbers.
-5. Publish: remove `naga.html` from `.vercelignore`, delete its `noindex` line, add it to
-   `seo/site.json`, `seo/urls.txt` and every footer, then run `npm run seo`.
+5. As each feature opens, replace its "in build" label on the page with the date it opened.
 
 ## Sources
 

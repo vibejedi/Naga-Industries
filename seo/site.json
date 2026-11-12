@@ -105,6 +105,15 @@
       "description": "Naga Industries is a Philippine laptop and AI mini PC brand. The facts in one place: products, prices, Baku, shipping, contact and official accounts.",
       "image": "assets/img/og/home.jpg",
       "imageAlt": "Naga Industries: a carved stone wall with the glowing naga serpent"
+    },
+    {
+      "file": "naga.html",
+      "path": "/naga.html",
+      "type": "WebPage",
+      "title": "$NAGA: the rewards token for Naga laptops",
+      "description": "$NAGA is the rewards token for Naga laptops. Your laptop earns it for the work it does, and you use it for 5% off, early access to DIWA and Baku.",
+      "image": "assets/img/og/home.jpg",
+      "imageAlt": "Naga Industries: a carved stone wall with the glowing naga serpent"
     }
   ]
 }

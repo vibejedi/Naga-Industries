@@ -11,7 +11,7 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 | `lakan-ii.html` | NAGA LAKAN II, gaming laptop                          |
 | `diwa.html`     | NAGA DIWA, AI mini PC (Baku section with the Baku film) |
 | `about.html`    | Company facts: the visible brand fact sheet (keep in step with `seo/brand-facts.md`) |
-| `naga.html`     | $NAGA token page. **Draft, not deployed**: in `.vercelignore` with `noindex` until legal review and the SEC filing. Model and launch steps: `docs/naga-token-model.md` |
+| `naga.html`     | $NAGA rewards page, live since 12 November 2026. Model, legal notes and open work: `docs/naga-token-model.md` |
 
 ## Design system (read `.claude/skills/naga-design-system/SKILL.md` before touching visuals)
 
@@ -55,7 +55,7 @@ LAKAN II specs and price are confirmed (Clevo V255RNN1 base, 15.6" QHD 165Hz, â‚
 
 ## $NAGA token (see `docs/naga-token-model.md`)
 
-- Nothing about $NAGA goes on a deployed page, the order forms or structured data until the launch checklist in that doc is done; token marketing in the Philippines needs an SEC disclosure document public for 30 days first.
+- `naga.html` is live on the owner's decision, without an SEC disclosure filing. Keep every $NAGA claim true today: label what is still in build, and switch nothing on in the order forms (`naga.enabled`) until it works.
 - Positioning: $NAGA is the rewards token for Naga laptops (earned by a laptop's work, used for perks). Never ask anyone to buy it; no price, chart or buy link anywhere.
 - Wording rules: $NAGA unlocks perks; it is never an investment. Rewards are "for the work your machine does", shown as ranges with the electricity cost and "can be zero". Never promise a price, a return, yield, passive income or a machine that pays for itself. Staking gives access, not money.
 - Fee split bar: `.split` (segments `.s-a/.s-b/.s-c` with inline `flex`) and `.split-key`.
