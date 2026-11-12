@@ -13,6 +13,25 @@ gets a fixed amount of $NAGA bought by Naga on the open market and locked to tha
 year; the bond makes the machine eligible for Machine Rewards, which are paid for work the
 machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holding or staking.
 
+## Positioning: a rewards token (owner's direction, 12 November 2026)
+
+Naga markets $NAGA as the rewards token for its laptops: a laptop earns it for work, and the
+owner uses it for perks. Naga is not an exchange, a wallet provider or any other crypto-asset
+service provider, and it sells no tokens. The marketing rules that make this true in practice:
+
+- Never ask anyone to buy $NAGA. No price, chart, market cap, "buy" link or exchange link in
+  Naga's posts or pages. The contract address appears only so people can avoid fakes.
+- Lead with earning and using: Machine Rewards are paid in $NAGA; perks are the 5% discount,
+  early access and Baku.
+- Say nothing that suggests the token will rise, and never describe the bond or the burn as
+  support for the price.
+
+**What the label does not do.** Philippine regulators look at substance, not names. $NAGA trades
+on a public market, people can buy it with money, and Naga earns 1.5% of each trade. A regulator
+can still treat Naga's posts about it as marketing a crypto-asset, whatever Naga calls it. The
+owner has chosen not to file a disclosure document. The lower-cost protection is a written
+opinion from a Philippine securities lawyer that no filing is needed; an opinion is not a filing.
+
 ## Mechanics
 
 | Piece | Rule |
@@ -25,7 +44,7 @@ machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holdi
 | Machine Bond | Per bonded laptop sold, Naga buys $NAGA on the open market and locks it on-chain to the machine's ID for 12 months: US$50 (LAKAN II), US$35 (SIPAG I), confirmed by Naga. At expiry 50% is burned and 50% returns to the Naga treasury |
 | Renewal | After 12 months the owner keeps eligibility by staking their own $NAGA to the machine (same size as the original bond) for another 12 months. Staked tokens are returned in full |
 | Naga Node | peaqOS on every bonded laptop. Offered explicitly at purchase, off by default, can be left at any time |
-| Machine Rewards | The pool (50% of creator fees) is shared monthly among active bonded machines in proportion to verified work (uptime and contribution through peaqOS), on top of what partner networks pay the machine directly. Cap: a machine collects at most twice its network pay for that month; the overflow goes to the Naga treasury |
+| Machine Rewards | The pool (50% of creator fees) is paid monthly in $NAGA to active bonded machines in proportion to verified work (uptime and contribution through peaqOS), on top of what partner networks pay the machine directly. Cap: a machine collects at most twice its network pay for that month; the overflow goes to the Naga treasury |
 | Drive wipe | The machine wallet and peaqOS identity live on the drive. Wiping, reinstalling or replacing it ends the bond link and forfeits unclaimed rewards. The owner accepts this at opt-in |
 
 ## What changed from the first brief, and why
