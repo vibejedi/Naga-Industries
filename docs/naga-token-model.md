@@ -31,12 +31,12 @@ $NAGA bonded to it can take paid bandwidth and computing work on peaqOS. Perks c
 is also the most defensible design, because the owner's pay comes from their own laptop's work,
 paid by partner networks, and not from Naga's efforts or from other holders.
 
-**No "up to US$3 a day" claim.** The owner asked for it; nothing supports it. Public GPU-rental
-rates put a desktop RTX 5060 at about US$1.10 to US$1.40 a day gross at full load, and a LAKAN II
-burns about US$1.05 of Meralco power earning it. Bandwidth sharing pays about US$0.15 to US$0.65
-a day. An unsupported daily figure is a misleading earnings claim under consumer law, and a
-promised income is the fact that turns a rewards token into an investment. Publish measured
-numbers from real laptops once Naga Node runs.
+**Earnings claims.** peaq told the owner a machine on peaqOS earns US$0.50 to US$3 a day, with
+documentation to follow. Until that arrives, no page or post carries the figure. Naga's own
+estimate is what appears: ₱300–600 a month from bandwidth sharing in Manila, against ₱90–120 of
+power, labelled as an estimate and never called a return. Public GPU-rental rates put a desktop
+RTX 5060 at about US$1.10 to US$1.40 a day gross at full load, and a LAKAN II burns about US$1.05
+of Meralco power earning it. Replace the estimates with measured numbers once Naga Node runs.
 
 **What the label does not do.** Philippine regulators look at substance, not names. $NAGA trades
 on a public market, people can buy it with money, and Naga earns 1.5% of each trade. A regulator
