@@ -18,7 +18,7 @@ snippets. Clear the open issues, then build the page as `lakan-ii-vs-rtx-5060-la
 ## Proposed title and meta
 
 - Title: `LAKAN II vs RTX 5060 gaming laptops in the Philippines (2026) | Naga`
-- Meta: `How the ₱89,900 LAKAN II compares with the Lenovo LOQ 15, MSI Katana 15 HX, ASUS TUF A16 and Acer Nitro 16S AI on GPU power, screen, battery, warranty and price.`
+- Meta: `How the ₱99,900 LAKAN II compares with the Lenovo LOQ 15, MSI Katana 15 HX, ASUS TUF A16 and Acer Nitro 16S AI on GPU power, screen, battery, warranty and price.`
 - URL: `/lakan-ii-vs-rtx-5060-laptops.html`
 
 ---
@@ -32,12 +32,12 @@ compared on public specifications and vendor prices; we have not run our own ben
 
 **The short answer**
 
-- **Lowest price:** Lenovo LOQ 15 (Gen 10). Roughly ₱7,000 to ₱15,000 less than LAKAN II, but its RTX 5060 runs at
+- **Lowest price:** Lenovo LOQ 15 (Gen 10). Roughly ₱17,000 to ₱25,000 less than LAKAN II, but its RTX 5060 runs at
   100 W, not 115 W, and it is being replaced by a newer model.
 - **Sharpest 15.6-inch screen:** MSI Katana 15 HX, with a QHD 165 Hz panel and a 14th-gen HX processor. It is heavy (2.4 kg) and reviewers find the screen dim.
 - **Longest battery life and warranty:** ASUS TUF Gaming A16, with a 90 Wh battery and a 2-year PH warranty. Its 16-inch screen is only 1920×1200.
 - **Fastest screen:** Acer Nitro 16S AI, at 2560×1600 and 180 Hz. The RTX 5060 has trouble driving that resolution in new games.
-- **LAKAN II:** full 115 W RTX 5060 with a Core 7 250H in a 15.6-inch chassis, assembled and supported in the Philippines, with the Naga Karga backpack in the box, for ₱89,900. Its 53.35 Wh battery is the smallest here, and its screen specs are still to be confirmed. It is new, so there are no independent reviews yet.
+- **LAKAN II:** full 115 W RTX 5060 with a Core 7 250H in a 15.6-inch chassis, assembled and supported in the Philippines, with the Naga Karga backpack in the box, for ₱99,900. Its 53.35 Wh battery is the smallest here, and its screen specs are still to be confirmed. It is new, so there are no independent reviews yet.
 
 **How we compared**
 
@@ -58,11 +58,11 @@ compared on public specifications and vendor prices; we have not run our own ben
 | RTX 5060 power | up to 115 W | 100 W | 115 W (verify) | 115 W with boost | 115 W (verify) |
 | Memory | 16GB DDR5-5600, dual channel, up to 64GB | 16GB DDR5-5600, one stick | 16GB DDR5-5600 | 16GB DDR5-5600 | 16GB DDR5, one stick |
 | Storage | 512GB PCIe Gen4 | 512GB | 512GB | 512GB | 512GB |
-| Screen | 15.6" [TBC] | 15.6" FHD 144 Hz | 15.6" QHD 165 Hz | 16" 1920×1200, 144 Hz (verify) | 16" 2560×1600 180 Hz |
+| Screen | 15.6" QHD 165 Hz | 15.6" FHD 144 Hz | 15.6" QHD 165 Hz | 16" 1920×1200, 144 Hz (verify) | 16" 2560×1600 180 Hz |
 | Weight | 2.25 kg | 2.4 kg | 2.4 kg | 2.2 kg | about 2.18 kg |
 | Battery | 53.35 Wh | 60 Wh | 75 Wh | 90 Wh | 76 Wh |
 | PH warranty | 1 year [confirm] | 1 year | 2 years (verify) | 2 years + 1 year accidental damage | 2 years (verify) |
-| Price | ₱89,900 with backpack | [brand SRP] | [brand SRP] | ₱92,995 SRP | ₱94,999 Acer store [verify] |
+| Price | ₱99,900 with backpack | [brand SRP] | [brand SRP] | ₱92,995 SRP | ₱94,999 Acer store [verify] |
 
 **Each laptop, with its catch**
 
@@ -79,7 +79,7 @@ compared on public specifications and vendor prices; we have not run our own ben
 
 | Claim | Source to confirm on | Status |
 |---|---|---|
-| LAKAN II specs and ₱89,900 | Naga product team, `lakan-ii.html` | confirmed except screen and warranty |
+| LAKAN II specs and ₱99,900 | Naga product team, `lakan-ii.html` | confirmed except screen and warranty |
 | LOQ 15 at 100 W, one stick, 60 Wh, 2.4 kg | Lenovo PSREF LOQ_15AHP10 (S5) | snippet only |
 | Katana 115 W, QHD 165 Hz, 75 Wh, 2.4 kg | msi.com B14WFK spec page | snippet only; 115 W not seen on msi.com |
 | TUF A16 115 W, 90 Wh, 2.2 kg, ₱92,995 SRP, 2-year warranty | asus.com/ph FA608UM page and ASUS PH warranty page | snippet only; refresh rate conflicts (144 vs 165 Hz) |

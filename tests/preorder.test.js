@@ -82,26 +82,27 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base, { country: 'PH' }));
   assert.equal(r.status, 200);
 
-  // Crypto: LAKAN II to the US = 1430 + 100 = 1530 USDC = 1530000000 units.
+  // Crypto: LAKAN II to the US = unit price + flat shipping, in USDC base units (6 decimals).
+  const DUE = BigInt(cfg.products['lakan-ii'].usd + cfg.shipping.flatUsd) * 1000000n;
   const order = Object.assign({ type: 'crypto', product: 'lakan-ii', signature: SIG, from: PAYER }, base);
-  rpcResult = tx(1530000000n, 'naga:NG-ABCD1234');
+  rpcResult = tx(DUE, 'naga:NG-ABCD1234');
   calls = [];
   r = await call(order);
   assert.equal(r.status, 200, 'exact payment verified');
   const rec = calls.find((c) => c.url.includes('hooks')).body;
-  assert.equal(rec.payment.amount, '1530.00'); assert.equal(rec.payment.verified, true);
+  assert.equal(rec.payment.amount, (cfg.products['lakan-ii'].usd + cfg.shipping.flatUsd).toFixed(2)); assert.equal(rec.payment.verified, true);
 
-  rpcResult = tx(1529999999n, 'naga:NG-ABCD1234');
+  rpcResult = tx(DUE - 1n, 'naga:NG-ABCD1234');
   r = await call(order); assert.equal(r.status, 402, 'underpayment rejected');
-  rpcResult = tx(1530000000n, 'naga:NG-OTHER999');
+  rpcResult = tx(DUE, 'naga:NG-OTHER999');
   r = await call(order); assert.equal(r.status, 402, 'memo mismatch rejected');
-  rpcResult = tx(1530000000n, 'naga:NG-ABCD1234', { blockTime: Math.floor(Date.now() / 1000) - 7200 });
+  rpcResult = tx(DUE, 'naga:NG-ABCD1234', { blockTime: Math.floor(Date.now() / 1000) - 7200 });
   r = await call(order); assert.equal(r.status, 402, 'stale transaction rejected');
-  rpcResult = Object.assign(tx(1530000000n, 'naga:NG-ABCD1234'), { meta: Object.assign(tx(1530000000n, 'x').meta, { err: { InstructionError: [1, 'x'] } }) });
+  rpcResult = Object.assign(tx(DUE, 'naga:NG-ABCD1234'), { meta: Object.assign(tx(DUE, 'x').meta, { err: { InstructionError: [1, 'x'] } }) });
   r = await call(order); assert.equal(r.status, 402, 'failed transaction rejected');
   rpcResult = null;
   r = await call(order); assert.equal(r.status, 409, 'not yet visible -> pending');
-  rpcResult = tx(1530000000n, 'naga:NG-ABCD1234');
+  rpcResult = tx(DUE, 'naga:NG-ABCD1234');
   r = await call(Object.assign({}, order, { signature: 'not-a-sig' }));
   assert.equal(r.status, 400, 'bad signature format');
 
@@ -113,7 +114,7 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   const draft = calls.find((c) => c.url.includes('myshopify'));
   assert.ok(draft.url.endsWith('/admin/api/' + cfg.shopify.apiVersion + '/graphql.json'));
   assert.ok(draft.body.variables.input.tags.includes('paid-usdc'));
-  assert.equal(draft.body.variables.input.lineItems[0].originalUnitPrice, '1430');
+  assert.equal(draft.body.variables.input.lineItems[0].originalUnitPrice, String(cfg.products['lakan-ii'].usd));
 
   // Non-POST.
   const res405 = await new Promise((resolve) => handler({ method: 'GET', headers: {} }, { statusCode: 0, setHeader() {}, end(s) { resolve(this.statusCode); } }));

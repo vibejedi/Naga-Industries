@@ -31,7 +31,7 @@
       "type": "ItemPage",
       "product": "lakan-ii",
       "title": "LAKAN II gaming laptop: RTX 5060 at 115W, Core 7 250H | Naga",
-      "description": "NAGA LAKAN II gaming laptop: Intel Core 7 250H, NVIDIA GeForce RTX 5060 at up to 115W, 16GB DDR5 and a 15.6-inch display, with the Naga Karga backpack. ₱89,900 (about US$1,430), with local warranty.",
+      "description": "NAGA LAKAN II gaming laptop: Intel Core 7 250H, NVIDIA GeForce RTX 5060 at up to 115W, 16GB DDR5 and a 15.6-inch QHD 165Hz display, with the Naga Karga backpack. ₱99,900 (about US$1,580), with local warranty.",
       "image": "assets/img/og/lakan-ii.jpg",
       "imageAlt": "NAGA LAKAN II gaming laptop with a cyan-backlit keyboard",
       "productName": "NAGA LAKAN II",
@@ -42,7 +42,7 @@
         "assets/img/products/lakan-ii-lid.webp",
         "assets/img/products/lakan-ii-closed.webp"
       ],
-      "productDescription": "15.6-inch gaming laptop with an Intel Core 7 250H processor, NVIDIA GeForce RTX 5060 Laptop GPU (8GB GDDR7, up to 115W), 16GB DDR5-5600 memory and a 512GB PCIe Gen4 SSD. Ships with the Naga Karga backpack."
+      "productDescription": "15.6-inch gaming laptop with an Intel Core 7 250H processor, NVIDIA GeForce RTX 5060 Laptop GPU (8GB GDDR7, up to 115W), 16GB DDR5-5600 memory and a 512GB PCIe Gen4 SSD and a 15.6-inch QHD 165Hz display. Ships with the Naga Karga backpack."
     },
     {
       "file": "sipag-i.html",
@@ -50,7 +50,7 @@
       "type": "ItemPage",
       "product": "sipag-i",
       "title": "SIPAG I productivity laptop: 1.30 kg, up to 13 hours | Naga",
-      "description": "NAGA SIPAG I productivity laptop in black: Intel Core Ultra 5 125U, 14-inch Full HD, 60Wh battery for up to 13 hours, 1.30 kg, USB-C charging. Assembled in the Philippines with local warranty.",
+      "description": "NAGA SIPAG I productivity laptop in black: Intel Core Ultra 5 125U, 16GB RAM, 512GB SSD, 14-inch Full HD, 60Wh battery for up to 13 hours, 1.30 kg, USB-C charging. Assembled in the Philippines with local warranty.",
       "image": "assets/img/og/sipag-i.jpg",
       "imageAlt": "NAGA SIPAG I productivity laptop with the cyan Naga wallpaper",
       "productName": "NAGA SIPAG I",
@@ -61,7 +61,7 @@
         "assets/img/products/sipag-i-lid.webp",
         "assets/img/products/sipag-i-closed.webp"
       ],
-      "productDescription": "14-inch Full HD productivity laptop with an Intel Core Ultra 5 125U processor, a 60Wh battery rated for up to 13 hours, USB-C charging and a 1.30 kg metal body."
+      "productDescription": "14-inch Full HD productivity laptop with an Intel Core Ultra 5 125U processor, 16GB DDR5 memory, a 512GB SSD, a 60Wh battery rated for up to 13 hours, USB-C charging and a 1.30 kg metal body."
     },
     {
       "file": "diwa.html",
