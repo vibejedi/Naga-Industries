@@ -31,12 +31,23 @@ $NAGA bonded to it can take paid bandwidth and computing work on peaqOS. Perks c
 is also the most defensible design, because the owner's pay comes from their own laptop's work,
 paid by partner networks, and not from Naga's efforts or from other holders.
 
-**Earnings claims.** peaq told the owner a machine on peaqOS earns US$0.50 to US$3 a day, with
-documentation to follow. Until that arrives, no page or post carries the figure. Naga's own
-estimate is what appears: ₱300–600 a month from bandwidth sharing in Manila, against ₱90–120 of
-power, labelled as an estimate and never called a return. Public GPU-rental rates put a desktop
-RTX 5060 at about US$1.10 to US$1.40 a day gross at full load, and a LAKAN II burns about US$1.05
-of Meralco power earning it. Replace the estimates with measured numbers once Naga Node runs.
+**Earnings claims (owner's figures, 13 November 2026).** The page and thread state what Naga
+expects a laptop to collect in a month: about ₱1,000 for a SIPAG I and ₱1,500–1,800 for a
+LAKAN II, before ₱90–120 of power. What sits behind those numbers:
+
+- Bandwidth sharing alone brings about ₱300–600 a month at public rates. That is the only part
+  with outside evidence.
+- The rest is Machine Rewards. The cap is twice the month's network pay, so a laptop tops out
+  at three times ₱300–600, which is ₱900–1,800. The owner's figures need Machine Rewards to pay
+  near the cap, and that needs steady $NAGA trading.
+- They also sit at the low end of what peaq told the owner (US$0.50 to US$3 a day, about
+  ₱950–5,700 a month), which peaq has not yet documented.
+- Public GPU-rental rates put a desktop RTX 5060 at about US$1.10 to US$1.40 a day gross at full
+  load, and a LAKAN II burns about US$1.05 of Meralco power earning it, so GPU work adds little
+  in Manila.
+
+Always show them as estimates, unmeasured, with the power cost and "we guarantee no amount"
+beside them, and never call them returns. Replace them with measured numbers once Naga Node runs.
 
 **What the label does not do.** Philippine regulators look at substance, not names. $NAGA trades
 on a public market, people can buy it with money, and Naga earns 1.5% of each trade. A regulator
