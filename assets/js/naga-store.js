@@ -67,6 +67,14 @@
       cryptoOpt.closest('.pay-opt').classList.add('is-off');
     }
 
+    // Until card checkout or crypto is connected there is nothing to choose and nothing to pay:
+    // the form takes the pre-order and says so.
+    const payFs = form.querySelector('.pay');
+    if (!reserve && payFs && !shopifyReady && !cryptoReady) {
+      payFs.hidden = true;
+      payFs.insertAdjacentHTML('afterend', '<p class="order-fine order-nopay">No payment now. We will email you a payment link when checkout opens.</p>');
+    }
+
     const go = $(form, '.order-go');
     const goLabel = () => {
       if (reserve) return 'Reserve my ' + product.name;
@@ -180,7 +188,7 @@
     // Card checkout not connected yet: keep the pre-order and follow up by email.
     $(form, '.order-go').textContent = 'Saving…';
     const res = await api(cfg, Object.assign({ type: 'card-request', ref }, order));
-    if (res.ok) { announce('card-request', order, ref, Core.quote(cfg, order.product, order.qty, order.country)); say(form, 'Card checkout opens soon. We saved your pre-order (' + ref + ') and will email ' + order.email + ' a secure payment link.', 'ok'); clearContact(form); return; }
+    if (res.ok) { announce('card-request', order, ref, Core.quote(cfg, order.product, order.qty, order.country)); say(form, 'You are on the pre-order list for ' + product.name + '. We will email ' + order.email + ' a payment link when checkout opens. Reference ' + ref + '.', 'ok'); clearContact(form); return; }
     say(form, '', 'error', fallbackHtml(cfg, order, ref, 'Online pre-orders are not open yet.'));
   }
 
