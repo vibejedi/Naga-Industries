@@ -2,7 +2,7 @@
 
 Rules: never ask anyone to buy; no price or buy link; earnings appear only as Naga's own
 estimate (about ₱1,000 a month for a SIPAG I, ₱1,500–1,800 for a LAKAN II), labelled as an
-estimate and unmeasured, with the power cost beside it. Never call them returns.
+estimate, with the power cost and "You may receive as little as ₱0" beside it. Never call them returns.
 Each post fits X's 280 characters.
 
 1/
@@ -25,7 +25,7 @@ We ask before we switch anything on. Say no and you own a normal laptop.
 4/
 What can it earn? Our estimate for a home in Manila: about ₱1,000 a month for a SIPAG I and ₱1,500–1,800 for a LAKAN II, before ₱90–120 of power.
 
-We haven't measured that on our own laptops yet, and we guarantee no amount. Real numbers follow once Naga Node runs.
+Profitability varies. You may receive as little as ₱0. Real numbers follow once Naga Node runs.
 
 5/
 A second stream: Machine Rewards.

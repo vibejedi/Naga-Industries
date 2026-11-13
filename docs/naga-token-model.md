@@ -46,8 +46,9 @@ LAKAN II, before ₱90–120 of power. What sits behind those numbers:
   load, and a LAKAN II burns about US$1.05 of Meralco power earning it, so GPU work adds little
   in Manila.
 
-Always show them as estimates, unmeasured, with the power cost and "we guarantee no amount"
-beside them, and never call them returns. Replace them with measured numbers once Naga Node runs.
+Always show them as estimates, with the power cost and "Profitability varies. You may receive
+as little as ₱0" beside them (the owner's wording), and never call them returns. Naga has not
+measured them on its own laptops. Replace them with measured numbers once Naga Node runs.
 
 **What the label does not do.** Philippine regulators look at substance, not names. $NAGA trades
 on a public market, people can buy it with money, and Naga earns 1.5% of each trade. A regulator
