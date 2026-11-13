@@ -8,6 +8,8 @@ Rules for every post:
 - Earnings appear only as Naga's own estimate (about ₱1,000 a month for a SIPAG I, ₱1,500–1,800 for a
   LAKAN II), labelled as an estimate, with the power cost and "You may receive as little as ₱0" beside it.
   Never call them returns.
+- Machine Rewards are paid in $MU. Call it "a token that tracks Micron's share price". Never say a laptop earns
+  Micron stock or shares, and never suggest Micron is a partner.
 - Describe the bond as what ships with the laptop. Never describe Naga's purchases, the lock or the burn as
   support for the token.
 - No "first N" promotions that give people a reason to buy or stake quickly.
@@ -40,9 +42,9 @@ Naga Node stays off until you switch it on. Say no and you own a normal laptop.
 Switch it on and the laptop shares the internet and computing power you aren't using. The networks that use them pay your laptop for that work.
 
 5/
-A bonded laptop that worked that month also collects Machine Rewards, paid in $NAGA and sized by the work it did. We fund them with half of the creator fees we collect.
+A bonded laptop that worked that month also collects Machine Rewards, sized by the work it did. We fund them with 30% of our creator fees and pay them in $MU, a token that tracks Micron's share price.
 
-The cap is twice what the networks paid it that month. A laptop that did no work collects nothing.
+The cap is twice what the networks paid it that month. No work, no reward.
 
 6/
 Our estimate for a home in Manila, once Naga Node runs: about ₱1,000 a month for a SIPAG I and ₱1,500–1,800 for a LAKAN II, before ₱90–120 of power.
@@ -64,7 +66,7 @@ $NAGA also opens three perks, all in build:
 - Baku, our on-device AI, unlocked by burning $NAGA
 
 9/
-The other half of the fees pays for Baku and the next machines.
+The other 70% of the fees pays for Baku, the next machines, our team and marketing.
 
 Our first milestone is 100 Naga machines running on peaqOS. From then on, a tenth of our fees goes to a school fund. Each US$699 buys one SIPAG I for a Filipino student.
 
@@ -116,3 +118,10 @@ In build: naga.industries/node
   It no longer says partner networks "on peaqOS" pay, because peaq has not confirmed that peaqOS supplies the
   paid work (its public docs describe identity, bonding and a work record).
 - **No emoji.**
+
+## What changed later on 13 November 2026 (owner's decisions)
+
+- **The fee split is 30% Machine Rewards and 70% Naga**, down from half. Post 5 says "30% of our creator fees" and
+  post 9 says the other 70% pays for Baku, the next machines, the team and marketing.
+- **Machine Rewards are paid in $MU**, the token $NAGA trades against, which tracks Micron Technology's share
+  price. Post 5 says so in those words.
