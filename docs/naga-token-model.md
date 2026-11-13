@@ -1,7 +1,7 @@
 # $NAGA token model (v1 draft)
 
 Status: **the token is live and so is the page.** $NAGA trades on Machine.Fun, and the owner
-published `naga.html` on 12 November 2026 without an SEC disclosure filing or a legal opinion,
+published the Rewards page (`node.html`, served at naga.industries/node; `naga.html` until 13 November 2026) on 12 November 2026 without an SEC disclosure filing or a legal opinion,
 against the advice recorded below. The discount, staking, bonds and Naga Node are still in build. This is not legal advice; it is the brief for a Philippine
 securities lawyer. Sources for the legal points are listed at the end.
 
@@ -103,7 +103,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Is $NAGA a security? | Designed as a utility token: immediate use, no profit promise, no pay for holding | Written classification opinion; does the Machine Rewards pool (funded by trading fees) change it? Would a per-machine cap or paying it in USDC help? |
 | Public offering | SEC MC 4 and 5 (2025): disclosure document filed and public 30 days before any marketing in the Philippines | Who files when the token launches on a third-party launchpad? |
 | Launch platform | Machine.Fun must be allowed to serve Philippine users, or Philippine marketing must not point buyers to it | Is Machine.Fun a registered CASP? If not: geoblock, or list through a licensed local platform |
-| Marketing | Posts, pages, events, airdrops and paid promoters are all regulated; promoters of unregistered offerings face criminal liability | Review of `naga.html`, the launch thread and any KOL brief |
+| Marketing | Posts, pages, events, airdrops and paid promoters are all regulated; promoters of unregistered offerings face criminal liability | Review of `node.html`, the launch thread and any KOL brief |
 | Bonded laptop | A consumer product with an optional program, sold at the normal price | Does bundling the bond make the laptop an investment contract? Wording of the opt-in |
 | Naga Node terms | Explicit opt-in at purchase with the "before you opt in" disclosures | Consumer Act and Data Privacy Act (partner traffic through the owner's connection), ISP terms |
 | Drive wipe | Owner's responsibility, disclosed before opt-in | Is the forfeiture enforceable when Naga's own warranty repair wipes or replaces the drive? Recommend a re-link at service centers |

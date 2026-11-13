@@ -53,4 +53,4 @@ CHROME_PATH=/path/to/chrome node .claude/skills/design-taste-frontend/assets/lay
 
 State on 13 November 2026: `copy-lint` reports 0 FAIL on all pages. `check.mjs` reports no findings on the homepage
 at 1440x900; at 390x844 it reports the phone heights described above. Inner pages fail its height rules for the
-same reason and pass its edge rules, except the bento on `naga.html`.
+same reason and pass its edge rules, except the bento on `node.html`.

@@ -2,10 +2,42 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": false,
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/index", "destination": "/", "permanent": true }
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/naga.html",
+      "destination": "/node",
+      "permanent": true
+    },
+    {
+      "source": "/naga",
+      "destination": "/node",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/node",
+      "destination": "/node.html"
+    }
   ],
   "headers": [
-    { "source": "/llms.txt", "headers": [{ "key": "Content-Type", "value": "text/markdown; charset=utf-8" }] }
+    {
+      "source": "/llms.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        }
+      ]
+    }
   ]
 }

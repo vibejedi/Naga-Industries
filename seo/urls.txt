@@ -5,6 +5,6 @@ https://naga.industries/lakan-ii.html
 https://naga.industries/sipag-i.html
 https://naga.industries/diwa.html
 https://naga.industries/about.html
-https://naga.industries/naga.html
+https://naga.industries/node
 # Control: must keep redirecting to / (a final_url change here means the redirect broke).
 https://naga.industries/index.html

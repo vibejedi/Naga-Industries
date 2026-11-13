@@ -11,7 +11,7 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 | `lakan-ii.html` | NAGA LAKAN II, gaming laptop                          |
 | `diwa.html`     | NAGA DIWA, AI mini PC (Baku section with the Baku film) |
 | `about.html`    | Company facts: the visible brand fact sheet (keep in step with `seo/brand-facts.md`) |
-| `naga.html`     | $NAGA rewards page ("Rewards" in the nav and footers), live since 12 November 2026. Model, legal notes and open work: `docs/naga-token-model.md` |
+| `node.html`     | $NAGA rewards page, served at `/node` ("Rewards" in the nav and footers), live since 12 November 2026. It was `naga.html` until 13 November 2026; `vercel.json` redirects the old address. Model, legal notes and open work: `docs/naga-token-model.md` |
 
 ## Design system (read `.claude/skills/naga-design-system/SKILL.md` before touching visuals)
 
@@ -59,7 +59,7 @@ LAKAN II specs and price are confirmed (Clevo V255RNN1 base, 15.6" QHD 165Hz, �
 
 ## $NAGA token (see `docs/naga-token-model.md`)
 
-- `naga.html` is live on the owner's decision, without an SEC disclosure filing. Keep every $NAGA claim true today: label what is still in build, and switch nothing on in the order forms (`naga.enabled`) until it works.
+- `node.html` (naga.industries/node) is live on the owner's decision, without an SEC disclosure filing. Keep every $NAGA claim true today: label what is still in build, and switch nothing on in the order forms (`naga.enabled`) until it works.
 - Positioning: $NAGA is the key to Naga Node (a bonded laptop takes paid bandwidth and computing work on peaqOS); perks come second. Earnings appear only as Naga's own estimate (about ₱1,000 a month for a SIPAG I and ₱1,500–1,800 for a LAKAN II, reached when Machine Rewards pay near their cap; ₱300–600 from bandwidth sharing alone), always labelled as an estimate with the power cost and "Profitability varies. You may receive as little as ₱0" beside it, and never called a return; peaq's US$0.50–3 a day figure stays out until peaq documents it. The launch thread is `docs/naga-launch-thread.md`. Never ask anyone to buy it; no price, chart or buy link anywhere.
 - Wording rules: $NAGA unlocks perks; it is never an investment. Rewards are "for the work your machine does", shown as ranges with the electricity cost and "can be zero". Never promise a price, a return, yield, passive income or a machine that pays for itself. Staking gives access, not money.
 - Fee split bar: `.split` (segments `.s-a/.s-b/.s-c` with inline `flex`) and `.split-key`.
@@ -67,7 +67,7 @@ LAKAN II specs and price are confirmed (Clevo V255RNN1 base, 15.6" QHD 165Hz, �
 ## SEO and analytics (see `seo/README.md`)
 
 - Each page's head has a generated `<!-- seo -->` block (title, description, canonical, Open Graph, one JSON-LD `@graph`). Never edit it by hand: change `seo/site.json` (or prices in `store.json`) and run `npm run seo`, which also writes `sitemap.xml`, `robots.txt` and `llms.txt`. `npm test` fails if they are stale.
-- Canonical URLs are `https://naga.industries/<page>.html`; link to the homepage as `/`, never `index.html`. A new indexable page goes in `seo/site.json`, the footer and `seo/urls.txt`.
+- Canonical URLs are `https://naga.industries/<page>.html`; link to the homepage as `/`, never `index.html`. The Rewards page is the one clean address: `node.html` is served at `/node` by a rewrite in `vercel.json`, its canonical is `https://naga.industries/node`, and every link to it is `/node`. A new indexable page goes in `seo/site.json`, the footer and `seo/urls.txt`.
 - Structured data must match visible text; a price goes into Product/Offer markup only when `priceConfirmed` is true in `store.json`.
 - `assets/js/naga-analytics.js`: Vercel Web Analytics and GA4 (`GA4_ID`, empty = off) on naga.industries only, with AI assistant referrals tagged. Order forms carry an optional "How did you hear about Naga?" (`Core.HEARD`).
 - SEO skills (RomeoSEO, MIT) are in `.claude/skills/`; use them for audits, schema, comparison pages and content QA.
