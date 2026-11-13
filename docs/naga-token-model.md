@@ -8,7 +8,7 @@ securities lawyer. Sources for the legal points are listed at the end.
 ## The model in one paragraph
 
 $NAGA is a fair-launch token on Machine.Fun. It unlocks perks in Naga products (a holder
-discount, first access for stakers, Baku unlocks) and funds a school program. Each bonded laptop
+discount, first access for stakers, Baku unlocks). A school fund starts at a milestone. Each bonded laptop
 gets a fixed amount of $NAGA bought by Naga on the open market and locked to that machine for a
 year; the bond makes the machine eligible for Machine Rewards, which are paid for work the
 machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holding or staking.
@@ -49,7 +49,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Piece | Rule |
 |---|---|
 | Launch | Fair launch on Machine.Fun (Raydium, Solana), no presale. Contract: `D7J4EfJY9fTMJ5CLUo6ZAwx5zEDZXam381aqmuiumfun` |
-| Creator fees | 1.5% of each $NAGA trade, paid to Naga's wallet. Split: 50% Machine Rewards pool, 40% Naga (Baku, products, bonds), 10% school fund. Three public wallets |
+| Creator fees | 1.5% of each $NAGA trade, paid to Naga's wallet. Split: 50% Machine Rewards pool, 50% Naga (Baku, products, bonds). Two public wallets. Milestone: once 100 Naga machines are active on peaqOS, 10% moves from Naga's half to a school fund with its own public wallet (owner's decision, 13 November 2026) |
 | Pay | Holders and stakers get 5% off a laptop (currently international orders; `naga` block in `store.json`). Verified on the server at checkout |
 | Stake | Locks tokens for access: pre-release products, starting with DIWA. First 300 stakers get a Naga Karga backpack (buyer pays shipping). No yield |
 | Burn | Burn $NAGA to unlock Baku when it launches |
@@ -96,7 +96,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Naga Node terms | Explicit opt-in at purchase with the "before you opt in" disclosures | Consumer Act and Data Privacy Act (partner traffic through the owner's connection), ISP terms |
 | Drive wipe | Owner's responsibility, disclosed before opt-in | Is the forfeiture enforceable when Naga's own warranty repair wipes or replaces the drive? Recommend a re-link at service centers |
 | Backpack for 300 stakers | A sales promotion | DTI sales promotion permit |
-| School fund | 10% of creator fees, public wallet, named partner, delivery reports | DSWD solicitation permit if buyers are told their trades fund it |
+| School fund | Not running yet. Starts at 100 active peaqOS machines: 10% of creator fees, public wallet, named partner, delivery reports | DSWD solicitation permit if buyers are told their trades fund it |
 | Money handling | Naga never holds customer funds; machine wallets are self-custodial; rewards are paid on-chain | Any BSP VASP licence trigger; AML |
 | Tax | Creator fees are Naga's income; rewards may be income to owners | BIR treatment of fees, bonds, burns and token-paid discounts; VAT on token-priced sales |
 | Other countries | Exports go worldwide | Which countries to exclude from the token (US, and others) |
@@ -108,7 +108,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 3. Confirm with Machine.Fun: how the 1.5% creator fee pays out, and the
    peaqOS bonding and staking contracts. Fill "The details" on the page.
 4. Build what the page promises: wallet check for the 5% discount, the Naga Node opt-in checkbox
-   on the order forms (recorded with the order), the staking and bond contracts, three public
+   on the order forms (recorded with the order), the staking and bond contracts, two public
    wallets, and a rewards dashboard with real numbers.
 5. As each feature opens, replace its "in build" label on the page with the date it opened.
 

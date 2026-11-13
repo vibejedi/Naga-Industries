@@ -34,11 +34,9 @@ $NAGA trades on Machine.Fun, and we collect 1.5% of each trade. Half goes to the
 A laptop collects at most twice its network pay.
 
 6/
-The other half of the fees:
+The other half of the fees builds Naga: Baku, our on-device AI, and the next machines.
 
-40% builds Naga: Baku, our on-device AI, and the next machines.
-
-10% goes to a school fund. Each US$699 it collects buys one SIPAG I for a Filipino student who needs a laptop.
+Our first milestone is 100 Naga machines running on peaqOS. From then on, a tenth of our fees goes to a school fund. Each US$699 buys one SIPAG I for a Filipino student.
 
 7/
 $NAGA also gets you:
