@@ -18,7 +18,7 @@ npx serve .          # or any static server
 ```
 assets/
   css/naga.css        design tokens and every component
-  js/naga.js          nav, Lenis smooth scroll, GSAP reveals, Splitting headlines, Lottie mark, counters
+  js/naga.js          nav, hero entrance, statement moment, living sea, music, films, Lottie mark (no animation library)
   vendor/             pinned library builds (see package.json); nothing loads from a CDN except Google Fonts
   img/                wordmarks, poster frames, favicon
   img/products/       product renders (transparent 16:9 WebP, 2000×1125)
@@ -27,6 +27,7 @@ assets/
   lottie/             naga-wave.json, the animated mark in the nav
   audio/              naga-ambient-bakunawa-night.mp3, the background music (96 kbps, 636 KB)
 .claude/skills/naga-design-system/SKILL.md   the design system, loaded by Claude before visual work
+.claude/skills/design-taste-frontend/        tasteskill (MIT): the layout, copy and motion rules the system follows; see its NAGA.md
 CLAUDE.md                                    project conventions for Claude Code sessions
 ```
 
@@ -34,10 +35,8 @@ CLAUDE.md                                    project conventions for Claude Code
 
 | Library | Version | Role |
 |---|---|---|
-| GSAP + ScrollTrigger | 3.15.0 | reveals, product-shot settle, nav dark detection |
-| Lenis | 1.3.26 | smooth scrolling |
-| lottie-web (light) | 5.13.0 | animated wave mark |
-| Splitting | 1.1.0 | word-by-word headline reveals |
+| lottie-web (light) | 5.13.0 | the wave mark in the nav |
+| GSAP | 3.15.0 | the promo film pages in `promo/` only; no site page loads it |
 
 To update: change the version in `package.json`, then `npm install && npm run vendor`.
 

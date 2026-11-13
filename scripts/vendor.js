@@ -8,15 +8,10 @@ const nm = path.join(root, 'node_modules');
 const out = path.join(root, 'assets', 'vendor');
 
 const files = [
+  // gsap is for the promo film pages in promo/ only; no site page loads it.
   ['gsap/dist/gsap.min.js', 'gsap.min.js'],
-  ['gsap/dist/ScrollTrigger.min.js', 'ScrollTrigger.min.js'],
-  ['lenis/dist/lenis.min.js', 'lenis.min.js'],
-  ['lenis/dist/lenis.css', 'lenis.css'],
-  ['lenis/LICENSE', 'LICENSE-lenis.txt'],
   ['lottie-web/build/player/lottie_light.min.js', 'lottie_light.min.js'],
   ['lottie-web/LICENSE.md', 'LICENSE-lottie-web.md'],
-  ['splitting/dist/splitting.min.js', 'splitting.min.js'],
-  ['splitting/dist/splitting.css', 'splitting.css'],
 ];
 
 fs.mkdirSync(out, { recursive: true });
