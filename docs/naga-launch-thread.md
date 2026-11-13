@@ -27,7 +27,7 @@ First, where things stand.
 
 $NAGA exists today. Naga Node, the bonds, staking and the discount are in build, so no laptop earns anything yet.
 
-We date each piece as it opens: naga.industries/naga.html
+We date each piece as it opens: naga.industries/node
 
 3/
 Each LAKAN II and SIPAG I will ship with a bond: US$50 of $NAGA for a LAKAN II and US$35 for a SIPAG I, locked to that laptop for 12 months.
@@ -97,7 +97,7 @@ $NAGA is the key to Naga Node.
 
 Each Naga laptop will ship with $NAGA bonded to it. A bonded laptop can take paid bandwidth and computing work while it sits idle. The pay is for the work your laptop does. Holding $NAGA pays nothing.
 
-In build: naga.industries/naga.html
+In build: naga.industries/node
 
 ## What changed on 13 November 2026, and why
 

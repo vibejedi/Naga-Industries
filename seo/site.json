@@ -107,8 +107,8 @@
       "imageAlt": "Naga Industries: a carved stone wall with the glowing naga serpent"
     },
     {
-      "file": "naga.html",
-      "path": "/naga.html",
+      "file": "node.html",
+      "path": "/node",
       "type": "WebPage",
       "title": "$NAGA: the key to Naga Node on peaqOS",
       "description": "$NAGA is the rewards token for Naga laptops. Bond it to your laptop and the laptop can take paid bandwidth and computing work on peaqOS through Naga Node.",
