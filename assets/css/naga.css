@@ -449,6 +449,8 @@ a { color: inherit; }
 .fld .err { font-style: normal; font-size: .82rem; color: var(--cyan-link); min-height: 0; }
 .fld .err:empty { display: none; }
 .pay { border: 0; margin: 4px 0 0; padding: 0; display: grid; gap: 10px; }
+.pay[hidden] { display: none; }
+.order-nopay { margin-top: 4px; }
 .pay legend { margin-bottom: 8px; }
 .pay-opt { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--hairline); border-radius: var(--radius-sm); background: var(--paper); cursor: pointer; }
 .pay-opt:has(input:checked) { border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan); }
