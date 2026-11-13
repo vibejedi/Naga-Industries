@@ -11,6 +11,8 @@ Rules for every post:
 - Machine Rewards are paid in USDC. $NAGA trades against $MU; call $MU "a token that tracks Micron's share
   price". Never say a laptop earns Micron stock or shares, never suggest Micron is a partner, and never say
   what the pair does to $NAGA's price.
+- The fee split is directional. Say "today we plan" and "directional" whenever a post gives a share, and never
+  call a share a promise.
 - Describe the bond as what ships with the laptop. Never describe Naga's purchases, the lock or the burn as
   support for the token.
 - No "first N" promotions that give people a reason to buy or stake quickly.
@@ -43,7 +45,7 @@ Naga Node stays off until you switch it on. Say no and you own a normal laptop.
 Switch it on and the laptop shares the internet and computing power you aren't using. The networks that use them pay your laptop for that work.
 
 5/
-A bonded laptop that worked that month also collects Machine Rewards, sized by the work it did. We fund them with 30% of our creator fees and pay them in USDC, a dollar stablecoin.
+A bonded laptop that worked that month also collects Machine Rewards, sized by the work it did. Today we plan 15% of our creator fees for them, paid in USDC. That share is directional.
 
 The cap is twice what the networks paid it that month. No work, no reward.
 
@@ -67,9 +69,9 @@ $NAGA also opens three perks, all in build:
 - Baku, our on-device AI, unlocked by burning $NAGA
 
 9/
-The other 70% of the fees pays for Baku, the next machines, our team and marketing.
+The rest of the fees, directionally: 50% team and marketing as we take Naga to more countries, 30% Baku and the next machines, 5% a school fund.
 
-Our first milestone is 100 Naga machines running on peaqOS. From then on, a tenth of our fees goes to a school fund. Each US$699 buys one SIPAG I for a Filipino student.
+The school fund starts at 100 Naga machines on peaqOS. Each US$699 buys one SIPAG I for a Filipino student.
 
 10/
 Before you opt in:
@@ -122,8 +124,10 @@ In build: naga.industries/node
 
 ## What changed later on 13 November 2026 (owner's decisions)
 
-- **The fee split is 30% Machine Rewards and 70% Naga**, down from half. Post 5 says "30% of our creator fees" and
-  post 9 says the other 70% pays for Baku, the next machines, the team and marketing.
+- **The fee split is directional: 15% Machine Rewards, 30% products, 50% team and marketing, 5% school fund.**
+  It was half each, then 30/40/30 and 25/35/40 within a few hours. The owner then made the whole split a plan
+  that can change, raised the team share because the company is growing into more countries, and cut the
+  school fund to 5%. Posts 5 and 9 say "today we plan" and "directional".
 - **Machine Rewards are paid in USDC.** The owner first chose $MU, the token $NAGA trades against, then moved to
   USDC the same day, because a token backed by Micron stock is a security in most countries. Naga converts the
   rewards share of its $MU fees before each payout. Post 5 says "pay them in USDC, a dollar stablecoin".

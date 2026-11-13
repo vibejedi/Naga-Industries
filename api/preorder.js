@@ -17,6 +17,9 @@
                             store.json crypto.rpcUrl)
    With neither destination set, the function answers 503 and the page tells
    the visitor to email Naga instead, so nothing is silently dropped.
+
+   GET /api/preorder answers { webhook, shopify, environment } as true/false,
+   so the owner can check in a browser that a deployment sees its variables.
    ========================================================================== */
 'use strict';
 
@@ -80,6 +83,14 @@ const units = (usdString, decimals) => {
 async function toWebhook(url, record) {
   const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(record) });
   if (!r.ok) throw new Error('webhook ' + r.status);
+  // A 200 is not proof the order was kept. The Google Sheet script answers 200 with {ok:false} for a
+  // wrong key, and a script that is not shared with "Anyone" answers 200 with a Google sign-in page.
+  const text = typeof r.text === 'function' ? await r.text().catch(() => '') : '';
+  let data = null;
+  try { data = JSON.parse(text); } catch (e) { /* not JSON: most webhooks answer with plain text */ }
+  if (data && data.ok === false) throw new Error('webhook refused the order: ' + (data.error || 'ok is false'));
+  const google = /(^|\.)google(usercontent)?\.com$/.test(new URL(r.url || url).hostname);
+  if (google && !data && /^\s*</.test(text)) throw new Error('webhook answered with a web page, not the script: check that the Apps Script web app is shared with Anyone');
 }
 
 async function toShopifyDraft(domain, token, record) {
@@ -109,7 +120,17 @@ async function toShopifyDraft(domain, token, record) {
 }
 
 module.exports = async function handler(req, res) {
-  if (req.method !== 'POST') { res.setHeader('allow', 'POST'); return send(res, 405, { error: 'method_not_allowed' }); }
+  // Opening /api/preorder in a browser says whether this deployment can see a destination.
+  // It shows true or false only, never a URL or a token.
+  if (req.method === 'GET') {
+    return send(res, 200, {
+      service: 'naga pre-orders',
+      webhook: !!process.env.PREORDER_WEBHOOK_URL,
+      shopify: !!(process.env.SHOPIFY_STORE_DOMAIN && process.env.SHOPIFY_ADMIN_TOKEN),
+      environment: process.env.VERCEL_ENV || 'local',
+    });
+  }
+  if (req.method !== 'POST') { res.setHeader('allow', 'GET, POST'); return send(res, 405, { error: 'method_not_allowed' }); }
   let body;
   try { body = await readJson(req); } catch (e) { return send(res, 400, { error: 'bad_json' }); }
 

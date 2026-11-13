@@ -39,9 +39,10 @@ LAKAN II, before ₱90–120 of power. What sits behind those numbers:
   with outside evidence.
 - The rest is Machine Rewards. The cap is twice the month's network pay, so a laptop tops out
   at three times ₱300–600, which is ₱900–1,800. The owner's figures need Machine Rewards to pay
-  near the cap, and that needs steady $NAGA trading. With 30% of fees in the pool, paying the
-  first 75 laptops at the cap (about US$1,000 a month in all) takes about US$7,400 of $NAGA
-  volume a day; at the old 50% it took about US$4,400. The fees arrive in $MU and are converted to USDC at
+  near the cap, and that needs steady $NAGA trading. With 15% of fees in the pool, paying the
+  first 75 laptops at the cap (about US$1,000 a month in all) takes about US$14,800 of $NAGA
+  volume a day; at the first 50% it took about US$4,400. The share is also directional now, so
+  the page calls the figures "potential, at the cap" and no longer "what we expect". The fees arrive in $MU and are converted to USDC at
   payout, so the pool's size moves with Micron's share price until then.
 - They also sit at the low end of what peaq told the owner (US$0.50 to US$3 a day, about
   ₱950–5,700 a month), which peaq has not yet documented.
@@ -64,7 +65,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Piece | Rule |
 |---|---|
 | Launch | Fair launch on Machine.Fun (Raydium, Solana), no presale. Contract: `D7J4EfJY9fTMJ5CLUo6ZAwx5zEDZXam381aqmuiumfun` |
-| Creator fees | 1.5% of each $NAGA trade, paid to Naga's wallet in the pair's quote token, $MU. Split (owner's decision, 13 November 2026): 30% Machine Rewards pool, 40% products (Baku, the next machines, bonds), 30% team and marketing. It was 50% Machine Rewards and 50% Naga until then. Public wallets for each. Milestone: once 100 Naga machines are active on peaqOS, 10% of the fees moves from the products share to a school fund with its own public wallet |
+| Creator fees | 1.5% of each $NAGA trade, paid to Naga's wallet in the pair's quote token, $MU. Split (owner's decision, 13 November 2026), directional: 15% Machine Rewards pool, 30% products (Baku, the next machines, bonds), 50% team and marketing, 5% school fund. "Directional" means it is a plan Naga can change as the company's needs change, with each change posted on the page with its date; no share is a commitment. It was 50% Machine Rewards and 50% Naga at first, then 30/40/30 and 25/35/40 within a few hours the same day. Public wallets for each. Milestone: the 5% school fund starts once 100 Naga machines are active on peaqOS, with its own public wallet; until then that share goes to products |
 | Reward token | USDC on Solana (owner's decision, 13 November 2026, after first choosing $MU the same day). Naga converts the rewards share of its $MU fees to USDC before each payout |
 | Trading pair | $NAGA trades against $MU on Machine.Fun, a token that tracks Micron Technology's share price. The owner confirmed the pair on 13 November 2026; its issuer and contract address are not recorded in this repo yet |
 | Pay | Holders and stakers get 5% off a laptop (currently international orders; `naga` block in `store.json`). Verified on the server at checkout |
@@ -73,7 +74,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Machine Bond | Per bonded laptop sold, Naga buys $NAGA on the open market and locks it on-chain to the machine's ID for 12 months: US$50 (LAKAN II), US$35 (SIPAG I), confirmed by Naga. At expiry 50% is burned and 50% returns to the Naga treasury |
 | Renewal | After 12 months the owner keeps eligibility by staking their own $NAGA to the machine (same size as the original bond) for another 12 months. Staked tokens are returned in full |
 | Naga Node | peaqOS on every bonded laptop. Offered explicitly at purchase, off by default, can be left at any time |
-| Machine Rewards | The pool (30% of creator fees) is paid monthly in USDC to active bonded machines in proportion to verified work (uptime and contribution through peaqOS), on top of what partner networks pay the machine directly. Cap: a machine collects at most twice its network pay for that month; the overflow goes to the Naga treasury |
+| Machine Rewards | The pool (15% of creator fees today, directional) is paid monthly in USDC to active bonded machines in proportion to verified work (uptime and contribution through peaqOS), on top of what partner networks pay the machine directly. Cap: a machine collects at most twice its network pay for that month; the overflow goes to the Naga treasury |
 | Drive wipe | The machine wallet and peaqOS identity live on the drive. Wiping, reinstalling or replacing it ends the bond link and forfeits unclaimed rewards. The owner accepts this at opt-in |
 
 ## What changed from the first brief, and why
@@ -100,10 +101,14 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
    and the months it collects nothing. The page states the payback plainly: at ₱450 a month a
    SIPAG I needs about nine years to cover its price. Never "passive income", "earn while you sleep" without the
    fine print, "pays for itself", yield, APY or price talk.
-6. **The pool is 30% of fees, not 50%.** The cap already limits what laptops can collect: about
+6. **The pool is 15% of fees, not 50%, and the whole split is directional.** The cap already limits what laptops can collect: about
    US$1,000 a month for the first 75 units. Above that, a larger share only returns to the
-   treasury. The owner moved 20 points to a named team and marketing share. Below about 25–30%
-   "trading fees pay the machines that work" stops being true in any month that matters.
+   treasury. The owner moved 35 points out of the pool and named a team and marketing share, now 50% and the
+   largest, because the company is growing into more countries. No share is fixed. This weakens
+   the design's main defence: with a small pool that Naga can change at will, "trading fees pay
+   the machines that work" is true only in high-volume months, and the fees read more as money
+   the team controls. Advised: keep a floor for Machine Rewards and give notice of changes. The
+   owner chose a fully directional split.
 7. **Rewards are paid in USDC, not $NAGA.** The owner first chose $MU, the pair's quote token,
    then USDC. A token backed by Micron stock is a security in most countries, and paying
    rewards in it would mean handing a security to the public. USDC also gives owners a figure
@@ -123,7 +128,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Naga Node terms | Explicit opt-in at purchase with the "before you opt in" disclosures | Consumer Act and Data Privacy Act (partner traffic through the owner's connection), ISP terms |
 | Drive wipe | Owner's responsibility, disclosed before opt-in | Is the forfeiture enforceable when Naga's own warranty repair wipes or replaces the drive? Recommend a re-link at service centers |
 | Backpack for 300 stakers | A sales promotion | DTI sales promotion permit |
-| School fund | Not running yet. Starts at 100 active peaqOS machines: 10% of creator fees, public wallet, named partner, delivery reports | DSWD solicitation permit if buyers are told their trades fund it |
+| School fund | Not running yet. Starts at 100 active peaqOS machines: 5% of creator fees (directional), public wallet, named partner, delivery reports | DSWD solicitation permit if buyers are told their trades fund it |
 | Money handling | Naga never holds customer funds; machine wallets are self-custodial; rewards are paid on-chain | Any BSP VASP licence trigger; AML |
 | Tax | Creator fees are Naga's income; rewards may be income to owners | BIR treatment of fees, bonds, burns and token-paid discounts; VAT on token-priced sales |
 | Other countries | Exports go worldwide | Which countries to exclude from the token (US, and others) |

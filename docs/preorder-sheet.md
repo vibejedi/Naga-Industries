@@ -63,3 +63,26 @@ function out(o) { return ContentService.createTextOutput(JSON.stringify(o)).setM
   and hide the payment choices; `naga-store.js` does this by itself when the Shopify and Privy settings in
   `store.json` are empty.
 - Names and emails are personal data. Keep the sheet private, and use it only to contact people about their order.
+
+## If the form says "Online pre-orders are not open yet"
+
+The function could not hand the order to the sheet. First open `https://naga.industries/api/preorder` in a
+browser. It answers with `"webhook": true` or `false`:
+
+- **false:** this deployment cannot see the variable. Check step 1 below.
+- **true:** the variable is there and the sheet refused the order. Check steps 2 to 4.
+
+The checks, in order:
+
+1. **The variable is set for Production** and the site was redeployed after you added it. A variable only reaches
+   deployments made after it was saved.
+2. **The value is the whole URL plus the key:** `https://script.google.com/macros/s/.../exec?key=<your KEY>`.
+   The key must match `KEY` in the script exactly.
+3. **The web app is shared with "Anyone"**, not "Anyone with a Google account". Otherwise Google answers with
+   a sign-in page.
+4. **You deployed the script after your last edit.** Apps Script serves the version you deployed, so a change to
+   `KEY` needs **Deploy → Manage deployments → Edit → New version**.
+
+The function treats a wrong key and a sign-in page as failures, so the form never tells a visitor they are on the
+list when the sheet did not get the row. Vercel's function logs (Project → Logs, filter `/api/preorder`) show
+which of these it was.
