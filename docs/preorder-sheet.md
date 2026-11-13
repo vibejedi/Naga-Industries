@@ -66,7 +66,13 @@ function out(o) { return ContentService.createTextOutput(JSON.stringify(o)).setM
 
 ## If the form says "Online pre-orders are not open yet"
 
-The function could not hand the order to the sheet. Check, in this order:
+The function could not hand the order to the sheet. First open `https://naga.industries/api/preorder` in a
+browser. It answers with `"webhook": true` or `false`:
+
+- **false:** this deployment cannot see the variable. Check step 1 below.
+- **true:** the variable is there and the sheet refused the order. Check steps 2 to 4.
+
+The checks, in order:
 
 1. **The variable is set for Production** and the site was redeployed after you added it. A variable only reaches
    deployments made after it was saved.

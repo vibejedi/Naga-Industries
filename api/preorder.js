@@ -17,6 +17,9 @@
                             store.json crypto.rpcUrl)
    With neither destination set, the function answers 503 and the page tells
    the visitor to email Naga instead, so nothing is silently dropped.
+
+   GET /api/preorder answers { webhook, shopify, environment } as true/false,
+   so the owner can check in a browser that a deployment sees its variables.
    ========================================================================== */
 'use strict';
 
@@ -117,7 +120,17 @@ async function toShopifyDraft(domain, token, record) {
 }
 
 module.exports = async function handler(req, res) {
-  if (req.method !== 'POST') { res.setHeader('allow', 'POST'); return send(res, 405, { error: 'method_not_allowed' }); }
+  // Opening /api/preorder in a browser says whether this deployment can see a destination.
+  // It shows true or false only, never a URL or a token.
+  if (req.method === 'GET') {
+    return send(res, 200, {
+      service: 'naga pre-orders',
+      webhook: !!process.env.PREORDER_WEBHOOK_URL,
+      shopify: !!(process.env.SHOPIFY_STORE_DOMAIN && process.env.SHOPIFY_ADMIN_TOKEN),
+      environment: process.env.VERCEL_ENV || 'local',
+    });
+  }
+  if (req.method !== 'POST') { res.setHeader('allow', 'GET, POST'); return send(res, 405, { error: 'method_not_allowed' }); }
   let body;
   try { body = await readJson(req); } catch (e) { return send(res, 400, { error: 'bad_json' }); }
 

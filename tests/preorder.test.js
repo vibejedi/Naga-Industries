@@ -43,6 +43,19 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
 }, extra);
 
 (async () => {
+  // GET reports whether a destination is visible, as true or false only.
+  const get = () => new Promise((resolve) => {
+    const res = { statusCode: 0, setHeader() {}, end(s) { resolve({ status: this.statusCode, body: JSON.parse(s), raw: s }); } };
+    handler({ method: 'GET', headers: {} }, res);
+  });
+  delete process.env.PREORDER_WEBHOOK_URL;
+  let g = await get();
+  assert.equal(g.status, 200); assert.equal(g.body.webhook, false, 'no webhook seen');
+  process.env.PREORDER_WEBHOOK_URL = 'https://hooks.example.com/secret-path?key=abc';
+  g = await get();
+  assert.equal(g.body.webhook, true, 'webhook seen');
+  assert.ok(!g.raw.includes('secret-path') && !g.raw.includes('abc'), 'the status never shows the URL');
+
   // Not configured: no destination at all.
   delete process.env.PREORDER_WEBHOOK_URL;
   let r = await call(Object.assign({ type: 'reserve', product: 'diwa' }, base));
