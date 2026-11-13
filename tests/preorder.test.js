@@ -144,8 +144,8 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   assert.ok(draft.body.variables.input.tags.includes('paid-usdc'));
   assert.equal(draft.body.variables.input.lineItems[0].originalUnitPrice, String(cfg.products['lakan-ii'].usd));
 
-  // Non-POST.
-  const res405 = await new Promise((resolve) => handler({ method: 'GET', headers: {} }, { statusCode: 0, setHeader() {}, end(s) { resolve(this.statusCode); } }));
+  // Anything but GET (the status check above) and POST is refused.
+  const res405 = await new Promise((resolve) => handler({ method: 'PUT', headers: {} }, { statusCode: 0, setHeader() {}, end(s) { resolve(this.statusCode); } }));
   assert.equal(res405, 405);
 
   // Pricing: pesos in the Philippines (VAT included, free delivery), fixed USD price abroad.
