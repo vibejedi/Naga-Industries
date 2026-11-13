@@ -6,12 +6,12 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 
 | File            | Role                                                  |
 |-----------------|-------------------------------------------------------|
-| `index.html`    | Homepage: entrance film, three product tiles, performance chapter, "why Naga" bento, compare table, film |
+| `index.html`    | Homepage: entrance video, three product tiles, performance chapter, "why Naga" bento, compare table. The brand film section, its nav link and its footer link are removed for now (13 November 2026); restore them from git history |
 | `sipag-i.html`  | NAGA SIPAG I, productivity laptop                     |
 | `lakan-ii.html` | NAGA LAKAN II, gaming laptop                          |
 | `diwa.html`     | NAGA DIWA, AI mini PC (Baku section with the Baku film) |
 | `about.html`    | Company facts: the visible brand fact sheet (keep in step with `seo/brand-facts.md`) |
-| `naga.html`     | $NAGA rewards page, live since 12 November 2026. Model, legal notes and open work: `docs/naga-token-model.md` |
+| `naga.html`     | $NAGA rewards page ("Rewards" in the nav and footers), live since 12 November 2026. Model, legal notes and open work: `docs/naga-token-model.md` |
 
 ## Design system (read `.claude/skills/naga-design-system/SKILL.md` before touching visuals)
 
