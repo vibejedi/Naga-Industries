@@ -17,6 +17,9 @@ global.fetch = async (url, init) => {
   calls.push({ url: String(url), body, headers: init && init.headers });
   if (String(url).includes('rpc')) return { ok: true, json: async () => ({ result: rpcResult }) };
   if (String(url).includes('myshopify')) return { ok: true, json: async () => ({ data: { draftOrderCreate: { draftOrder: { id: 'gid://shopify/DraftOrder/1' }, userErrors: [] } } }) };
+  if (String(url).includes('wrong-key')) return { ok: true, url: String(url), text: async () => '{"ok":false,"error":"forbidden"}' };
+  if (String(url).includes('script.google.com/private')) return { ok: true, url: 'https://accounts.google.com/ServiceLogin', text: async () => '<!doctype html><title>Sign in</title>' };
+  if (String(url).includes('script.google.com')) return { ok: true, url: 'https://script.googleusercontent.com/macros/echo', text: async () => '{"ok":true}' };
   return { ok: true, json: async () => ({}) };
 };
 
@@ -65,6 +68,18 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   r = await call(Object.assign({ type: 'reserve', product: 'diwa', heard: '<script>', ai: 'Bad Value!' }, base));
   assert.equal(r.status, 200);
   assert.equal(calls[0].body.heard, ''); assert.equal(calls[0].body.ai, '');
+
+  // A webhook that answers 200 but did not keep the order is a failure, so the page offers email.
+  process.env.PREORDER_WEBHOOK_URL = 'https://script.google.com/macros/s/x/exec?key=wrong-key';
+  r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
+  assert.equal(r.status, 502, 'sheet script refused the key');
+  process.env.PREORDER_WEBHOOK_URL = 'https://script.google.com/private/exec?key=k';
+  r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
+  assert.equal(r.status, 502, 'sheet script not shared with Anyone');
+  process.env.PREORDER_WEBHOOK_URL = 'https://script.google.com/macros/s/x/exec?key=k';
+  r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
+  assert.equal(r.status, 200, 'sheet script kept the order');
+  process.env.PREORDER_WEBHOOK_URL = 'https://hooks.example.com/naga';
 
   // Validation.
   r = await call(Object.assign({ type: 'reserve', product: 'diwa' }, base, { email: 'nope' }));

@@ -80,6 +80,14 @@ const units = (usdString, decimals) => {
 async function toWebhook(url, record) {
   const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(record) });
   if (!r.ok) throw new Error('webhook ' + r.status);
+  // A 200 is not proof the order was kept. The Google Sheet script answers 200 with {ok:false} for a
+  // wrong key, and a script that is not shared with "Anyone" answers 200 with a Google sign-in page.
+  const text = typeof r.text === 'function' ? await r.text().catch(() => '') : '';
+  let data = null;
+  try { data = JSON.parse(text); } catch (e) { /* not JSON: most webhooks answer with plain text */ }
+  if (data && data.ok === false) throw new Error('webhook refused the order: ' + (data.error || 'ok is false'));
+  const google = /(^|\.)google(usercontent)?\.com$/.test(new URL(r.url || url).hostname);
+  if (google && !data && /^\s*</.test(text)) throw new Error('webhook answered with a web page, not the script: check that the Apps Script web app is shared with Anyone');
 }
 
 async function toShopifyDraft(domain, token, record) {
