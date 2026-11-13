@@ -8,7 +8,7 @@ securities lawyer. Sources for the legal points are listed at the end.
 ## The model in one paragraph
 
 $NAGA is a fair-launch token on Machine.Fun. It unlocks perks in Naga products (a holder
-discount, first access for stakers, Baku unlocks) and funds a school program. Each bonded laptop
+discount, first access for stakers, Baku unlocks). A school fund starts at a milestone. Each bonded laptop
 gets a fixed amount of $NAGA bought by Naga on the open market and locked to that machine for a
 year; the bond makes the machine eligible for Machine Rewards, which are paid for work the
 machine does through peaqOS (Naga Node, opt-in). Nobody is paid for simply holding or staking.
@@ -31,12 +31,24 @@ $NAGA bonded to it can take paid bandwidth and computing work on peaqOS. Perks c
 is also the most defensible design, because the owner's pay comes from their own laptop's work,
 paid by partner networks, and not from Naga's efforts or from other holders.
 
-**Earnings claims.** peaq told the owner a machine on peaqOS earns US$0.50 to US$3 a day, with
-documentation to follow. Until that arrives, no page or post carries the figure. Naga's own
-estimate is what appears: ₱300–600 a month from bandwidth sharing in Manila, against ₱90–120 of
-power, labelled as an estimate and never called a return. Public GPU-rental rates put a desktop
-RTX 5060 at about US$1.10 to US$1.40 a day gross at full load, and a LAKAN II burns about US$1.05
-of Meralco power earning it. Replace the estimates with measured numbers once Naga Node runs.
+**Earnings claims (owner's figures, 13 November 2026).** The page and thread state what Naga
+expects a laptop to collect in a month: about ₱1,000 for a SIPAG I and ₱1,500–1,800 for a
+LAKAN II, before ₱90–120 of power. What sits behind those numbers:
+
+- Bandwidth sharing alone brings about ₱300–600 a month at public rates. That is the only part
+  with outside evidence.
+- The rest is Machine Rewards. The cap is twice the month's network pay, so a laptop tops out
+  at three times ₱300–600, which is ₱900–1,800. The owner's figures need Machine Rewards to pay
+  near the cap, and that needs steady $NAGA trading.
+- They also sit at the low end of what peaq told the owner (US$0.50 to US$3 a day, about
+  ₱950–5,700 a month), which peaq has not yet documented.
+- Public GPU-rental rates put a desktop RTX 5060 at about US$1.10 to US$1.40 a day gross at full
+  load, and a LAKAN II burns about US$1.05 of Meralco power earning it, so GPU work adds little
+  in Manila.
+
+Always show them as estimates, with the power cost and "Profitability varies. You may receive
+as little as ₱0" beside them (the owner's wording), and never call them returns. Naga has not
+measured them on its own laptops. Replace them with measured numbers once Naga Node runs.
 
 **What the label does not do.** Philippine regulators look at substance, not names. $NAGA trades
 on a public market, people can buy it with money, and Naga earns 1.5% of each trade. A regulator
@@ -49,7 +61,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Piece | Rule |
 |---|---|
 | Launch | Fair launch on Machine.Fun (Raydium, Solana), no presale. Contract: `D7J4EfJY9fTMJ5CLUo6ZAwx5zEDZXam381aqmuiumfun` |
-| Creator fees | 1.5% of each $NAGA trade, paid to Naga's wallet. Split: 50% Machine Rewards pool, 40% Naga (Baku, products, bonds), 10% school fund. Three public wallets |
+| Creator fees | 1.5% of each $NAGA trade, paid to Naga's wallet. Split: 50% Machine Rewards pool, 50% Naga (Baku, products, bonds). Two public wallets. Milestone: once 100 Naga machines are active on peaqOS, 10% moves from Naga's half to a school fund with its own public wallet (owner's decision, 13 November 2026) |
 | Pay | Holders and stakers get 5% off a laptop (currently international orders; `naga` block in `store.json`). Verified on the server at checkout |
 | Stake | Locks tokens for access: pre-release products, starting with DIWA. First 300 stakers get a Naga Karga backpack (buyer pays shipping). No yield |
 | Burn | Burn $NAGA to unlock Baku when it launches |
@@ -96,7 +108,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Naga Node terms | Explicit opt-in at purchase with the "before you opt in" disclosures | Consumer Act and Data Privacy Act (partner traffic through the owner's connection), ISP terms |
 | Drive wipe | Owner's responsibility, disclosed before opt-in | Is the forfeiture enforceable when Naga's own warranty repair wipes or replaces the drive? Recommend a re-link at service centers |
 | Backpack for 300 stakers | A sales promotion | DTI sales promotion permit |
-| School fund | 10% of creator fees, public wallet, named partner, delivery reports | DSWD solicitation permit if buyers are told their trades fund it |
+| School fund | Not running yet. Starts at 100 active peaqOS machines: 10% of creator fees, public wallet, named partner, delivery reports | DSWD solicitation permit if buyers are told their trades fund it |
 | Money handling | Naga never holds customer funds; machine wallets are self-custodial; rewards are paid on-chain | Any BSP VASP licence trigger; AML |
 | Tax | Creator fees are Naga's income; rewards may be income to owners | BIR treatment of fees, bonds, burns and token-paid discounts; VAT on token-priced sales |
 | Other countries | Exports go worldwide | Which countries to exclude from the token (US, and others) |
@@ -108,7 +120,7 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 3. Confirm with Machine.Fun: how the 1.5% creator fee pays out, and the
    peaqOS bonding and staking contracts. Fill "The details" on the page.
 4. Build what the page promises: wallet check for the 5% discount, the Naga Node opt-in checkbox
-   on the order forms (recorded with the order), the staking and bond contracts, three public
+   on the order forms (recorded with the order), the staking and bond contracts, two public
    wallets, and a rewards dashboard with real numbers.
 5. As each feature opens, replace its "in build" label on the page with the date it opened.
 

@@ -1,7 +1,8 @@
 # $NAGA launch thread (Naga Node)
 
 Rules: never ask anyone to buy; no price or buy link; earnings appear only as Naga's own
-estimate, labelled as an estimate, with the power cost beside it. Never call them returns.
+estimate (about ₱1,000 a month for a SIPAG I, ₱1,500–1,800 for a LAKAN II), labelled as an
+estimate, with the power cost and "You may receive as little as ₱0" beside it. Never call them returns.
 Each post fits X's 280 characters.
 
 1/
@@ -22,9 +23,9 @@ While you sleep, the laptop rents out the internet and computing power you aren'
 We ask before we switch anything on. Say no and you own a normal laptop.
 
 4/
-What can it earn? Our estimate for a home in Manila: ₱300–600 a month from bandwidth sharing, with the laptop using ₱90–120 of power to earn it.
+What can it earn? Our estimate for a home in Manila: about ₱1,000 a month for a SIPAG I and ₱1,500–1,800 for a LAKAN II, before ₱90–120 of power.
 
-That is an estimate. Some months will come in lower, and we promise no amount. We'll publish measured numbers once Naga Node runs.
+Profitability varies. You may receive as little as ₱0. Real numbers follow once Naga Node runs.
 
 5/
 A second stream: Machine Rewards.
@@ -34,11 +35,9 @@ $NAGA trades on Machine.Fun, and we collect 1.5% of each trade. Half goes to the
 A laptop collects at most twice its network pay.
 
 6/
-The other half of the fees:
+The other half of the fees builds Naga: Baku, our on-device AI, and the next machines.
 
-40% builds Naga: Baku, our on-device AI, and the next machines.
-
-10% goes to a school fund. Each US$699 it collects buys one SIPAG I for a Filipino student who needs a laptop.
+Our first milestone is 100 Naga machines running on peaqOS. From then on, a tenth of our fees goes to a school fund. Each US$699 buys one SIPAG I for a Filipino student.
 
 7/
 $NAGA also gets you:
