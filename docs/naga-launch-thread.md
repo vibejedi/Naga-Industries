@@ -43,7 +43,7 @@ Naga Node stays off until you switch it on. Say no and you own a normal laptop.
 Switch it on and the laptop shares the internet and computing power you aren't using. The networks that use them pay your laptop for that work.
 
 5/
-A bonded laptop that worked that month also collects Machine Rewards, sized by the work it did. We fund them with 30% of our creator fees and pay them in USDC, a dollar stablecoin.
+A bonded laptop that worked that month also collects Machine Rewards, sized by the work it did. We fund them with 25% of our creator fees and pay them in USDC, a dollar stablecoin.
 
 The cap is twice what the networks paid it that month. No work, no reward.
 
@@ -67,7 +67,7 @@ $NAGA also opens three perks, all in build:
 - Baku, our on-device AI, unlocked by burning $NAGA
 
 9/
-The other 70% of the fees pays for Baku, the next machines, our team and marketing.
+The other 75% of the fees pays for Baku, the next machines, our team and marketing.
 
 Our first milestone is 100 Naga machines running on peaqOS. From then on, a tenth of our fees goes to a school fund. Each US$699 buys one SIPAG I for a Filipino student.
 
@@ -122,8 +122,9 @@ In build: naga.industries/node
 
 ## What changed later on 13 November 2026 (owner's decisions)
 
-- **The fee split is 30% Machine Rewards and 70% Naga**, down from half. Post 5 says "30% of our creator fees" and
-  post 9 says the other 70% pays for Baku, the next machines, the team and marketing.
+- **The fee split is 25% Machine Rewards and 75% Naga.** It was half each, then 30/70 for a few hours. Post 5
+  says "25% of our creator fees" and post 9 says the other 75% pays for Baku, the next machines, the team and
+  marketing.
 - **Machine Rewards are paid in USDC.** The owner first chose $MU, the token $NAGA trades against, then moved to
   USDC the same day, because a token backed by Micron stock is a security in most countries. Naga converts the
   rewards share of its $MU fees before each payout. Post 5 says "pay them in USDC, a dollar stablecoin".
