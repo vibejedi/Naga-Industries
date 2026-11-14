@@ -26,7 +26,7 @@ Taken from the skill:
 - The product stands big on the section's ground, no grey panel; a different view in each section.
 - Plain copy: the h1 names what is sold and where, headings name things, buttons are a verb and an object,
   no caption under a picture, one fact in one place.
-- Motion in three places only: the hero's entrance on load, one statement moment (`word-highlight`, rebuilt in
+- (Retired 14 November 2026: the owner asked for more motion. The site now runs a GSAP scroll layer and one Three.js scene; see `CLAUDE.md`, "Motion rules".) Earlier rule: motion in three places only: the hero's entrance on load, one statement moment (`word-highlight`, rebuilt in
   `naga.js` section 16 on Naga's tokens), and the hover and press layer. No scroll reveals, no smooth-scroll library.
 - One effect a page (the living sea behind the first black chapter), a pause button on the hero film.
 - Type at weights 400 and 500, labels in sentence case, nothing under 13px.
@@ -54,3 +54,5 @@ CHROME_PATH=/path/to/chrome node .claude/skills/design-taste-frontend/assets/lay
 State on 13 November 2026: `copy-lint` reports 0 FAIL on all pages. `check.mjs` reports no findings on the homepage
 at 1440x900; at 390x844 it reports the phone heights described above. Inner pages fail its height rules for the
 same reason and pass its edge rules, except the bento on `node.html`.
+
+Since 14 November 2026 the motion layer hides blocks until they scroll in, and `check.mjs` measures the page before scrolling. It now reports `#baku` as sparse on the homepage at 1440x900 because that section's picture has not arrived yet; the layout itself is unchanged.

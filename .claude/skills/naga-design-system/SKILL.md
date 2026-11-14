@@ -58,15 +58,7 @@ Never add a color. Dark mode remaps the same tokens under `:root[data-theme="dar
 
 ## Motion
 
-A page moves in four places and nowhere else:
-
-1. **The hero enters once on load** (`[data-enter]`): the h1 rises line by line from word masks, `[data-enter-up]` items fade up 12px in order, `[data-enter-media]` settles from 1.05 to 1. About 1.1 s. The head script hides the words for at most 900ms and lifts that by itself, so they can never stay hidden.
-2. **One moment follows the scroll in its own section**: `p[data-say]` on the homepage lights up word by word and runs back on the way up. The text is whole without script.
-3. **The hover layer**: buttons step 1px up and press 1px down, links draw an underline, a linked card (`.pcard`) lifts 2px and its picture grows 3% inside its frame (`.m-zoom` does the same for any linked picture). A card without a link does not move.
-
-4. **Motion figures** (`[data-motion]`): a figure that explains one thing with moving marks, such as `.flow` on the Rewards page and `.hz` on LAKAN II. It runs only on screen, has a `.fig-pause` button, moves only transform and opacity, reads whole when still, and shows nothing that is not true of the product. None on the homepage.
-
-Nothing reveals, fades, rises or counts as the page scrolls. No smooth-scroll library, no parallax, no scroll-triggered headline. The living sea (`canvas.sea`, WebGL caustics in cyan light) sits behind the page's first `.chapter.dark` only. Films pause off screen and carry a pause button. The nav wave mark draws once on load and again on hover. With `prefers-reduced-motion` everything stands still and complete.
+Rewritten on 14 November 2026 at the owner's request. The site moves: `assets/js/naga-motion.js` runs GSAP + ScrollTrigger on every page (progress line, letter-by-letter product names, rising headings, staggered blocks, products that grow onto their stage, spec count-ups, the fee bar filling) and Three.js draws the node network in the Rewards hero. The full list and its safety rules are in `CLAUDE.md` under "Motion rules". The ones that matter when you add something: never hide content in CSS, add new block selectors to section 4 of `naga-motion.js`, never animate a price, and do nothing under `prefers-reduced-motion`. 3D stays abstract: no modelled laptops, no invented internals.
 
 ## Product imagery
 
