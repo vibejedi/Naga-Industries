@@ -133,6 +133,23 @@ opinion from a Philippine securities lawyer that no filing is needed; an opinion
 | Tax | Creator fees are Naga's income; rewards may be income to owners | BIR treatment of fees, bonds, burns and token-paid discounts; VAT on token-priced sales |
 | Other countries | Exports go worldwide | Which countries to exclude from the token (US, and others) |
 
+## What peaq's documentation says (read 14 November 2026)
+
+The full list is in `naga-node/README.md`. The points that touch this model:
+
+- **peaq's bond is PEAQ, not $NAGA.** A peaqOS machine bonds PEAQ on a yearly tier (Entry US$0.02, Basic US$0.20,
+  Pro US$40). The US$50 / US$35 $NAGA lock is Naga's own mechanism and still has to be built on Solana. The page
+  says "a bonded laptop can take paid work on peaqOS"; on peaqOS "bonded" means the PEAQ bond.
+- **peaqOS supplies compute work only, through Akash, as an early release.** It supplies no bandwidth work.
+  Bandwidth pay has to come from a network Naga signs with directly. The page's "Network pay" line and the
+  ₱300–600 bandwidth estimate rest on a partner that is not named yet.
+- **The US$0.50 to US$3 a day figure is not in peaq's docs.** It stays off the page.
+- **Laptops are homed on peaq.** A Solana-homed machine cannot opt in to monetization. Rewards still go to the
+  laptop's Solana address.
+- **Work events are self-reported** unless a network pays on chain, and a heartbeat proves little. Size Machine
+  Rewards by reported network pay, as the cap already does.
+- **A lost wallet cannot be replaced for the same laptop.** The machine ID comes from the serial and activates once.
+
 ## Still to do (the page is live; these are not)
 
 1. Counsel signs off the model and the page text.

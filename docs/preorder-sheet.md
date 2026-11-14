@@ -64,25 +64,39 @@ function out(o) { return ContentService.createTextOutput(JSON.stringify(o)).setM
   `store.json` are empty.
 - Names and emails are personal data. Keep the sheet private, and use it only to contact people about their order.
 
-## If the form says "Online pre-orders are not open yet"
+## If the form does not save an order
 
-The function could not hand the order to the sheet. First open `https://naga.industries/api/preorder` in a
-browser. It answers with `"webhook": true` or `false`:
+The form shows one of two messages, each with a link to email us:
 
-- **false:** this deployment cannot see the variable. Check step 1 below.
-- **true:** the variable is there and the sheet refused the order. Check steps 2 to 4.
+- **"Online pre-orders are not open yet":** the function has no destination (it answered 503).
+- **"We could not save your pre-order":** the function has a destination and the destination refused the order
+  (it answered 502).
 
-The checks, in order:
+Open `https://naga.industries/api/preorder` in a browser. It answers with `"webhook": true` or `false` and
+`"webhookHost"`, the host of the address you saved (never its path or key):
 
-1. **The variable is set for Production** and the site was redeployed after you added it. A variable only reaches
-   deployments made after it was saved.
-2. **The value is the whole URL plus the key:** `https://script.google.com/macros/s/.../exec?key=<your KEY>`.
-   The key must match `KEY` in the script exactly.
-3. **The web app is shared with "Anyone"**, not "Anyone with a Google account". Otherwise Google answers with
-   a sign-in page.
-4. **You deployed the script after your last edit.** Apps Script serves the version you deployed, so a change to
-   `KEY` needs **Deploy → Manage deployments → Edit → New version**.
+- **`"webhook": false`:** this deployment cannot see the variable. It must be named `PREORDER_WEBHOOK_URL`, set
+  for Production, and saved before the deployment was made. A variable only reaches deployments made after it.
+- **`"webhookHost": "not a URL"`:** the value does not start with `https://`.
+- **`"webhookHost": "docs.google.com"`:** that is the sheet's own address. Use the web app URL from
+  **Deploy → Manage deployments**. It starts with `https://script.google.com/macros/s/` and ends in `/exec`.
 
-The function treats a wrong key and a sign-in page as failures, so the form never tells a visitor they are on the
-list when the sheet did not get the row. Vercel's function logs (Project → Logs, filter `/api/preorder`) show
-which of these it was.
+When the status looks right and the form still fails, the 502 answer carries the reason. See it in the browser's
+developer tools (Network → `preorder` → Response), or send a test order with curl:
+
+| Reason code | What it means | Fix |
+|---|---|---|
+| `webhook_refused`, detail `forbidden` | The script ran and the key did not match | The value must end `?key=<your KEY>`, the same string as `KEY` in the script. If you edited `KEY`, deploy a new version (below) |
+| `webhook_web_page`, detail starting "Sign in" | Google asked the function to sign in | In **Deploy → Manage deployments → Edit**, set "Who has access" to **Anyone**, not "Anyone with a Google account" |
+| `webhook_web_page`, detail with an error | The script threw the error shown | Paste the script again exactly as below, then deploy a new version |
+| `webhook_http_404` | No web app at that address | Copy the URL again. Use the one ending `/exec`, not `/dev` |
+| `webhook_http_401` or `_403` | Google refused the call | The web app is not shared with **Anyone**, or your Google Workspace blocks public web apps |
+| `webhook_unreachable` | The address did not answer | Check the host for a typo |
+| `webhook_bad_url` | The value is not a URL | It must start with `https://` |
+
+**Deploy a new version after every edit.** Apps Script serves the version you deployed, not the code in the
+editor: **Deploy → Manage deployments → Edit (the pencil) → Version: New version → Deploy**. The `/exec` URL
+stays the same.
+
+The function treats all of these as failures, so the form never tells a visitor they are on the list when the
+sheet did not get the row.

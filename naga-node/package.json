@@ -1,0 +1,18 @@
+{
+  "name": "naga-node",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Naga Node: the on-device agent that puts a Naga laptop on peaqOS",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "bin": { "naga-node": "bin/naga-node.js" },
+  "scripts": {
+    "start": "node bin/naga-node.js run",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "@peaqos/peaq-os-sdk": "0.12.0",
+    "@scure/bip39": "^1.6.0",
+    "viem": "^2.54.2"
+  }
+}

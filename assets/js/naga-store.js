@@ -161,7 +161,7 @@
     $(form, '.order-go').textContent = 'Saving…';
     const res = await api(cfg, Object.assign({ type: 'reserve', ref }, order));
     if (res.ok) { announce('reserve', order, ref); say(form, 'You are on the list for ' + product.name + '. We will email ' + order.email + ' first when pricing and pre-orders open. Reference ' + ref + '.', 'ok'); clearContact(form); return; }
-    say(form, '', 'error', fallbackHtml(cfg, order, ref, 'Reservations are not open online yet.'));
+    say(form, '', 'error', fallbackHtml(cfg, order, ref, res.status === 503 ? 'Reservations are not open online yet.' : 'We could not save your reservation.'));
   }
 
   async function payCard(form, cfg, order, ref, product, shopifyReady) {
@@ -189,7 +189,7 @@
     $(form, '.order-go').textContent = 'Saving…';
     const res = await api(cfg, Object.assign({ type: 'card-request', ref }, order));
     if (res.ok) { announce('card-request', order, ref, Core.quote(cfg, order.product, order.qty, order.country)); say(form, 'You are on the pre-order list for ' + product.name + '. We will email ' + order.email + ' a payment link when checkout opens. Reference ' + ref + '.', 'ok'); clearContact(form); return; }
-    say(form, '', 'error', fallbackHtml(cfg, order, ref, 'Online pre-orders are not open yet.'));
+    say(form, '', 'error', fallbackHtml(cfg, order, ref, res.status === 503 ? 'Online pre-orders are not open yet.' : 'We could not save your pre-order.'));
   }
 
   async function payCrypto(form, cfg, order, ref, q) {
