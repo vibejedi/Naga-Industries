@@ -13,6 +13,10 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 | `about.html`    | Company facts: the visible brand fact sheet (keep in step with `seo/brand-facts.md`) |
 | `node.html`     | $NAGA rewards page, served at `/node` ("Rewards" in the nav and footers), live since 12 November 2026. It was `naga.html` until 13 November 2026; `vercel.json` redirects the old address. Model, legal notes and open work: `docs/naga-token-model.md` |
 
+## Naga Node app (`naga-node/`)
+
+The laptop app that puts a Naga machine on peaqOS: its own package (`cd naga-node && npm install && npm test`), not part of the website and left out by `.vercelignore`. It uses peaq's SDK (`@peaqos/peaq-os-sdk`); its README lists what works, what was checked against peaq mainnet, and what peaq's docs change about the $NAGA model. Keep its dashboard copy to what is true: it connects no paid work yet.
+
 ## Design system (read `.claude/skills/naga-design-system/SKILL.md` before touching visuals)
 
 - Direction: two neutrals, one cyan, one type family, the product big, one black chapter per page. Layout, copy and motion follow the taste skill in `.claude/skills/design-taste-frontend` (tasteskill 2.5.1, MIT); its `NAGA.md` says what we take from it and what we leave out. Use it for any redesign or new page.
