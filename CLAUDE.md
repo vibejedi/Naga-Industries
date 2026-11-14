@@ -41,11 +41,12 @@ To bump a library: edit the version in `package.json`, run `npm install` and `np
 
 ## Motion rules
 
-A page moves in three places and nowhere else.
+A page moves in four places and nowhere else.
 
 - The hero enters once on load. Mark the hero section `data-enter`; its h1 rises line by line from word masks, `[data-enter-up]` items fade up in order and `[data-enter-media]` settles from 1.05 to 1 (keyframes in `naga.css`, splitting in `naga.js` 5). The inline head script adds `html.m-enter`, which hides the hero's words, and lifts it by itself after 900ms; this is the only place CSS hides content.
 - One moment follows the scroll in its own section: `p[data-say]` (the homepage "Why Naga" statement) lights up word by word (`naga.js` 16). The text is whole without script.
 - The hover layer: buttons step 1px, links draw an underline, a linked card (`.pcard`) lifts 2px and its picture grows 3%. A card without a link does not move.
+- Motion figures (owner's request, 14 November 2026): a figure that explains one thing with moving marks. Mark the block `data-motion` and put a `.fig-pause` button in it; `naga.js` (17) runs the marks only while the figure is on screen. Two exist: `.flow` on `/node` (who pays the laptop) and `.hz` on `lakan-ii.html` (frames at 60Hz and 165Hz). A figure must be true, read whole when still, move only transform and opacity, and stand still with reduced motion. Timing follows LottieFiles' motion-design skill (linear travel, 2 s cycles and up). No figure on the homepage, no 3D, no particles, no invented product internals.
 - Nothing else moves on scroll: no reveals, no rising headlines, no count-ups, no parallax, no smooth-scroll library. Prices never animate.
 - Respect `prefers-reduced-motion`: the hero stands, the statement is in full ink, films do not autoplay.
 - Living sea: `naga.js` (13) puts a WebGL caustics canvas (`canvas.sea`) behind the first `.chapter.dark` of a page, the page's one effect. It only adds cyan light over `--void`, renders at half resolution and 30 fps while on screen, draws one still frame with reduced motion, and does nothing without WebGL.

@@ -87,6 +87,31 @@
       <li><h3>Network pay</h3><p>Partner networks pay your laptop for the bandwidth it carries and the computing it does.</p></li>
       <li><h3>Machine Rewards</h3><p>Today we plan to put 15% of our $NAGA creator fees into a pool. That share is directional, and we can change it. Each month we pay the pool out to the bonded laptops that worked, by how much each one did. We pay in USDC, a dollar stablecoin. A laptop collects at most twice its network pay for that month. The rest goes to our treasury.</p></li>
     </ul>
+    <!-- MOTION FIGURE: who pays the laptop. Dots travel only while the figure is on screen; it reads whole without them. -->
+    <div class="flow" data-motion>
+      <div class="flow-node">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17"/><ellipse cx="24" cy="24" rx="7.5" ry="17"/><path d="M7 24h34"/></svg>
+        <h3>Partner networks</h3><p>They use the bandwidth and computing.</p>
+      </div>
+      <div class="flow-track">
+        <span class="lane rev" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="lane pay" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div class="lane-labels"><span>Work goes out</span><span>Network pay comes back</span></div>
+      </div>
+      <div class="flow-node">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="11" width="30" height="20" rx="2"/><path d="M4 37h40"/></svg>
+        <h3>Your laptop</h3><p>Idle, plugged in, Naga Node on.</p>
+      </div>
+      <div class="flow-track">
+        <span class="lane pay rev" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div class="lane-labels"><span>Machine Rewards, in USDC</span></div>
+      </div>
+      <div class="flow-node">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="24" cy="14" rx="15" ry="6"/><path d="M9 14v10c0 3.3 6.7 6 15 6s15-2.7 15-6V14"/><path d="M9 24v10c0 3.3 6.7 6 15 6s15-2.7 15-6V24"/></svg>
+        <h3>Our rewards pool</h3><p>Pays at most twice the network pay.</p>
+      </div>
+      <button class="fig-pause" type="button" hidden>Pause the figure</button>
+    </div>
     <div class="tblwrap">
       <table class="cmp">
         <thead><tr><th style="white-space:nowrap">A month at home</th><th style="white-space:nowrap">Potential, at the cap</th><th>What it runs</th><th style="white-space:nowrap">Power bill</th></tr></thead>

@@ -452,4 +452,20 @@
       });
     });
   }
+
+  /* 17. Motion figures. [data-motion] blocks run their marks only while on screen, and each has a
+     Pause button. With reduced motion, or without IntersectionObserver, the marks stand still. */
+  if (!reduce && 'IntersectionObserver' in window) {
+    document.querySelectorAll('[data-motion]').forEach((fig) => {
+      const btn = fig.querySelector('.fig-pause');
+      if (btn) {
+        btn.hidden = false;
+        btn.addEventListener('click', () => {
+          const paused = fig.classList.toggle('is-paused');
+          btn.textContent = paused ? 'Play the figure' : 'Pause the figure';
+        });
+      }
+      new IntersectionObserver((es) => es.forEach((e) => fig.classList.toggle('is-running', e.isIntersecting)), { threshold: 0.25 }).observe(fig);
+    });
+  }
 })();
