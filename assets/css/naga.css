@@ -637,7 +637,9 @@ footer .social svg { width: 16px; height: 16px; flex: none; }
 @media (max-width: 560px) { .facts > div { grid-template-columns: 1fr; } }
 
 /* Split bar: one row of proportional segments (flex values set inline) with a keyed list under it. */
-.split { display: flex; gap: 3px; height: 56px; margin-top: 40px; border-radius: var(--radius-sm); overflow: hidden; font: 500 1rem/56px var(--font-display); text-align: center; }
+.split { display: flex; gap: 3px; height: 56px; margin-top: 40px; font: 500 1rem/56px var(--font-display); text-align: center; }
+.split span:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.split span:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
 .split .s-a { background: var(--cyan); color: var(--on-cyan); }
 .split .s-b { background: var(--ink); color: var(--paper); }
 .split .s-c { background: var(--ink-2); color: var(--paper); }

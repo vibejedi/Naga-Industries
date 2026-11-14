@@ -19,6 +19,9 @@ global.fetch = async (url, init) => {
   if (String(url).includes('myshopify')) return { ok: true, json: async () => ({ data: { draftOrderCreate: { draftOrder: { id: 'gid://shopify/DraftOrder/1' }, userErrors: [] } } }) };
   if (String(url).includes('wrong-key')) return { ok: true, url: String(url), text: async () => '{"ok":false,"error":"forbidden"}' };
   if (String(url).includes('script.google.com/private')) return { ok: true, url: 'https://accounts.google.com/ServiceLogin', text: async () => '<!doctype html><title>Sign in</title>' };
+  if (String(url).includes('script.google.com/threw')) return { ok: true, url: 'https://script.google.com/macros/s/x/exec', text: async () => '<!DOCTYPE html><html><head><title>Error</title><style>body{color:red}</style></head><body><div>TypeError: Cannot read properties of null (line 9, file "Code")</div></body></html>' };
+  if (String(url).includes('gone.example.com')) return { ok: false, status: 404, url: String(url), text: async () => 'Not found' };
+  if (String(url).includes('down.example.com')) { const e = new TypeError('fetch failed'); e.cause = { code: 'ENOTFOUND' }; throw e; }
   if (String(url).includes('script.google.com')) return { ok: true, url: 'https://script.googleusercontent.com/macros/echo', text: async () => '{"ok":true}' };
   return { ok: true, json: async () => ({}) };
 };
@@ -54,7 +57,10 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   process.env.PREORDER_WEBHOOK_URL = 'https://hooks.example.com/secret-path?key=abc';
   g = await get();
   assert.equal(g.body.webhook, true, 'webhook seen');
-  assert.ok(!g.raw.includes('secret-path') && !g.raw.includes('abc'), 'the status never shows the URL');
+  assert.ok(!g.raw.includes('secret-path') && !g.raw.includes('abc'), 'the status never shows the path or the key');
+  assert.equal(g.body.webhookHost, 'hooks.example.com', 'the status names the host');
+  process.env.PREORDER_WEBHOOK_URL = 'script.google.com/macros/s/x/exec';
+  assert.equal((await get()).body.webhookHost, 'not a URL', 'a value without https:// is flagged');
 
   // Not configured: no destination at all.
   delete process.env.PREORDER_WEBHOOK_URL;
@@ -86,9 +92,26 @@ const tx = (paidUnits, memo, extra = {}) => Object.assign({
   process.env.PREORDER_WEBHOOK_URL = 'https://script.google.com/macros/s/x/exec?key=wrong-key';
   r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
   assert.equal(r.status, 502, 'sheet script refused the key');
+  assert.deepEqual(r.body.reasons, [{ code: 'webhook_refused', detail: 'forbidden' }], 'the answer says the script refused');
+  assert.ok(!JSON.stringify(r.body).includes('wrong-key'), 'a reason never holds the key');
   process.env.PREORDER_WEBHOOK_URL = 'https://script.google.com/private/exec?key=k';
   r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
   assert.equal(r.status, 502, 'sheet script not shared with Anyone');
+  assert.deepEqual(r.body.reasons, [{ code: 'webhook_web_page', detail: 'Sign in' }], 'the answer says Google sent a page');
+  process.env.PREORDER_WEBHOOK_URL = 'https://script.google.com/threw/exec?key=k';
+  r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
+  assert.equal(r.status, 502, 'sheet script threw');
+  assert.equal(r.body.reasons[0].code, 'webhook_web_page');
+  assert.equal(r.body.reasons[0].detail, 'Error TypeError: Cannot read properties of null (line 9, file "Code")', 'the script error is readable');
+  process.env.PREORDER_WEBHOOK_URL = 'https://gone.example.com/hook';
+  r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
+  assert.deepEqual([r.status, r.body.reasons], [502, [{ code: 'webhook_http_404' }]], 'a 404 from the webhook');
+  process.env.PREORDER_WEBHOOK_URL = 'https://down.example.com/hook';
+  r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
+  assert.deepEqual([r.status, r.body.reasons], [502, [{ code: 'webhook_unreachable' }]], 'a webhook that does not answer');
+  process.env.PREORDER_WEBHOOK_URL = 'script.google.com/macros/s/x/exec?key=k';
+  r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
+  assert.deepEqual([r.status, r.body.reasons], [502, [{ code: 'webhook_bad_url' }]], 'a value that is not a URL');
   process.env.PREORDER_WEBHOOK_URL = 'https://script.google.com/macros/s/x/exec?key=k';
   r = await call(Object.assign({ type: 'card-request', product: 'lakan-ii' }, base));
   assert.equal(r.status, 200, 'sheet script kept the order');

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="naga-token" content="__NAGA_TOKEN__">
+<title>Naga Node</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&family=Tilt+Neon&display=swap" rel="stylesheet">
+<style>
+/* Same tokens as the Naga site (assets/css/naga.css). Two neutrals, one cyan, one family. */
+:root { --paper:#FFFFFF; --paper-2:#F5F7F8; --ink:#101214; --ink-2:#6B7378; --hairline:rgba(16,18,20,.12); --cyan:#00D9F5; --cyan-link:#0097B2; --on-cyan:#101214; }
+@media (prefers-color-scheme: dark) { :root { --paper:#000000; --paper-2:#0A0C0E; --ink:#F5F7F8; --ink-2:#8E989E; --hairline:rgba(245,247,248,.16); --cyan-link:#00D9F5; } }
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--paper); color: var(--ink); font: 400 17px/1.5 Outfit, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.wrap { width: min(100% - 48px, 960px); margin: 0 auto; padding: 40px 0 96px; }
+header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--hairline); }
+.name { font: 400 22px/1 'Tilt Neon', Outfit, sans-serif; letter-spacing: .04em; }
+.eyebrow { font-size: 13px; color: var(--ink-2); }
+h1 { font: 500 clamp(40px, 7vw, 64px)/1.02 Outfit, sans-serif; letter-spacing: -.035em; margin-top: 48px; }
+h2 { font: 500 28px/1.1 Outfit, sans-serif; letter-spacing: -.02em; margin-top: 64px; }
+.lead { font-size: 21px; line-height: 1.4; color: var(--ink-2); margin-top: 16px; max-width: 38em; }
+p.note { color: var(--ink-2); margin-top: 12px; max-width: 40em; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+button { font: 500 16px/1 Outfit, sans-serif; border-radius: 999px; padding: 15px 24px; border: 1px solid var(--ink); background: none; color: var(--ink); cursor: pointer; transition: transform .12s; }
+button:hover { transform: translateY(-1px); } button:active { transform: translateY(1px); }
+button.fill { background: var(--cyan); border-color: var(--cyan); color: var(--on-cyan); }
+button:disabled { opacity: .45; cursor: default; transform: none; }
+button.text { border: 0; padding: 0; color: var(--cyan-link); text-decoration: underline; text-underline-offset: 3px; border-radius: 0; }
+label { display: block; font-size: 13px; color: var(--ink-2); margin-top: 20px; }
+input, textarea { display: block; width: min(100%, 420px); margin-top: 6px; font: 400 17px/1.3 Outfit, sans-serif; color: var(--ink); background: var(--paper-2); border: 1px solid var(--hairline); border-radius: 12px; padding: 13px 14px; }
+textarea { width: min(100%, 560px); min-height: 84px; resize: vertical; }
+input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+dl { margin-top: 20px; border-top: 1px solid var(--hairline); }
+dl div { display: grid; grid-template-columns: 220px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--hairline); }
+dt { color: var(--ink-2); } dd { overflow-wrap: anywhere; }
+.words { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 24px; max-width: 640px; list-style: none; padding: 0; counter-reset: w; }
+.words li { counter-increment: w; background: var(--paper-2); border-radius: 12px; padding: 12px 14px; font-weight: 500; }
+.words li::before { content: counter(w); color: var(--ink-2); font-weight: 400; font-size: 13px; margin-right: 10px; }
+.check { display: flex; gap: 10px; align-items: center; margin-top: 24px; color: var(--ink); font-size: 17px; }
+.check input { width: 20px; height: 20px; margin: 0; }
+.msg { margin-top: 20px; padding: 14px 16px; border: 1px solid var(--cyan-link); border-radius: 12px; max-width: 40em; }
+.quote { margin-top: 20px; background: var(--paper-2); border-radius: 16px; padding: 4px 20px; max-width: 640px; }
+.quote dl { border-top: 0; margin: 0; } .quote dl div:last-child { border-bottom: 0; }
+[hidden] { display: none !important; }
+@media (max-width: 640px) { dl div { grid-template-columns: 1fr; gap: 2px; } .words { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><span class="name">NAGA NODE</span><span class="eyebrow" id="net"></span></header>
+
+  <!-- 1. No wallet yet -->
+  <section id="v-setup" hidden>
+    <h1>Set up this laptop's wallet.</h1>
+    <p class="lead">Naga Node gives this laptop one wallet with two addresses: one on peaq for its identity, one on Solana for rewards. The keys stay on this drive, encrypted with your passphrase.</p>
+    <form id="f-setup">
+      <label for="p1">Passphrase, 8 characters or more</label><input id="p1" type="password" autocomplete="new-password" minlength="8" required>
+      <label for="p2">Passphrase again</label><input id="p2" type="password" autocomplete="new-password" minlength="8" required>
+      <div id="restore" hidden><label for="mn">Your 12-word recovery phrase</label><textarea id="mn" autocomplete="off" spellcheck="false"></textarea></div>
+      <div class="actions"><button class="fill" type="submit" id="b-setup">Create the wallet</button><button type="button" id="b-restore">Restore a wallet</button></div>
+    </form>
+  </section>
+
+  <!-- 2. The phrase, once -->
+  <section id="v-phrase" hidden>
+    <h1>Write down these 12 words.</h1>
+    <p class="lead">This is the recovery phrase. With it you can restore the wallet after a wiped or replaced drive. Without it, the wallet, the machine and any unclaimed rewards are gone, and we cannot restore them. Keep it on paper, off this laptop.</p>
+    <ol class="words" id="words"></ol>
+    <label class="check"><input type="checkbox" id="wrote"> I wrote the 12 words on paper</label>
+    <div class="actions"><button class="fill" id="b-wrote" disabled>Continue to Naga Node</button></div>
+  </section>
+
+  <!-- 3. Locked -->
+  <section id="v-locked" hidden>
+    <h1>Unlock Naga Node.</h1>
+    <p class="lead">The wallet is locked. Naga Node signs nothing and sends no heartbeat until you unlock it.</p>
+    <form id="f-unlock"><label for="pu">Passphrase</label><input id="pu" type="password" autocomplete="current-password" required>
+      <div class="actions"><button class="fill" type="submit">Unlock the wallet</button></div></form>
+  </section>
+
+  <!-- 4. The node -->
+  <section id="v-node" hidden>
+    <h1 id="headline"></h1>
+    <p class="lead" id="sub"></p>
+    <div class="actions">
+      <button class="fill" id="b-switch"></button>
+      <button id="b-quote">Quote the bond</button>
+      <button id="b-activate" hidden>Activate this laptop</button>
+      <button id="b-lock">Lock the wallet</button>
+    </div>
+    <div class="quote" id="quote" hidden></div>
+
+    <h2>This laptop on peaqOS</h2>
+    <dl id="facts"></dl>
+
+    <h2>Work record</h2>
+    <dl id="work"></dl>
+    <p class="note">Naga Node records the time this laptop is online. No paid work is connected yet, so this laptop earns nothing today. We will say so here when that changes.</p>
+    <div class="actions"><button class="text" id="b-refresh">Check the chain again</button><button class="text" id="b-phrase">Show the recovery phrase</button></div>
+  </section>
+
+  <div class="msg" id="msg" role="status" hidden></div>
+</div>
+
+<script>
+const token = document.querySelector('meta[name="naga-token"]').content;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let state = null, showingPhrase = false, busy = false;
+
+async function api(path, body) {
+  const r = await fetch(path, body === undefined ? {} : { method: 'POST', headers: { 'content-type': 'application/json', 'x-naga-token': token }, body: JSON.stringify(body) });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || 'Naga Node did not answer.');
+  return data;
+}
+function say(text) { $('msg').hidden = !text; $('msg').textContent = text || ''; }
+async function act(fn, working) {
+  if (busy) return; busy = true; say(working || '');
+  try { await fn(); if (working) say(''); } catch (e) { say(e.message); } finally { busy = false; await load(); }
+}
+const hours = (s) => s < 3600 ? Math.round(s / 60) + ' min' : (s / 3600).toFixed(1) + ' h';
+const rows = (el, list) => { el.innerHTML = list.filter(Boolean).map(([k, v]) => '<div><dt>' + esc(k) + '</dt><dd>' + esc(v) + '</dd></div>').join(''); };
+
+function render() {
+  const s = state;
+  $('net').textContent = s.network === 'peaq-mainnet' ? 'peaq mainnet' : 'agung testnet';
+  const view = showingPhrase ? 'v-phrase' : !s.hasWallet ? 'v-setup' : !s.unlocked ? 'v-locked' : 'v-node';
+  for (const v of ['v-setup', 'v-phrase', 'v-locked', 'v-node']) $(v).hidden = v !== view;
+  if (view !== 'v-node') return;
+
+  const on = s.switch === 'on' && s.heartbeat.running;
+  $('headline').textContent = !s.activated ? 'This laptop is not on peaqOS yet.' : on ? 'Naga Node is on.' : 'Naga Node is off.';
+  $('sub').textContent = s.pendingActivation ? 'An activation was sent and is waiting to confirm. Do not send another.'
+    : !s.activated ? 'Activating gives this laptop a peaqID and a machine NFT, and bonds a small amount of PEAQ for one year. Quote the bond first; it sends nothing.'
+    : on ? (s.heartbeat.online ? 'peaq sees this laptop online.' : 'Sending the first heartbeat.') + ' Turn it off whenever you like.'
+    : 'The laptop sends nothing and takes no work. Turn it on to report it online.';
+  $('b-switch').textContent = on ? 'Turn Naga Node off' : 'Turn Naga Node on';
+  $('b-switch').hidden = !s.activated;
+  $('b-quote').hidden = s.activated || !!s.pendingActivation;
+  if (s.activated) { $('b-activate').hidden = true; $('quote').hidden = true; }
+
+  const m = s.machine;
+  rows($('facts'), [
+    ['Status', s.pendingActivation ? 'Activation sent, not confirmed' : s.activated ? 'Activated, ' + m.tier + ' tier' : 'Not activated'],
+    m && ['Bond renews by', new Date(m.periodEnd * 1000).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })],
+    ['Machine ID', s.machineId],
+    ['peaq address', s.addresses.peaq],
+    ['Solana address, for rewards', s.addresses.solana],
+    ['Controller', m ? m.controller : s.controller],
+    s.activated && ['Opt-in at peaq', { OPTED_IN: 'Opted in', OPTED_OUT: 'Opted out', PENDING: 'Never opted in' }[s.monetization] || 'Not available on this network'],
+    s.error && ['Last check', s.error],
+  ]);
+  rows($('work'), [
+    ['Online today', hours(s.work.todaySeconds)],
+    ['Online in total', s.work.days ? hours(s.work.totalSeconds) + ' over ' + s.work.days + (s.work.days === 1 ? ' day' : ' days') : '0 min'],
+    ['Last heartbeat accepted', s.heartbeat.lastAcceptedAt ? new Date(s.heartbeat.lastAcceptedAt).toLocaleTimeString() : 'None yet'],
+    s.heartbeat.error && ['Heartbeat', s.heartbeat.error],
+  ]);
+}
+
+async function load() { try { state = await api('/api/state'); render(); } catch (e) { say('Naga Node is not running. Start it with: naga-node run'); } }
+
+$('b-restore').onclick = () => { const r = $('restore'); r.hidden = !r.hidden; $('b-setup').textContent = r.hidden ? 'Create the wallet' : 'Restore the wallet'; $('b-restore').textContent = r.hidden ? 'Restore a wallet' : 'Create a new wallet'; };
+$('f-setup').onsubmit = (e) => { e.preventDefault(); act(async () => {
+  if ($('p1').value !== $('p2').value) throw new Error('The two passphrases do not match.');
+  const restoring = !$('restore').hidden;
+  const r = await api('/api/setup', { passphrase: $('p1').value, mnemonic: restoring ? $('mn').value : undefined });
+  $('p1').value = $('p2').value = $('mn').value = '';
+  if (!restoring) { $('words').innerHTML = r.mnemonic.split(' ').map((w) => '<li>' + esc(w) + '</li>').join(''); showingPhrase = true; }
+}); };
+$('wrote').onchange = () => { $('b-wrote').disabled = !$('wrote').checked; };
+$('b-wrote').onclick = () => { $('words').innerHTML = ''; showingPhrase = false; $('wrote').checked = false; $('b-wrote').disabled = true; load(); };
+$('f-unlock').onsubmit = (e) => { e.preventDefault(); act(async () => { await api('/api/unlock', { passphrase: $('pu').value }); $('pu').value = ''; }, 'Unlocking and reading the chain.'); };
+$('b-lock').onclick = () => act(() => api('/api/lock', {}));
+$('b-refresh').onclick = () => act(() => api('/api/refresh', {}), 'Reading the chain.');
+$('b-switch').onclick = () => act(() => api(state.switch === 'on' && state.heartbeat.running ? '/api/off' : '/api/on', {}), 'Talking to peaq.');
+$('b-quote').onclick = () => act(async () => {
+  const q = await api('/api/preview', {});
+  $('quote').hidden = false;
+  $('quote').innerHTML = '<dl>' + [['Bond for one year, ' + q.tier + ' tier', q.bond + ' PEAQ'], ['Gas margin', '0.05 PEAQ'], ['In this laptop\'s wallet', q.balance + ' PEAQ'],
+    q.ready ? ['Ready', 'The wallet covers the bond and gas'] : ['Still needed', q.shortfall + ' PEAQ, sent on peaq to ' + state.addresses.peaq]]
+    .map(([k, v]) => '<div><dt>' + esc(k) + '</dt><dd>' + esc(v) + '</dd></div>').join('') + '</dl>';
+  $('b-activate').hidden = !q.ready;
+}, 'Asking peaq for the bond.');
+$('b-activate').onclick = () => { if (!confirm('Bond the PEAQ and activate this laptop? The bond cannot be withdrawn.')) return; act(() => api('/api/activate', { confirm: true }), 'Sending one transaction. This can take a minute. Do not close Naga Node.'); };
+$('b-phrase').onclick = () => { const p = prompt('Passphrase'); if (!p) return; act(async () => { const r = await api('/api/phrase', { passphrase: p }); $('words').innerHTML = r.mnemonic.split(' ').map((w) => '<li>' + esc(w) + '</li>').join(''); showingPhrase = true; }); };
+
+load(); setInterval(() => { if (!busy && !showingPhrase) load(); }, 5000);
+</script>
+</body>
+</html>

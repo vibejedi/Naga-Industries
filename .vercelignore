@@ -11,3 +11,6 @@ seo/
 
 # Internal docs (token model and legal notes)
 docs/
+
+# The Naga Node laptop app (its own package, not part of the website)
+naga-node/

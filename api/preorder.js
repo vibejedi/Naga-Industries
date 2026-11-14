@@ -18,8 +18,9 @@
    With neither destination set, the function answers 503 and the page tells
    the visitor to email Naga instead, so nothing is silently dropped.
 
-   GET /api/preorder answers { webhook, shopify, environment } as true/false,
+   GET /api/preorder answers { webhook, webhookHost, shopify, environment },
    so the owner can check in a browser that a deployment sees its variables.
+   A 502 lists a reason code for each destination that failed.
    ========================================================================== */
 'use strict';
 
@@ -80,17 +81,36 @@ const units = (usdString, decimals) => {
   return BigInt(w) * 10n ** BigInt(decimals) + BigInt((f + '0'.repeat(decimals)).slice(0, decimals) || '0');
 };
 
+// Every failure carries a short code, and the 502 answer lists the codes, so the owner can read why an
+// order was not kept without opening the function logs. A code never holds the webhook URL or its key.
+function fail(code, message, detail) {
+  const e = new Error(message);
+  e.code = code;
+  if (detail) e.detail = detail;
+  return e;
+}
+const plain = (html, max) => String(html).replace(/<(script|style)[\s\S]*?<\/\1>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim().slice(0, max);
+
 async function toWebhook(url, record) {
-  const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(record) });
-  if (!r.ok) throw new Error('webhook ' + r.status);
-  // A 200 is not proof the order was kept. The Google Sheet script answers 200 with {ok:false} for a
-  // wrong key, and a script that is not shared with "Anyone" answers 200 with a Google sign-in page.
+  try { new URL(url); } catch (e) { throw fail('webhook_bad_url', 'PREORDER_WEBHOOK_URL is not a URL'); }
+  let r;
+  try {
+    r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(record) });
+  } catch (e) { throw fail('webhook_unreachable', 'webhook did not answer: ' + ((e.cause && e.cause.code) || e.name)); }
   const text = typeof r.text === 'function' ? await r.text().catch(() => '') : '';
+  const page = /^\s*</.test(text);
+  if (!r.ok) throw fail('webhook_http_' + r.status, 'webhook ' + r.status, page ? plain(text, 160) : '');
+  // A 200 is not proof the order was kept. The Google Sheet script answers 200 with {ok:false} for a
+  // wrong key, and Google answers 200 with a web page when the script is not shared with "Anyone" or
+  // when the script itself threw an error.
   let data = null;
   try { data = JSON.parse(text); } catch (e) { /* not JSON: most webhooks answer with plain text */ }
-  if (data && data.ok === false) throw new Error('webhook refused the order: ' + (data.error || 'ok is false'));
-  const google = /(^|\.)google(usercontent)?\.com$/.test(new URL(r.url || url).hostname);
-  if (google && !data && /^\s*</.test(text)) throw new Error('webhook answered with a web page, not the script: check that the Apps Script web app is shared with Anyone');
+  if (data && data.ok === false) throw fail('webhook_refused', 'webhook refused the order: ' + (data.error || 'ok is false'), String(data.error || '').slice(0, 80));
+  let host = '';
+  try { host = new URL(r.url || url).hostname; } catch (e) { /* keep the empty host */ }
+  if (/(^|\.)google(usercontent)?\.com$/.test(host) && !data && page) {
+    throw fail('webhook_web_page', 'webhook answered with a web page, not the script', plain(text, 160));
+  }
 }
 
 async function toShopifyDraft(domain, token, record) {
@@ -116,7 +136,13 @@ async function toShopifyDraft(domain, token, record) {
   });
   const data = await r.json();
   const errs = data.errors || (data.data && data.data.draftOrderCreate.userErrors);
-  if (!r.ok || (errs && errs.length)) throw new Error('shopify ' + JSON.stringify(errs || r.status));
+  if (!r.ok || (errs && errs.length)) throw fail('shopify_failed', 'shopify ' + JSON.stringify(errs || r.status));
+}
+
+// The host of the webhook, so the owner can see a pasted sheet address or a typo. Never the path or the key.
+function webhookHost(url) {
+  if (!url) return null;
+  try { return new URL(url).hostname; } catch (e) { return 'not a URL'; }
 }
 
 module.exports = async function handler(req, res) {
@@ -126,6 +152,7 @@ module.exports = async function handler(req, res) {
     return send(res, 200, {
       service: 'naga pre-orders',
       webhook: !!process.env.PREORDER_WEBHOOK_URL,
+      webhookHost: webhookHost(process.env.PREORDER_WEBHOOK_URL),
       shopify: !!(process.env.SHOPIFY_STORE_DOMAIN && process.env.SHOPIFY_ADMIN_TOKEN),
       environment: process.env.VERCEL_ENV || 'local',
     });
@@ -177,7 +204,8 @@ module.exports = async function handler(req, res) {
   const results = await Promise.allSettled(jobs);
   if (!results.some((r) => r.status === 'fulfilled')) {
     console.error('preorder: every destination failed', results.map((r) => r.reason && r.reason.message));
-    return send(res, 502, { error: 'record_failed' });
+    const reasons = results.map((r) => Object.assign({ code: (r.reason && r.reason.code) || 'error' }, r.reason && r.reason.detail ? { detail: r.reason.detail } : {}));
+    return send(res, 502, { error: 'record_failed', reasons });
   }
   return send(res, 200, { ok: true, ref: order.ref });
 };
