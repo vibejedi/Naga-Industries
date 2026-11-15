@@ -726,6 +726,19 @@ html.m-enter:not(.m-enter-done) [data-enter] :is(h1, [data-enter-up]) { visibili
 @media (max-width: 640px) { .hz { margin-top: 64px; } .hz-row { grid-template-columns: 1fr; gap: 10px; } }
 
 /* ---------- Motion layer (naga-motion.js) ---------- */
+/* The fee bar: a light passes once it is built, and a pointed-at share makes the others step back. */
+.split { position: relative; }
+.split span, .split-key > li { transition: opacity .25s var(--ease-out), transform .25s var(--ease-out); cursor: default; }
+.split::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(100deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%); background-size: 300% 100%; background-position: 130% 0; opacity: 0; }
+.split.is-built::after { animation: split-sheen 1.3s var(--ease-out) 1; }
+@keyframes split-sheen { 0% { opacity: 1; background-position: 130% 0; } 100% { opacity: 1; background-position: -40% 0; } }
+.split-focus .split span:not(.is-on), .split-focus .split-key > li:not(.is-on) { opacity: .3; }
+.split-focus .split span.is-on { transform: scaleY(1.14); }
+/* Lines that draw: --draw runs 0 to 1 (naga-motion.js 8b, 8d). At 0 nothing shows, so the page is whole without script. */
+.dcard, .spec { position: relative; }
+.dcard::before, .spec::before { content: ""; position: absolute; left: 0; top: -1px; width: 100%; height: 2px; background: var(--cyan); transform: scaleX(var(--draw, 0)); transform-origin: left center; pointer-events: none; }
+.cmp td.hi { background: linear-gradient(var(--cyan), var(--cyan)) no-repeat left calc(100% - 10px) / calc(var(--draw, 0) * 2.2em) 2px; }
+
 .scroll-line { position: fixed; left: 0; right: 0; top: 56px; height: 2px; background: var(--cyan); transform-origin: left center; transform: scaleX(0); z-index: 60; pointer-events: none; }
 figure.stage { overflow: visible; }
 .doc-hero { position: relative; }

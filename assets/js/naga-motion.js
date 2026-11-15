@@ -44,9 +44,9 @@
     });
 
     /* 4. Blocks arrive in a stagger, row by row. */
-    const blocks = all('.pcard, .spec, .dcard, .rows > li, .baku-points > li, .gview, .bento > *, .statrow > *, .split-key > *, .flow-node, .flow-track, .hz-row, .head > .side, .feat-text > :not(h2), .duo .shot, .duo-side > :not(figure), .eyebrow, .tblwrap, dl.facts > div, form.order > *, .measure');
+    const blocks = all('.pcard, .spec, .dcard, .rows > li, .baku-points:not(.split-key) > li, .bento > *, .statrow > *, .flow-node, .flow-track, .hz-row, .head > .side, .feat-text > :not(h2), .duo .shot, .duo-side > :not(figure), .eyebrow, .tblwrap, dl.facts > div, form.order > *, .measure');
     gsap.set(blocks, { opacity: 0, y: 30 });
-    ST.batch(blocks, { start: 'top 92%', once: true, onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 0.75, ease, stagger: 0.07, overwrite: true, clearProps: 'transform,opacity' }) });
+    ST.batch(blocks, { start: 'top 92%', once: true, onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 0.75, ease, stagger: 0.07, overwrite: 'auto', clearProps: 'transform,opacity' }) });
     // Whatever happens to the scroll listeners, nothing stays hidden.
     window.addEventListener('load', () => setTimeout(() => ST.refresh(), 300));
 
@@ -65,7 +65,7 @@
     });
 
     /* 7. Spec numbers count up once. Prices are left alone. */
-    all('.spec .t-big, .statrow b, .statrow strong').forEach((el) => {
+    all('.spec .t-big, .statrow .t-big').forEach((el) => {
       const node = [...el.childNodes].find((n) => n.nodeType === 3 && /\d/.test(n.textContent));
       if (!node || /[₱$]/.test(el.textContent)) return;
       const m = node.textContent.match(/^(\s*)(\d[\d,]*(?:\.\d+)?)(.*)$/s);
@@ -77,10 +77,62 @@
       gsap.to(o, { v: end, duration: 1.4, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true }, onUpdate: () => { node.textContent = m[1] + fmt(o.v) + m[3]; }, onComplete: () => { node.textContent = m[1] + m[2] + m[3]; } });
     });
 
-    /* 8. The fee bar fills from the left. */
+    /* 8. The fee bar builds itself: each share grows in turn while its figure counts up, its key
+       lands as the share does, and a light passes over the finished bar. Then it answers the pointer:
+       point at a share or its key and the rest step back. */
     all('.split').forEach((bar2) => {
-      gsap.from(bar2.children, { scaleX: 0, transformOrigin: 'left center', duration: 0.9, ease: 'power3.inOut', stagger: 0.12, clearProps: 'transform', scrollTrigger: { trigger: bar2, start: 'top 85%', once: true } });
+      const segs = [...bar2.children];
+      const keys = [...(bar2.parentElement.querySelectorAll('.split-key > li'))];
+      const tl = gsap.timeline({ scrollTrigger: { trigger: bar2, start: 'top 82%', once: true }, onComplete: () => bar2.classList.add('is-built') });
+      gsap.set(keys, { opacity: 0, y: 18 });
+      segs.forEach((seg, k) => {
+        const label = seg.textContent, end = parseFloat(label), o = { v: 0 }, at = k * 0.42;
+        seg.style.fontVariantNumeric = 'tabular-nums';
+        tl.from(seg, { scaleX: 0, transformOrigin: 'left center', duration: 0.8, ease: 'power3.inOut', clearProps: 'transform' }, at)
+          .to(o, { v: end, duration: 0.8, ease: 'power2.out', onUpdate: () => { seg.textContent = Math.round(o.v) + '%'; }, onComplete: () => { seg.textContent = label; } }, at);
+        if (keys[k]) {
+          tl.to(keys[k], { opacity: 1, y: 0, duration: 0.6, ease, clearProps: 'transform,opacity' }, at + 0.35);
+          const dot = keys[k].querySelector('i');
+          if (dot) tl.from(dot, { scale: 0, duration: 0.6, ease: 'back.out(3)', clearProps: 'transform' }, at + 0.4);
+        }
+      });
+      const group = bar2.parentElement;
+      const focus = (k) => { group.classList.toggle('split-focus', k >= 0); segs.forEach((x, n) => x.classList.toggle('is-on', n === k)); keys.forEach((x, n) => x.classList.toggle('is-on', n === k)); };
+      [segs, keys].forEach((list) => list.forEach((item, k) => {
+        item.addEventListener('pointerenter', () => focus(k));
+        item.addEventListener('pointerleave', () => focus(-1));
+        item.addEventListener('click', () => focus(item.classList.contains('is-on') && group.classList.contains('split-focus') ? -1 : k));
+      }));
     });
+
+    /* 8b. A cyan line draws across the top of each step and spec tile, one after another. */
+    ['.dgrid', '.specs'].forEach((sel) => all(sel).forEach((grid) => {
+      gsap.fromTo(grid.children, { '--draw': 0 }, { '--draw': 1, duration: 0.9, ease: 'power2.inOut', stagger: 0.18, scrollTrigger: { trigger: grid, start: 'top 80%', once: true } });
+    }));
+
+    /* 8c. Gallery pictures wipe open from the left while the picture settles. */
+    all('.gview').forEach((fig, k) => {
+      const st = { trigger: fig, start: 'top 88%', once: true };
+      gsap.fromTo(fig, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 1.1, ease: 'power3.inOut', delay: (k % 2) * 0.12, clearProps: 'clipPath', scrollTrigger: st });
+      const img = fig.querySelector('img');
+      if (img) gsap.from(img, { scale: 1.18, duration: 1.5, ease, delay: (k % 2) * 0.12, clearProps: 'transform', scrollTrigger: st });
+    });
+
+    /* 8d. The winning cell in each compare row gets its underline. */
+    all('table.cmp').forEach((t) => {
+      gsap.fromTo(t.querySelectorAll('td.hi'), { '--draw': 0 }, { '--draw': 1, duration: 0.7, ease: 'power2.out', stagger: 0.09, scrollTrigger: { trigger: t, start: 'top 70%', once: true } });
+    });
+
+    /* 8e. Product cards lean toward the pointer. Mouse only. */
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.pcard').forEach((card) => {
+        const pic = card.querySelector('.pcard-img'); if (!pic) return;
+        gsap.set(pic, { transformPerspective: 900 });
+        const rx = gsap.quickTo(pic, 'rotationX', { duration: 0.5, ease: 'power3.out' }), ry = gsap.quickTo(pic, 'rotationY', { duration: 0.5, ease: 'power3.out' });
+        card.addEventListener('pointermove', (e) => { const r = pic.getBoundingClientRect(); ry(((e.clientX - r.left) / r.width - 0.5) * 9); rx(-((e.clientY - r.top) / r.height - 0.5) * 9); });
+        card.addEventListener('pointerleave', () => { rx(0); ry(0); });
+      });
+    }
 
     /* 9. The footer wordmark slides in as the page ends. */
     document.querySelectorAll('.foot-band img').forEach((img) => {
