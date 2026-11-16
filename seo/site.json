@@ -114,6 +114,15 @@
       "description": "$NAGA is the rewards token for Naga laptops. Bond it to your laptop and the laptop can take paid bandwidth and computing work on peaqOS through Naga Node.",
       "image": "assets/img/og/home.jpg",
       "imageAlt": "Naga Industries: a carved stone wall with the glowing naga serpent"
+    },
+    {
+      "file": "dev.html",
+      "path": "/dev",
+      "type": "WebPage",
+      "title": "Naga build log: Naga Node and Baku tests",
+      "description": "Dated tests of Naga Node and Baku, with the picture or film from each run. We post what passed, what failed and what is next.",
+      "image": "assets/img/og/home.jpg",
+      "imageAlt": "Naga Industries: a carved stone wall with the glowing naga serpent"
     }
   ]
 }

@@ -82,7 +82,7 @@
     <p class="eyebrow">Naga Node · In build · Your choice</p>
     <h2 class="t-h2">Your laptop takes a night shift.</h2>
     <p class="muted measure" style="margin-top:16px">With Naga Node on, an idle laptop rents out the internet and computing power you aren't using, and partner networks pay it for the work. It runs on peaqOS. We ask at checkout. Say no and nothing changes.</p>
-    <p class="muted measure" style="margin-top:16px">November 2026: $NAGA is live on Machine.Fun. Naga Node, bonded laptops, staking and the discount are still in build. We date each one here as it opens.</p>
+    <p class="muted measure" style="margin-top:16px">November 2026: $NAGA is live on Machine.Fun. Naga Node, bonded laptops, staking and the discount are still in build. We date each one here as it opens, and we post our tests in the <a class="link-plain" href="/dev">build log</a>.</p>
     <ul class="baku-points">
       <li><h3>Machine Rewards</h3><p>Today we plan 15% of our $NAGA creator fees for a pool. That share is directional, and we can change it. Each month the pool pays the bonded laptops that worked, in USDC, by how much each one did. A laptop collects at most twice its network pay.</p></li>
     </ul>
@@ -134,49 +134,6 @@
       <li><h3>You handle the tax</h3><p>Your government may count rewards as income. You report them.</p></li>
       <li><h3>You can quit</h3><p>Turn Naga Node off whenever you like. The laptop runs the same without it.</p></li>
     </ul>
-  </div>
-</section>
-
-<!-- BUILD LOG: dated tests of Naga Node and Baku, newest first. Every entry is something that was run, with
-     the picture or film taken from that run. To add one: copy an <article class="log-item">, set data-track to
-     "node" or "baku", put the picture in assets/img/log/ (or a film in assets/video/log/), and update the date
-     in the eyebrow. Never post a mock-up or a render as a test. -->
-<section class="chapter" id="live">
-  <div class="wrap">
-    <p class="eyebrow">Live · Last entry 16 November 2026</p>
-    <div class="head">
-      <h2 class="t-h2">The build log.</h2>
-      <p class="side muted">Dated tests of Naga Node and Baku, as we run them. Each picture comes from the test it sits beside.</p>
-    </div>
-    <div class="log-tabs" role="group" aria-label="Show entries for">
-      <button type="button" class="is-on" data-log-tab="all" aria-pressed="true">All</button>
-      <button type="button" data-log-tab="node" aria-pressed="false">Naga Node</button>
-      <button type="button" data-log-tab="baku" aria-pressed="false">Baku</button>
-    </div>
-    <div class="log">
-      <article class="log-item" data-track="node">
-        <a class="log-media m-zoom" href="assets/img/log/2026-11-16-naga-node-tests.webp"><img src="assets/img/log/2026-11-16-naga-node-tests.webp" alt="Terminal output of the Naga Node test run: ten tests, ten passed" loading="lazy" width="1600" height="1000"></a>
-        <p class="log-meta"><b>Naga Node</b> · 16 November 2026 · Passed</p>
-        <h3>The payout sheet adds up.</h3>
-        <p>A test laptop enrolled with our fleet service, sent a day of work, and got its line on the payout sheet. With no network pay recorded, the sheet paid ₱0, as designed.</p>
-      </article>
-      <article class="log-item" data-track="node">
-        <a class="log-media m-zoom" href="assets/img/log/2026-11-14-naga-node-quote.webp"><img src="assets/img/log/2026-11-14-naga-node-quote.webp" alt="The Naga Node app on a test laptop, showing a bond quote of 0.8017 PEAQ from peaq mainnet" loading="lazy" width="1600" height="1000"></a>
-        <p class="log-meta"><b>Naga Node</b> · 14 November 2026 · Passed</p>
-        <h3>First quote from peaq mainnet.</h3>
-        <p>The app made a wallet on a test machine and asked peaq what activation costs: 0.8017 PEAQ for one year. peaq's heartbeat service also accepted the app's signed heartbeat. Nothing was sent or spent.</p>
-      </article>
-      <article class="log-item log-empty" data-track="baku">
-        <p class="log-meta"><b>Baku</b> · No entry yet</p>
-        <h3>Baku tests go here.</h3>
-        <p>We will post the first Baku test with its screen recording when we run it.</p>
-      </article>
-      <article class="log-item log-empty" data-track="node">
-        <p class="log-meta"><b>Naga Node</b> · Next</p>
-        <h3>A real activation.</h3>
-        <p>Not done yet: one laptop activated on peaq with its own bond, switched on, and seen online.</p>
-      </article>
-    </div>
   </div>
 </section>
 
@@ -277,7 +234,7 @@
     <div class="cols">
       <div><h4>Products</h4><ul><li><a href="sipag-i.html">SIPAG I</a></li><li><a href="lakan-ii.html">LAKAN II</a></li><li><a href="diwa.html">DIWA</a></li><li><a href="/#compare">Compare</a></li></ul></div>
       <div><h4>Support</h4><ul><li><a href="about.html#help">Warranty and service</a></li><li><a href="mailto:hello@nagatech.ph?subject=Track%20my%20order">Track order</a></li><li><a href="mailto:hello@nagatech.ph">hello@nagatech.ph</a></li></ul></div>
-      <div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="/node">Rewards</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="/node">Rewards</a></li><li><a href="/dev">Build log</a></li></ul></div>
       <div><h4>Follow</h4><ul class="social"><li><a href="https://www.facebook.com/nagaindustries" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg>Facebook</a></li><li><a href="https://www.instagram.com/nagaindustriesph" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a></li></ul></div>
     </div>
   </div>

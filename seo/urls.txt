@@ -8,3 +8,4 @@ https://naga.industries/about.html
 https://naga.industries/node
 # Control: must keep redirecting to / (a final_url change here means the redirect broke).
 https://naga.industries/index.html
+https://naga.industries/dev
