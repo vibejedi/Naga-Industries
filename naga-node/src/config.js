@@ -14,6 +14,8 @@ export const DEFAULTS = Object.freeze({
   // Naga's operator wallet. It becomes the machine's DID controller: it can suspend, resume, renew and
   // update the DID, and it cannot move the machine or take its wallet. Empty = the laptop controls itself.
   operator: '',
+  operatorUrl: '',                           // Naga's operator service (operator/server.js). Empty = this laptop reports to no one
+  model: '',                                 // 'SIPAG I' or 'LAKAN II', set at the factory
   manufacturer: '',                          // Naga's address, recorded on chain and never checked by peaq
   machineType: 'Laptop',                     // part of the machine ID: never change it after the first activation
   tier: 0,                                   // 0 Entry, 1 Basic, 2 Pro
@@ -37,6 +39,7 @@ export function loadConfig() {
   if (process.env.NAGA_NODE_RPC_URL) env.rpcUrl = process.env.NAGA_NODE_RPC_URL;
   if (process.env.NAGA_NODE_DEPLOYMENT) env.deploymentId = process.env.NAGA_NODE_DEPLOYMENT;
   if (process.env.NAGA_NODE_OPERATOR) env.operator = process.env.NAGA_NODE_OPERATOR;
+  if (process.env.NAGA_NODE_OPERATOR_URL) env.operatorUrl = process.env.NAGA_NODE_OPERATOR_URL;
   if (process.env.NAGA_NODE_PORT) env.port = Number(process.env.NAGA_NODE_PORT);
   return Object.assign({}, DEFAULTS, saved, env);
 }

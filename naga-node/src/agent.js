@@ -7,15 +7,18 @@ import { loadConfig, readJson, writeJson } from './config.js';
 import { machineAnchor, machineId } from './anchor.js';
 import { createVault, openVault, publicAddresses, vaultExists } from './vault.js';
 import { Peaq, activationParams, loadSdk } from './peaq.js';
+import { dayReport, enrollment, sign } from './report.js';
 
 const today = () => new Date().toISOString().slice(0, 10);
 
 export class NagaNode {
-  constructor({ cfg = loadConfig(), sdk = null, log = () => {} } = {}) {
+  constructor({ cfg = loadConfig(), sdk = null, log = () => {}, fetch: fetchFn = null } = {}) {
     this.cfg = cfg; this.sdk = sdk; this.log = log;
     this.keys = null; this.hb = null;
     this.beat = { running: false, online: false, lastAcceptedAt: null, error: null };
     this.remote = { machine: undefined, monetization: undefined, error: null, checkedAt: null };
+    this.fetch = fetchFn || globalThis.fetch;
+    this.operator = { enrolled: !!this.state().enrolledAt, lastReportAt: null, error: null };
   }
 
   async peaq() { this.sdk ||= await loadSdk(); return new Peaq(this.cfg, this.sdk); }
@@ -103,11 +106,13 @@ export class NagaNode {
     if (this.remote.monetization !== 'OPTED_IN') this.remote.monetization = await p.setMonetization(keys.evmPrivateKey, this.id(), true);
     this.save({ switch: 'on' });
     this.startHeartbeat(p);
+    await this.syncOperator();
     return this.snapshot();
   }
 
   async switchOff() {
     this.stopHeartbeat();
+    await this.syncOperator();
     this.save({ switch: 'off' });
     if (this.keys && this.remote.machine && this.remote.monetization === 'OPTED_IN') {
       try { this.remote.monetization = await (await this.peaq()).setMonetization(this.keys.evmPrivateKey, this.id(), false); }
@@ -145,6 +150,39 @@ export class NagaNode {
     const d = log.days[today()] ||= { heartbeats: 0, seconds: 0 };
     d.heartbeats += 1; d.seconds += this.cfg.heartbeatSeconds;
     writeJson('worklog.json', log);
+    if (d.heartbeats % 30 === 0) this.syncOperator();          // about every half hour while on
+  }
+
+  /**
+   * Tell Naga's operator service this laptop exists and what it did today. Signed with the laptop's key.
+   * It sends the machine ID, both addresses, the model and online time. Nothing about what you do on the laptop.
+   * Never throws: a laptop keeps working when Naga's server is down.
+   */
+  async syncOperator() {
+    if (!this.cfg.operatorUrl || !this.keys || !this.remote.machine) return this.operator;
+    const post = async (path, body) => {
+      const r = await this.fetch(this.cfg.operatorUrl.replace(/\/$/, '') + path, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(data.error || 'The operator service answered ' + r.status);
+      return data;
+    };
+    try {
+      const snap = this.snapshot();
+      if (!this.operator.enrolled) {
+        const e = await post('/v1/machines', await sign(this.keys.evm, 'enroll', enrollment(snap, this.cfg.model)));
+        this.save({ enrolledAt: e.enrolledAt }); this.operator.enrolled = true;
+      }
+      const days = readJson('worklog.json', { days: {} }).days;
+      const sent = this.state().reported || {};
+      for (const day of Object.keys(days).sort()) {
+        if (sent[day] === days[day].heartbeats) continue;       // nothing new that day
+        await post('/v1/reports', await sign(this.keys.evm, 'report', dayReport(snap.machineId, snap.addresses.peaq, day, days[day])));
+        sent[day] = days[day].heartbeats;
+      }
+      this.save({ reported: sent });
+      this.operator.lastReportAt = new Date().toISOString(); this.operator.error = null;
+    } catch (e) { this.operator.error = short(e); }
+    return this.operator;
   }
 
   work() {
@@ -170,6 +208,7 @@ export class NagaNode {
       switch: s.switch,
       heartbeat: this.beat,
       work: this.work(),
+      operator: this.cfg.operatorUrl ? this.operator : null,
       error: this.remote.error, checkedAt: this.remote.checkedAt,
     };
   }

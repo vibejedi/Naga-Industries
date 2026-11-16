@@ -37,6 +37,30 @@ a transaction whose receipt did not arrive; the phrase is shown once and never r
 dashboard listens on 127.0.0.1, checks the Host header and needs a page token for every change; peaq's SDK
 telemetry (PostHog) is switched off.
 
+## The operator service (`operator/`, added 16 November 2026)
+
+Naga's side of the fleet. peaq does not list a fleet and holds no work record except what the operator
+submits, so this service keeps both.
+
+```bash
+NAGA_OPERATOR_ADMIN_TOKEN=<24 characters or more> npm run operator     # port 4848
+NAGA_NODE_OPERATOR_URL=http://127.0.0.1:4848 npm start                 # a laptop that reports to it
+```
+
+| Piece | What it does |
+|---|---|
+| Enrollment | A laptop posts its machine ID, peaq address, Solana address and model, signed with its peaq key. A machine ID is tied to the first wallet that enrolls it |
+| Daily report | The laptop posts each day's online time, signed. It sends nothing about what the owner does on the laptop |
+| Network pay | Set by Naga from a partner network's statement (`api.setNetworkPay`), never taken from a laptop's own report |
+| Payout sheet | `GET /v1/admin/payouts?month=YYYY-MM&pool=1000&format=csv`: each laptop's Solana address and its USDC reward |
+| Rewards maths | `operator/rewards.js`: the pool is shared by network pay, each laptop is capped at twice its network pay, the rest returns to the treasury, and every cent is accounted for |
+
+With no network pay recorded, the sheet pays nothing whatever the pool. That is deliberate: online time alone
+is easy to fake, so it is recorded and shown and earns nothing by itself.
+
+Storage is one JSON file, which suits a pilot of tens of laptops. Not built yet: sending the USDC, an admin
+page, submitting monthly events to peaq, and importing a partner network's statement.
+
 ## Checked against peaq mainnet on 14 November 2026
 
 - The wallet derives the same peaq and Solana addresses as peaq's own vault (OWS) from the same phrase.
