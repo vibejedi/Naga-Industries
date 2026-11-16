@@ -725,6 +725,21 @@ html.m-enter:not(.m-enter-done) [data-enter] :is(h1, [data-enter-up]) { visibili
 @keyframes hz-head { from { transform: translateX(0); } to { transform: translateX(100cqw); } }
 @media (max-width: 640px) { .hz { margin-top: 64px; } .hz-row { grid-template-columns: 1fr; gap: 10px; } }
 
+/* ---------- Build log (/node#live) ---------- */
+.log-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.log-tabs button { font: 500 .9375rem/1 var(--font-display); color: var(--ink); background: none; border: 1px solid var(--hairline); border-radius: 999px; padding: 11px 18px; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+.log-tabs button.is-on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.log { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px var(--col-gap); margin-top: 32px; }
+.log-item[hidden] { display: none; }
+.log-media { display: block; aspect-ratio: 16 / 10; overflow: hidden; border-radius: var(--radius); background: var(--paper-2); }
+.log-media img, .log-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.log-meta { margin-top: 16px; font-size: .8125rem; color: var(--ink-2); }
+.log-meta b { color: var(--cyan-link); font-weight: 500; }
+.log-item h3 { margin-top: 6px; font: 500 var(--t-h3)/1.15 var(--font-display); letter-spacing: -.02em; }
+.log-item h3 + p { margin-top: 8px; color: var(--ink-2); max-width: 34em; }
+.log-empty { border-top: 1px solid var(--hairline); padding-top: 4px; }
+@media (max-width: 760px) { .log { grid-template-columns: 1fr; gap: 40px; } }
+
 /* ---------- Motion layer (naga-motion.js) ---------- */
 /* The fee bar: a light passes once it is built, and a pointed-at share makes the others step back. */
 .split { position: relative; }

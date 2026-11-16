@@ -44,7 +44,7 @@
     });
 
     /* 4. Blocks arrive in a stagger, row by row. */
-    const blocks = all('.pcard, .spec, .dcard, .rows > li, .baku-points:not(.split-key) > li, .bento > *, .statrow > *, .flow-node, .flow-track, .hz-row, .head > .side, .feat-text > :not(h2), .duo .shot, .duo-side > :not(figure), .eyebrow, .tblwrap, dl.facts > div, form.order > *, .measure');
+    const blocks = all('.pcard, .spec, .dcard, .log-item, .log-tabs, .rows > li, .baku-points:not(.split-key) > li, .bento > *, .statrow > *, .flow-node, .flow-track, .hz-row, .head > .side, .feat-text > :not(h2), .duo .shot, .duo-side > :not(figure), .eyebrow, .tblwrap, dl.facts > div, form.order > *, .measure');
     gsap.set(blocks, { opacity: 0, y: 30 });
     ST.batch(blocks, { start: 'top 92%', once: true, onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 0.75, ease, stagger: 0.07, overwrite: 'auto', clearProps: 'transform,opacity' }) });
     // Whatever happens to the scroll listeners, nothing stays hidden.
