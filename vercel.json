@@ -27,6 +27,10 @@
     {
       "source": "/node",
       "destination": "/node.html"
+    },
+    {
+      "source": "/dev",
+      "destination": "/dev.html"
     }
   ],
   "headers": [

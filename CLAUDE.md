@@ -13,6 +13,10 @@ Static site, no build step. Open `index.html` or serve the folder with any stati
 | `about.html`    | Company facts: the visible brand fact sheet (keep in step with `seo/brand-facts.md`) |
 | `node.html`     | $NAGA rewards page, served at `/node` ("Rewards" in the nav and footers), live since 12 November 2026. It was `naga.html` until 13 November 2026; `vercel.json` redirects the old address. Model, legal notes and open work: `docs/naga-token-model.md` |
 
+## Build log (`dev.html`, served at `/dev`)
+
+A dated log of Naga Node and Baku tests on its own page (a rewrite in `vercel.json`, like `/node`; every link to it is `/dev`), newest first, with tabs for each track (`naga.js` 18). Every entry must be a test that was run, with the picture or film from that run in `assets/img/log/` or `assets/video/log/`; never a mock-up, a render or a planned result. An empty track says so. Update the date in the page's eyebrow with each entry.
+
 ## Naga Node app (`naga-node/`)
 
 The laptop app that puts a Naga machine on peaqOS: its own package (`cd naga-node && npm install && npm test`), not part of the website and left out by `.vercelignore`. It uses peaq's SDK (`@peaqos/peaq-os-sdk`); its README lists what works, what was checked against peaq mainnet, and what peaq's docs change about the $NAGA model. Keep its dashboard copy to what is true: it connects no paid work yet.

@@ -468,4 +468,14 @@
       new IntersectionObserver((es) => es.forEach((e) => fig.classList.toggle('is-running', e.isIntersecting)), { threshold: 0.25 }).observe(fig);
     });
   }
+
+  /* 18. Build log tabs: show every entry, or one track. Without script every entry shows. */
+  document.querySelectorAll('.log-tabs').forEach((tabs) => {
+    const items = tabs.parentElement.querySelectorAll('.log-item');
+    tabs.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-log-tab]'); if (!b) return;
+      tabs.querySelectorAll('button').forEach((x) => { const on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on); });
+      items.forEach((it) => { it.hidden = b.dataset.logTab !== 'all' && it.dataset.track !== b.dataset.logTab; });
+    });
+  });
 })();

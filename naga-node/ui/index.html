@@ -157,6 +157,7 @@ function render() {
     ['Online in total', s.work.days ? hours(s.work.totalSeconds) + ' over ' + s.work.days + (s.work.days === 1 ? ' day' : ' days') : '0 min'],
     ['Last heartbeat accepted', s.heartbeat.lastAcceptedAt ? new Date(s.heartbeat.lastAcceptedAt).toLocaleTimeString() : 'None yet'],
     s.heartbeat.error && ['Heartbeat', s.heartbeat.error],
+    s.operator && ['Reported to Naga', s.operator.error ? 'Not sent: ' + s.operator.error : s.operator.lastReportAt ? new Date(s.operator.lastReportAt).toLocaleTimeString() : 'Not yet'],
   ]);
 }
 
