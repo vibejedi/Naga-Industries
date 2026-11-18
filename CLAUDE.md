@@ -32,6 +32,17 @@ The laptop app that puts a Naga machine on peaqOS: its own package (`cd naga-nod
 - Copy is English for the export market: short headlines, tight tracking. Keep it short (owner, 14 November 2026: "too much text"): one or two sentences under a heading, and let the picture or the motion carry the rest. Disclosures on `/node` stay in full. Write it with `.claude/skills/stop-slop` (MIT): "we" and "you", active voice, real numbers and named things, no slogans, no stacked fragments, no "not X, it's Y", no adverbs, no em dashes. A heading names a thing; a button is a verb and an object. Product names (SIPAG, LAKAN, DIWA, Baku) and the brand motto SULONG stay Filipino; no other Tagalog. Prices come in two: pesos for the Philippines (VAT included) and a fixed USD price for everywhere else (`php` and `usd` in `store.json`); show both, never a converted figure. Numbers are the headline in spec tiles. No emoji as icons.
 - Every page: `.nav` (fixed, 56px, opaque) and, on product pages, `.subnav` (sticky, Buy pill). Sections that are dark carry `data-nav-dark` so the nav flips.
 
+## Design review skills (installed 18 November 2026)
+
+Three review skills sit beside the taste skill in `.claude/skills/`. Use them to review any page or the Naga Node app before it ships; the Naga design system wins where they disagree.
+
+- `impeccable/` (Apache 2.0): critique, audit, polish, harden playbooks, plus a rule detector run on demand with `DO_NOT_TRACK=1 npx impeccable detect <file or URL> --json`. Its scripts, hook and live mode are left out; `impeccable/NAGA.md` says why and lists the findings Naga accepts.
+- `emil-design-eng/`, `review-animations/`, `remove-animations/`, `animation-performance/`, `break-ui/` (Emil Kowalski, MIT): motion standards and worst-case data tests.
+- `web-interface-guidelines/` (Vercel, MIT): a pinned copy of the rules, so nothing is downloaded at review time.
+
+Bookmarked, not installed (the owner's list of 18 November 2026; install at most one or two more, never all):
+Anti UI Slop (uizze.com), Frontend Design (github.com/anthropics/skills), Hallmark (github.com/Nutlope/hallmark), Make Interfaces Feel Better (github.com/jakubkrehel/make-interfaces-feel-better), UI UX Pro Max (github.com/nextlevelbuilder/ui-ux-pro-max-skill), Stageshow (github.com/benjitaylor/skills). Already installed: Taste Skill (github.com/Leonxlnx/taste-skill).
+
 ## Libraries (vendored in `assets/vendor/`, versions pinned in `package.json`)
 
 | Library        | Used for                                                   |

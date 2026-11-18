@@ -93,7 +93,7 @@
         if (keys[k]) {
           tl.to(keys[k], { opacity: 1, y: 0, duration: 0.6, ease, clearProps: 'transform,opacity' }, at + 0.35);
           const dot = keys[k].querySelector('i');
-          if (dot) tl.from(dot, { scale: 0, duration: 0.6, ease: 'back.out(3)', clearProps: 'transform' }, at + 0.4);
+          if (dot) tl.from(dot, { scale: 0.6, opacity: 0, duration: 0.4, ease, clearProps: 'transform,opacity' }, at + 0.4);   // never from scale 0, no bounce (Emil's standards)
         }
       });
       const group = bar2.parentElement;
