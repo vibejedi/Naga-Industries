@@ -14,10 +14,10 @@ description: Naga Industries visual system. Load before adding or changing any p
 | `--paper`      | `#FFFFFF` | page ground |
 | `--paper-2`    | `#F5F7F8` | tint ground, picture frames |
 | `--ink`        | `#101214` | headlines and text |
-| `--ink-2`      | `#6B7378` | leads, labels, notes |
+| `--ink-2`      | `#646C71` | leads, labels, notes |
 | `--hairline`   | `rgba(16,18,20,.12)` | one-pixel rules |
 | `--cyan`       | `#00D9F5` | fills, glow, links on dark, the statement band |
-| `--cyan-link`  | `#0097B2` | text links on white (AA contrast) |
+| `--cyan-link`  | `#00758C` | text links on white and on the tint ground (AA contrast: 5.3 and 5.0 to 1), and the focus ring |
 | `--void`       | `#000000` | the black chapter, footer |
 | `--void-2`     | `#0A0C0E` | raised dark surface |
 | `--onvoid`     | `#F5F7F8` | text on dark |
@@ -29,7 +29,7 @@ Never add a color. Dark mode remaps the same tokens under `:root[data-theme="dar
 ## Type
 
 - One family: Outfit for headings and text (`--font-display`, `--font-text`), weights 400 and 500 only. Size and tight tracking carry a headline, never bold. No system-font or Inter look.
-- Accent: Tilt Neon (`--font-accent`) for product names only. Add `.nameplate` to the name, or wrap the name in `<span class="nameplate">` inside an Outfit headline ("DIWA runs Baku, our own AI"). One weight, `font-synthesis: none`, a faint cyan glow on black.
+- Accent: Tilt Neon (`--font-accent`) for product names only. Add `.nameplate` to the name, or wrap the name in `<span class="nameplate">` inside an Outfit headline ("DIWA runs Baku, our own AI"). One weight, `font-synthesis: none`, no glow.
 - Roles: `.t-hero` (78px at 1440, 40px on a phone), `.t-h2` (48/30), `.t-h3` (28/22), `.t-tag` (the 21px lead), `.t-big` (a figure as a headline), `.eyebrow` (a 13px label in sentence case).
 - Labels are never uppercase and never letter-spaced. Nothing is set under 13px.
 - Copy: write it with `.claude/skills/stop-slop`. A heading names a thing with a noun; no slogan, no two-fragment headline ("Full power. Never held back."). The homepage h1 says what we sell and where. A button is a verb and an object ("Pre-order LAKAN II"), worded the same wherever it appears. No caption under a picture: say it in the section's lead.
