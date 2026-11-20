@@ -61,6 +61,28 @@ is easy to fake, so it is recorded and shown and earns nothing by itself.
 Storage is one JSON file, which suits a pilot of tens of laptops. Not built yet: sending the USDC, an admin
 page, submitting monthly events to peaq, and importing a partner network's statement.
 
+## The DePIN trial (`src/trial.js`, added 20 November 2026)
+
+A way to test other networks on a Naga machine and measure what each one costs and pays. Naga Node does not
+contain those networks' clients and downloads nothing: you install each official app yourself. The trial keeps
+the clock, lets one GPU network run at a time, reads the GPU every minute and totals the result.
+
+```bash
+node bin/naga-node.js trial gpu                         # one GPU reading (needs an NVIDIA card)
+node bin/naga-node.js trial set salad "C:\Program Files\Salad\Salad.exe"   # optional: let the trial start it
+node bin/naga-node.js trial start salad                 # leave this window open while it runs
+node bin/naga-node.js trial stop salad
+node bin/naga-node.js trial earn salad 2026-11-20 1.42 USD 1.42    # what Salad's dashboard says
+node bin/naga-node.js trial report --kwh 0.23           # or --csv
+```
+
+Networks: `salad` and `ionet` (GPU), `grass` and `teneo` (bandwidth). A bandwidth network can run beside a GPU one.
+
+Limits, stated plainly:
+- **Earnings are typed in by a person** from each network's dashboard. None of the four offers a public way to read them.
+- **Power is the GPU alone**, from `nvidia-smi`. The whole machine draws more, so the true net is lower. Some laptops report no GPU power at all; the report then shows hours and earnings only.
+- **This is a measuring tool, not an integration.** Building a network into Naga Node for customers needs that network's agreement and its developer kit.
+
 ## Checked against peaq mainnet on 14 November 2026
 
 - The wallet derives the same peaq and Solana addresses as peaq's own vault (OWS) from the same phrase.
