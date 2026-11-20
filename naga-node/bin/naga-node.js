@@ -4,6 +4,7 @@ import readline from 'node:readline';
 import { NagaNode } from '../src/agent.js';
 import { createServer } from '../src/server.js';
 import { home } from '../src/config.js';
+import { Trial, NETWORKS, csv, sampleGpu } from '../src/trial.js';
 
 const HELP = `naga-node <command>
 
@@ -15,6 +16,14 @@ const HELP = `naga-node <command>
   on         Turn Naga Node on: opt in and start the heartbeat (stays running)
   off        Turn Naga Node off: stop and opt out
   phrase     Show the recovery phrase again
+
+  trial gpu                              Read the GPU once (needs an NVIDIA card)
+  trial set <network> <command> [args]   Say how to start a network's own client
+  trial start <network>                  Start the clock (and the client, if set). Stays running and samples the GPU
+  trial stop <network>                   Stop the clock (and the client)
+  trial earn <network> <day> <amount> <unit> <usd>   Record what its dashboard says you earned
+  trial report [--csv] [--kwh 0.23]      Hours, GPU energy, earnings and net per network
+  Networks: salad, ionet, grass, teneo. One GPU network at a time.
 
 The passphrase is read from NAGA_NODE_PASSPHRASE or asked for. Files live in ${home()}.`;
 
@@ -60,6 +69,15 @@ try {
     process.on('SIGINT', stop); process.on('SIGTERM', stop);
   } else if (cmd === 'off') {
     await node.unlock(await passphrase()); show(await node.switchOff()); node.lock();
+  } else if (cmd === 'trial') {
+    const [, , , sub, id, ...rest] = process.argv; const trial = new Trial();
+    if (sub === 'gpu') show((await sampleGpu()) || { error: 'No NVIDIA GPU found (nvidia-smi did not answer).' });
+    else if (sub === 'set') show(trial.setCommand(id, rest[0], rest.slice(1)));
+    else if (sub === 'start') { show(await trial.start(id)); await trial.sample(); console.log('Sampling the GPU every minute. Leave this window open; Ctrl+C ends the sampling (run "trial stop" to stop the clock).'); await new Promise(() => {}); }
+    else if (sub === 'stop') show(await trial.stop(id));
+    else if (sub === 'earn') show(trial.earn(id, rest[0], parseFloat(rest[1]), rest[2], parseFloat(rest[3])));
+    else if (sub === 'report') { const k = process.argv.indexOf('--kwh'); const r = trial.report({ usdPerKwh: k > 0 ? parseFloat(process.argv[k + 1]) : 0.23 }); process.argv.includes('--csv') ? process.stdout.write(csv(r)) : console.table(r); }
+    else { console.log(HELP); process.exitCode = 1; }
   } else if (cmd === 'phrase') {
     console.log(node.phrase(await passphrase()));
   } else {
